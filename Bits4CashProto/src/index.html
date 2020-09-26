@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/main.css">
+
+    <title>Bits 4 Cash</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans&family=Lato&display=swap" rel="stylesheet"><script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <div class="container-fluid">
+        <section class="header__section">
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 logo__container view-object" style="text-align: center">
+                    <p>Bits4Cash-dev (navbar goes here)</p>
+                </div>
+                <div class="col-sm-2"></div>
+            </div>
+        </section>
+
+        <section class="welcome__section">
+            <div class="row">
+                <div class="col welcome__message parallax-object" parallax-speed="-0.6" parallax-z="-1">
+                    Welcome to <span>Bits4Cash</span>
+                    <p>Spend 10 racks on a new blockchain</p>
+                </div>
+            </div>
+            <div class="row buttons__row parallax-object" parallax-speed="-0.6" parallax-z="0">
+                <div class="col">
+                    <button class="btn-default">
+                        Read rules
+                    </button>
+                    <button class="btn-default">
+                        Help
+                    </button>
+                    <button class="btn-default">
+                        Currency tracker
+                    </button>
+                </div>
+            </div>
+            <div class="row buttons__row parallax-object pt-3" parallax-speed="-0.6" parallax-z="0">
+                <div class="col">
+                    <button class="btn-default">
+                        Begin trading
+                    </button>
+                    <button class="btn-default">
+                        Wiki
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <div class="hint">
+            <h1>Newcomer?</h1>
+            <p>Create your account and start trading right now!</p>
+            <div class="row buttons__row flex-row">
+                <div class="col">
+                    <button class="btn-default btn-green create-account-btn">
+                        Create account
+                    </button>
+                </div>
+                <img src="img/newUserPObj.png" class="parallax-object" parallax-speed="-0.1"
+                     style="position: absolute;">
+            </div>
+
+        </div>
+
+        <section class="blog__section">
+            <h1>Latest news</h1>
+            <div class="row flex-row">
+                <div class="col-sm-5">
+                    <div class="news-container">
+                        <div class="col">
+                            <h3>News title</h3>
+                            <p>News description Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam architecto corporis iste perspiciatis porro quo
+                                recusandae repudiandae rerum saepe vel?</p>
+                        </div>
+                        <div class="hot-news">
+                            <img src="img/fire.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="news-container">
+                        <div class="col">
+                            <h3>News title</h3>
+                            <p>News description Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Aliquam architecto corporis iste perspiciatis porro quo
+                                recusandae repudiandae rerum saepe vel?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem">
+                <p style="font-size: 25px">Wanna check more news?</p>
+                <div class="row buttons__row flex-row">
+                    <div class="col">
+                        <button class="btn-default" style="margin-right: 10px">Open entire blog</button>
+                        <button class="btn-default">Subscribe for news</button>
+                    </div>
+                </div>
+            </div>
+            <img src="img/newspaper.png" class="parallax-object" parallax-speed="-0.15">
+        </section>
+
+        <section class="monitoring__section" style="padding-bottom: 1rem">
+            <div class="row" style="display: block">
+                <h1>Monitoring</h1>
+                <p>Observe most popular currencies in realtime</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="chart-wrapper" data-aos="fade-up">
+                        <div class="chart-header">
+                            Chart name goes here
+                        </div>
+                        <div class="chart-container" id="chart1"></div>
+                        <p>1 EUR = x,xxx USD</p>
+                        <div class="row buttons__row flex-row">
+                            <div class="col">
+                                <button class="btn-default">Open internally</button>
+                                <button class="btn-default">Pin</button>
+                                <button class="btn-default btn-red">Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="chart-wrapper" data-aos="fade-up">
+                        <div class="chart-header">
+                            Chart name goes here
+                        </div>
+                        <div class="chart-container" id="chart2"></div>
+                        <p>1 EUR = x,xxx USD</p>
+                        <div class="row buttons__row flex-row">
+                            <div class="col">
+                                <button class="btn-default">Open internally</button>
+                                <button class="btn-default">Pin</button>
+                                <button class="btn-default btn-red">Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="chart-wrapper" data-aos="fade-up">
+                        <div class="chart-header">
+                            Chart name goes here
+                        </div>
+                        <div class="chart-container" id="chart3"></div>
+                        <p>1 EUR = x,xxx USD</p>
+                        <div class="row buttons__row flex-row">
+                            <div class="col">
+                                <button class="btn-default">Open internally</button>
+                                <button class="btn-default">Pin</button>
+                                <button class="btn-default btn-red">Report</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 3rem; text-align: center;">
+                <div class="col">
+                    <h2>Most popular currencies</h2>
+                    <div class="currencies-wrapper" style="margin-top: 2rem">
+                        <div class="currency-container">
+                            <div class="currency-header">
+                                EUR
+                            </div>
+                            <p>1,16 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                        <div class="currency-container">
+                            <div class="currency-header">
+                                USD
+                            </div>
+                            <p>0,86 EUR</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="currency-container">
+                            <div class="currency-header">
+                                RUB
+                            </div>
+                            <p>0,013 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="currencies-wrapper" style="margin-top: 1rem">
+                        <div class="currency-container currency-container-green">
+                            <div class="currency-header">
+                                BTC
+                            </div>
+                            <p>10674,10 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                        <div class="currency-container">
+                            <div class="currency-header" style="background-color: #32a861">
+                                ETH
+                            </div>
+                            <p>351,03 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                        <div class="currency-container">
+                            <div class="currency-header" style="background-color: #32a861">
+                                LTC
+                            </div>
+                            <p>351,03 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                        <div class="currency-container">
+                            <div class="currency-header" style="background-color: #32a861">
+                                NEO
+                            </div>
+                            <p>20,123 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="currencies-wrapper" style="margin-top: 1rem">
+                        <div class="currency-container">
+                            <div class="currency-header" style="background-color: #f54263">
+                                XAU
+                            </div>
+                            <p>1869,70 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                        <div class="currency-container">
+                            <div class="currency-header" style="background-color: #f54263">
+                                BRL
+                            </div>
+                            <p>307,13 USD</p>
+                            <div class="currency-menu">
+                                <button>
+                                    Buy
+                                </button>
+                                <button>
+                                    Sell
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="img/coinbag.png" class="parallax-object" parallax-speed="-0.15">
+
+        </section>
+
+        <section class="forum__section">
+            <h1>Forum</h1>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="forum-module">
+                        <div class="module-header">
+                            <div class="col">
+                                <h3>Posts</h3>
+                                <p>Most recent posts from our users</p>
+                            </div>
+                            <div class="col">
+                                <div class="module-menu">
+                                    <button class="btn-default btn-lightblue">Open</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="post">
+                                <div class="post-header">
+                                    <h4>Post title</h4>
+                                    <p>post author</p>
+                                </div>
+                                <div class="post-menu">
+                                    <div class="post-stat">
+                                        <div class="post-stat-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-hand-thumbs-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16v-1c.563 0 .901-.272 1.066-.56a.865.865 0 0 0 .121-.416c0-.12-.035-.165-.04-.17l-.354-.354.353-.354c.202-.201.407-.511.505-.804.104-.312.043-.441-.005-.488l-.353-.354.353-.354c.043-.042.105-.14.154-.315.048-.167.075-.37.075-.581 0-.211-.027-.414-.075-.581-.05-.174-.111-.273-.154-.315L12.793 9l.353-.354c.353-.352.373-.713.267-1.02-.122-.35-.396-.593-.571-.652-.653-.217-1.447-.224-2.11-.164a8.907 8.907 0 0 0-1.094.171l-.014.003-.003.001a.5.5 0 0 1-.595-.643 8.34 8.34 0 0 0 .145-4.726c-.03-.111-.128-.215-.288-.255l-.262-.065c-.306-.077-.642.156-.667.518-.075 1.082-.239 2.15-.482 2.85-.174.502-.603 1.268-1.238 1.977-.637.712-1.519 1.41-2.614 1.708-.394.108-.62.396-.62.65v4.002c0 .26.22.515.553.55 1.293.137 1.936.53 2.491.868l.04.025c.27.164.495.296.776.393.277.095.63.163 1.14.163h3.5v1H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z"/>
+                                            </svg>
+                                        </div>
+                                        15 likes
+                                    </div>
+                                    <div class="post-stat">
+                                        <div class="post-stat-icon">
+                                            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-envelope" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383l-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+                                            </svg>
+                                        </div>
+                                        5 comments
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="wiki__section">
+            <!--There will be node-graph with pages-->
+            <!--http://arborjs.org-->
+        </section>
+
+        <section class="footer__section">
+            <h2>vovetch.</h2>
+            <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+        </section>
+        <canvas class="background"></canvas>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="../js/parallaxObjects.js"></script>
+    <script src="../js/particles.js"></script>
+    <script src="../js/viewObjects.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="../js/charts/indexCharts.js"></script>
+    <script src="../build/general.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!--Initialization of js libraries-->
+    <script>
+        AOS.init();
+        window.onload = function() {
+            Particles.init({
+                selector: '.background',
+                maxParticles: 200,
+                connectParticles: true,
+                color: '#307cba',
+                speed: 0.1,
+
+                responsive: [
+                    {
+                        breakpoint: 768,
+                        options: {
+                            maxParticles: 200,
+                            color: '#48F2E3',
+                            connectParticles: false
+                        }
+                    },
+                    {
+                        breakpoint: 425,
+                        options: {
+                            maxParticles: 100,
+                            connectParticles: true
+                        }
+                    },
+                    {
+                        breakpoint: 320,
+                        options: {
+                            maxParticles: 0
+                        }
+                    }
+                ]
+            });
+        };
+    </script>
+</body>
+</html>

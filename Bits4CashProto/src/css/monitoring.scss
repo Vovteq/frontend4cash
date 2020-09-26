@@ -1,0 +1,123 @@
+@import "colors";
+
+.monitoring__section {
+  min-height: 500px;
+  padding: 0 20px;
+  margin-top: 5rem;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+
+  p {
+    text-align: center;
+    color: $dark;
+    font-size: 30px;
+    letter-spacing: 5px;
+    padding: 5px 0;
+  }
+
+  h2 {
+    font-weight: 200;
+  }
+
+  .parallax-object {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    right: 5%;
+  }
+}
+
+.currencies-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .currency-header {
+    background-color: $blue;
+    color: $white;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding: 3px 10px;
+  }
+
+  .currency-container {
+    border-radius: 15px;
+    border: 1px solid $dark;
+    font-size: 20px;
+    display: flex;
+    box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+    transition: all 150ms;
+    cursor: pointer;
+    background-color: $white;
+
+    p {
+      font-size: 20px;
+      letter-spacing: 0;
+      margin: 0 10px;
+    }
+
+    &:hover {
+      border-color: $blue;
+      box-shadow: 0 0 17px 0 rgba(56, 175, 255, 0.5);
+    }
+
+    .currency-menu {
+      max-width: 0;
+      background-color: $white;
+      transition: all 300ms ease-in-out;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+      opacity: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-left-width: 1px;
+      border-left-color: $green;
+      padding-right: 3px;
+
+      button {
+        background-color: $white;
+        font-size: 20px;
+        color: $dark;
+        border: 1px solid $green;
+        border-radius: 15px;
+        transition: all 100ms;
+        box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+        padding: 0 10px;
+
+        &:hover {
+          background-color: $green;
+          color: $white;
+          border-color: $green;
+        }
+      }
+
+      button + button {
+        margin-left: 5px;
+      }
+    }
+
+    &:hover > .currency-menu {
+      max-width: 1000px;
+      opacity: 1;
+    }
+  }
+
+  .currency-container + .currency-container {
+    margin-left: 10px;
+  }
+}
+
+.currency-container-green {
+  .currency-header {
+    background-color: #32a861;
+  }
+
+  &:hover {
+    border-color: #32a861;
+    box-shadow: 0 0 17px 0 rgba(50, 168, 97, 0.5);
+  }
+}
+
+.row-blue {
+  background: linear-gradient(90deg, rgba(63,94,251,0) 0%, rgba(61,153,255,0.4) 50%, rgba(148,83,186,0) 100%);
+}

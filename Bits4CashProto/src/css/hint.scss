@@ -1,0 +1,23 @@
+@import "colors";
+
+.hint {
+  text-align: center;
+  background-color: $panel;
+  box-shadow: 0 0 50px -5px rgba(0,0,0,0.2);
+  padding: 20px 0;
+  border: 1px solid $dark;
+
+  p {
+    font-size: 20px;
+  }
+
+  img {
+    width: 300px;
+    height: 300px;
+    right: 15%;
+  }
+
+  .create-account-btn:hover ~ img {
+    right: 500px;
+  }
+}

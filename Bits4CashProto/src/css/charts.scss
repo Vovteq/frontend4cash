@@ -1,0 +1,30 @@
+@import "colors";
+
+#chart {
+  max-width: 700px;
+}
+
+.chart-wrapper {
+  min-width: 500px;
+  min-height: 300px;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  transition: all 200ms;
+  cursor: pointer;
+  padding-bottom: 1rem;
+  border: 1px solid $blue;
+
+  .chart-header {
+    font-size: 30px;
+    color: $white;
+    text-align: center;
+    background-color: $blue;
+  }
+
+  .chart-container {
+    padding: 0 40px;
+  }
+
+  &:hover {
+    box-shadow: 0 0 17px 0 rgba(56, 175, 255, 0.5);
+  }
+}

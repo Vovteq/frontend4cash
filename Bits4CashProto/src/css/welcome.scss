@@ -1,0 +1,24 @@
+@import "colors";
+
+.welcome__section {
+  min-height: 700px;
+  padding-top: 250px;
+}
+
+.welcome__message {
+  text-align: center;
+  font-size: 60px;
+}
+
+.welcome__message span {
+  letter-spacing: 5px;
+  font-weight: 700;
+  color: $blue;
+  text-shadow: 0 0 11px rgba(51, 184, 255, 0.6);
+}
+
+.welcome__message p {
+  letter-spacing: 2px;
+  font-size: 30px;
+  color: #808080;
+}

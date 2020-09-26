@@ -1,0 +1,41 @@
+@import "colors";
+
+.blog__section {
+  min-height: 500px;
+  margin-top: 5rem;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  
+  h1 {
+    margin-bottom: 4rem;
+  }
+
+  .parallax-object {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+  }
+}
+
+.news-container {
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  border: 1px solid $blue;
+  border-left-width: 10px;
+  display: flex;
+  min-height: 130px;
+  transition: all 200ms;
+  cursor: pointer;
+
+  .hot-news {
+    background-color: $blue;
+    color: $white;
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &:hover {
+    border-left-width: 60px;
+    box-shadow: 0 0 17px 0 rgba(56, 175, 255, 0.5);
+  }
+}
