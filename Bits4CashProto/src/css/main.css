@@ -300,12 +300,31 @@
   min-height: 400px;
   box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
   margin-top: 5rem;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 1rem 8rem 1rem;
+}
+.forum__section img {
+  position: absolute;
+  right: 8%;
+  bottom: -10%;
+  width: 450px;
+  height: 450px;
+}
+
+.modules-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.modules-container .col .forum-module + .forum-module {
+  margin-top: 1rem;
 }
 
 .forum-module {
   border: 1px solid #2282c7;
-  min-height: 500px;
+  min-height: 40px;
+  height: fit-content;
+  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.25);
+  min-width: 550px;
+  margin: 0 1rem;
 }
 .forum-module .module-header {
   background-color: #2282c7;
