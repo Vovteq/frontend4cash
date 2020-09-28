@@ -5,6 +5,7 @@ stages:
 
 compile:
   stage: compile angular
+  image: trion/ng-cli
   before_script:
     - cd frontend4cash
   script:
