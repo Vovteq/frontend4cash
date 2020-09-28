@@ -1,0 +1,19 @@
+stages:
+  - compile angular
+  - build image
+  - run cuntainer
+
+compile:
+  stage: compile angular
+  before_script:
+    - cd frontend4cash
+  script:
+    - ng build --prod
+
+build:
+  stage: build image
+  script: docker build -t .
+
+deploy:
+  stage: run container
+  script: docker container run -d --name $APP_NAME - p $PORT:80 frontend4cash:latest
