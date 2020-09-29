@@ -18,7 +18,7 @@ build:
   before_script:
         - source .${CI_COMMIT_REF_NAME}.env
   script:
-        - echo $DOCKER_REPO
+        - echo ${DOCKER_REPO}
         - echo "actually echoed docker repo"
         - docker build -t ${DOCKER_REPO} .
 
