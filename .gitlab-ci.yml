@@ -16,6 +16,7 @@ compile:
 build:
   stage: build image
   before_script:
+        - echo ${CI_COMMIT_REF_NAME}
         - source .${CI_COMMIT_REF_NAME}.env
   script:
         - echo ${GOOD_NAME}
