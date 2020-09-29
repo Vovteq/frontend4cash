@@ -1,14 +1,17 @@
 stages:
   - compile angular
   - build image
-  - run cuntainer
+  - run container
 
 compile:
   stage: compile angular
+  image: trion/ng-cli
   before_script:
     - cd frontend4cash
+    - npm i
+    - npm ci
   script:
-    - ng build --prod
+    - ng build --prod --verbose=true
 
 build:
   stage: build image
