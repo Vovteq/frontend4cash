@@ -9,7 +9,6 @@
   img {
     position: absolute;
     right: 8%;
-    bottom: -10%;
     width: 450px;
     height: 450px;
   }
@@ -17,7 +16,7 @@
 
 .modules-container {
   display: flex;
-  flex-flow: row wrap;
+  width: 100%;
 
   .col .forum-module + .forum-module {
     margin-top: 1rem;
@@ -77,7 +76,7 @@
   }
 
   &:hover {
-    box-shadow: 0 0 25px 0 rgba(31, 224, 140,0.25);
+    box-shadow: 0 0 25px 0 rgba(100, 224, 55,0.25);
   }
 
   .post-stat {

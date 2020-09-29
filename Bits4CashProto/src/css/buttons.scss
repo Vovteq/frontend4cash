@@ -56,4 +56,24 @@
   margin-left: 10px;
 }
 
+.btn-big {
+  background-color: $blue;
+  color: $white;
+  border: 1px solid $blue;
+  max-width: fit-content;
+  padding: 4px 45px;
+  border-radius: 5px;
+  font-size: 35px;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  transition: all 100ms;
+
+  &:hover {
+    background-color: $white;
+    color: $blue;
+    box-shadow: 0 0 17px 0 rgba(34, 130, 199,0.8);
+    font-weight: 700;
+    font-size: 38px;
+  }
+}
+
 

@@ -1,6 +1,6 @@
 const options = {
     chart: {
-      type: 'line'
+      type: 'area'
     },
     series: [{
         name: 'sales',

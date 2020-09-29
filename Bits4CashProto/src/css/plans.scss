@@ -1,0 +1,37 @@
+@import "colors";
+
+.plans__section {
+  margin-top: 2rem;
+  padding: 1rem;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+}
+
+.plan-card {
+  max-width: 500px;
+  min-height: 600px;
+  box-shadow: 0 0 12px 0 rgba(0,0,0,0.15);
+  border-radius: 20px;
+  border: 1px solid $blue;
+  border-bottom-width: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+  transition: 300ms all;
+
+
+  &:hover {
+    transform: translateY(-10px);
+  }
+
+
+  .card-element + .card-element {
+    margin-top: 1rem;
+  }
+
+  p {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+}

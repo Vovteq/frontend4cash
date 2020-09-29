@@ -1,3 +1,11 @@
+.blue {
+  color: #2282c7;
+}
+
+.blue {
+  color: #2282c7;
+}
+
 .header__section {
   background-color: #575757;
   box-shadow: 0 0 25px -5px rgba(0, 0, 0, 0.8);
@@ -22,6 +30,10 @@
   align-items: center;
 }
 
+.blue {
+  color: #2282c7;
+}
+
 .welcome__section {
   min-height: 700px;
   padding-top: 250px;
@@ -43,6 +55,10 @@
   letter-spacing: 2px;
   font-size: 30px;
   color: #808080;
+}
+
+.blue {
+  color: #2282c7;
 }
 
 .blog__section {
@@ -83,6 +99,10 @@
 
 .parallax-object {
   transform: translate3d(0, 0, 0);
+}
+
+.blue {
+  color: #2282c7;
 }
 
 .buttons__row .col {
@@ -137,6 +157,29 @@
   margin-left: 10px;
 }
 
+.btn-big {
+  background-color: #2282c7;
+  color: #fff;
+  border: 1px solid #2282c7;
+  max-width: fit-content;
+  padding: 4px 45px;
+  border-radius: 5px;
+  font-size: 35px;
+  box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
+  transition: all 100ms;
+}
+.btn-big:hover {
+  background-color: #fff;
+  color: #2282c7;
+  box-shadow: 0 0 17px 0 rgba(34, 130, 199, 0.8);
+  font-weight: 700;
+  font-size: 38px;
+}
+
+.blue {
+  color: #2282c7;
+}
+
 .hint {
   text-align: center;
   background-color: #fcfcfc;
@@ -156,12 +199,20 @@
   right: 500px;
 }
 
+.blue {
+  color: #2282c7;
+}
+
 .footer__section {
   text-align: left;
   padding: 1rem 4rem;
   background-color: #737373;
   color: #fff;
   margin-top: 5rem;
+}
+
+.blue {
+  color: #2282c7;
 }
 
 .monitoring__section {
@@ -270,6 +321,10 @@
   background: linear-gradient(90deg, rgba(63, 94, 251, 0) 0%, rgba(61, 153, 255, 0.4) 50%, rgba(148, 83, 186, 0) 100%);
 }
 
+.blue {
+  color: #2282c7;
+}
+
 #chart {
   max-width: 700px;
 }
@@ -296,6 +351,10 @@
   box-shadow: 0 0 17px 0 rgba(56, 175, 255, 0.5);
 }
 
+.blue {
+  color: #2282c7;
+}
+
 .forum__section {
   min-height: 400px;
   box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
@@ -305,14 +364,13 @@
 .forum__section img {
   position: absolute;
   right: 8%;
-  bottom: -10%;
   width: 450px;
   height: 450px;
 }
 
 .modules-container {
   display: flex;
-  flex-flow: row wrap;
+  width: 100%;
 }
 .modules-container .col .forum-module + .forum-module {
   margin-top: 1rem;
@@ -366,7 +424,7 @@
   margin: 4px 0 0 0;
 }
 .post:hover {
-  box-shadow: 0 0 25px 0 rgba(31, 224, 140, 0.25);
+  box-shadow: 0 0 25px 0 rgba(100, 224, 55, 0.25);
 }
 .post .post-stat {
   background-color: #14c477;
@@ -382,6 +440,41 @@
 }
 .post .post-stat + .post-stat {
   margin-left: 5px;
+}
+
+.blue {
+  color: #2282c7;
+}
+
+.plans__section {
+  margin-top: 2rem;
+  padding: 1rem;
+  box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
+}
+
+.plan-card {
+  max-width: 500px;
+  min-height: 600px;
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  border: 1px solid #2282c7;
+  border-bottom-width: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem;
+  text-shadow: 0 0 11px rgba(0, 0, 0, 0.3);
+  transition: 300ms all;
+}
+.plan-card:hover {
+  transform: translateY(-10px);
+}
+.plan-card .card-element + .card-element {
+  margin-top: 1rem;
+}
+.plan-card p {
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
 html {
