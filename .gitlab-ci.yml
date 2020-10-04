@@ -1,7 +1,15 @@
 stages:
+  - pull the code
   - compile angular
   - build image
   - run container
+
+pull:
+  stage: pull the code
+  before_script:
+    - cd /home/ubuntu/bits4cash/frontend4cash
+  script:
+    - git pull git@gitlab.cs.ttu.ee:glkomi/frontend4cash.git
 
 compile:
   stage: compile angular
