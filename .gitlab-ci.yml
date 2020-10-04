@@ -5,9 +5,8 @@ stages:
 
 compile:
   stage: compile angular
-  image: trion/ng-cli
   before_script:
-    - cd frontend4cash
+    - cd /home/ubuntu/bits4cash/frontend4cash
     - npm i
     - npm ci
   script:
@@ -16,15 +15,15 @@ compile:
 build:
   stage: build image
   before_script:
-        - echo ${CI_COMMIT_REF_NAME}
-        - source .${CI_COMMIT_REF_NAME}.env
-  script:
-        - echo ${IMAGE_NAME}
-        - echo "actually echoed IMAGE NAME"
-        - docker build -t ${IMAGE_NAME} .
+    - cd /home/ubuntu/bits4cash/frontend4cash
+    - source .${CI_COMMIT_REF_NAME}.env
+  script: docker build -t $IMAGE_NAME .
 
 deploy:
   stage: run container
   before_script:
-          - source .${CI_COMMIT_REF_NAME}.env
-  script: docker container run -d --name $APP_NAME - p $PORT:80 ${IMAGE_NAME}
+    - cd /home/ubuntu/bits4cash/frontend4cash
+    - source .${CI_COMMIT_REF_NAME}.env
+    - docker stop $APP_NAME
+    - docker container rm $APP_NAME
+  script: docker container run -d --name $APP_NAME - p $PORT:80 $IMAGE_NAME
