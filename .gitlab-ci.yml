@@ -29,6 +29,7 @@ build:
 
 deploy:
   stage: run container
+  allow_failure: true
   before_script:
     - cd /home/ubuntu/bits4cash/frontend4cash
     - source .${CI_COMMIT_REF_NAME}.env
