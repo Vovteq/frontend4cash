@@ -1,0 +1,21 @@
+@import "../utils/scss/colors";
+
+.chart-container {
+  width: 500px;
+  height: 300px;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  transition: all 200ms;
+  padding-bottom: 1rem;
+  border: 1px solid $blue;
+
+  .chart-header {
+    font-size: 30px;
+    color: $white;
+    text-align: center;
+    background-color: $blue;
+  }
+
+  .chart-container {
+    padding: 0 40px;
+  }
+}

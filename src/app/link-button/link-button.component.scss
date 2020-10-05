@@ -1,0 +1,8 @@
+@import "../utils/scss/colors";
+
+.link-button {
+  cursor: pointer;
+  background-color: $blue;
+  color: $white;
+  padding: 5px 10px;
+}

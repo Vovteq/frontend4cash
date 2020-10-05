@@ -1,0 +1,24 @@
+@import "../utils/scss/colors";
+
+.welcome__section {
+  box-shadow: none;
+  text-align: center;
+  padding: 8rem 0 16rem 0;
+  color: $dark;
+
+  h1 {
+    font-size: 50px;
+    font-weight: bold;
+
+    span {
+      color: $blue;
+      text-shadow: 0 0 10px rgba($blue, 0.4);
+    }
+  }
+
+  p {
+    font-size: 20px;
+    margin-top: -30px;
+    letter-spacing: 2px;
+  }
+}

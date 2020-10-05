@@ -1,0 +1,13 @@
+@import "../utils/scss/colors";
+
+.navbar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid $dark;
+
+  app-link-button + app-link-button {
+    margin-left: 5px;
+  }
+}

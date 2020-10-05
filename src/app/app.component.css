@@ -1,3 +1,33 @@
+.blue {
+  color: #2282c7;
+}
 
+.welcome__section {
+  box-shadow: none;
+  text-align: center;
+  padding: 8rem 0 16rem 0;
+  color: #575757;
+}
+.welcome__section h1 {
+  font-size: 50px;
+  font-weight: bold;
+}
+.welcome__section h1 span {
+  color: #2282c7;
+  text-shadow: 0 0 10px rgba(34, 130, 199, 0.4);
+}
+.welcome__section p {
+  font-size: 20px;
+  margin-top: -30px;
+  letter-spacing: 2px;
+}
+
+section {
+  box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
+}
+
+section + section {
+  margin-top: 2rem;
+}
 
 /*# sourceMappingURL=app.component.css.map */
