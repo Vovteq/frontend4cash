@@ -7,11 +7,10 @@ export default class Chart extends Graph {
   constructor(targetGraphics: HTMLElement, config) {
     super(targetGraphics);
     this.config = config;
-    console.log(targetGraphics);
     this.chartObject = new ApexCharts(targetGraphics, config);
   }
 
   render(): void {
-    this.chartObject.render();
+    this.chartObject.render().then(() => { console.log('graph rendered')});
   }
 }
