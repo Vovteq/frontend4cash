@@ -6,19 +6,21 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
 import {NgApexchartsModule} from "ng-apexcharts";
-import { ChartComponent } from './chart/chart.component';
 import { ScriptBridgeComponent } from './script-bridge/script-bridge.component';
+import { ChartContainerComponent } from './chart-container/chart-container.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LinkButtonComponent,
-    ChartComponent,
     ScriptBridgeComponent,
+    ChartContainerComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     NgApexchartsModule
   ],

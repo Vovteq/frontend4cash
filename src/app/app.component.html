@@ -10,3 +10,20 @@
   </div>
 </section>
 
+<section>
+  <app-chart-container
+    [series]="[{
+        name: 'sales',
+        data: [30, 40, 50, 60, 40, 50]
+    }]"
+    [chart]="{
+      type: 'area'
+    }"
+    [xaxis]="{
+      categories: [2014, 2015, 2016, 2017, 2018, 2019]
+    }"
+    [title]="'Title'"
+  >
+  </app-chart-container>
+</section>
+
