@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LinkButtonComponent } from './link-button/link-button.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import { ChartComponent } from './chart/chart.component';
+import { ScriptBridgeComponent } from './script-bridge/script-bridge.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ChartComponent } from './chart/chart.component';
     NavbarComponent,
     LinkButtonComponent,
     ChartComponent,
+    ScriptBridgeComponent,
   ],
   imports: [
     BrowserModule,
