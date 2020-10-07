@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import UrlClickContext from "../../scripts/ts/click-contexts/UrlClickContext";
+import UrlClickContext from "../../../scripts/ts/click-contexts/UrlClickContext";
 
 type urlCtx = UrlClickContext;
 
