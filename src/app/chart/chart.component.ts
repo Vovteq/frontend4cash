@@ -23,6 +23,7 @@ export class ChartComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     const chart: HTMLElement = this.renderer.createElement('chart');
     this.renderer.appendChild(this.chartRenderer.first.nativeElement, chart);
+    chart.classList.add('chart');
     this.chartObject = new Chart(chart, this.options);
     this.updateChart();
   }

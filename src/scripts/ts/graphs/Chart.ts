@@ -11,6 +11,6 @@ export default class Chart extends Graph {
   }
 
   render(): void {
-    this.chartObject.render().then(() => { console.log('graph rendered')});
+    this.chartObject.render().then(() => { console.log('chart rendered')});
   }
 }

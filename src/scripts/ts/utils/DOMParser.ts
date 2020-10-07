@@ -2,7 +2,7 @@ import DOMController from "./DOMController";
 import ParallaxContext from "../dynamic-objects/parallax/ParallaxContext";
 
 export default class DOMParser {
-  public static readonly parseRules: Array<(elem: HTMLElement) => void> = [
+  private static readonly parseRules: Array<(elem: HTMLElement) => void> = [
     // Parallax effect
     (elem: HTMLElement) => {
       if (elem.classList.contains('parallax-object')) {
