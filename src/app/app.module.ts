@@ -14,6 +14,7 @@ import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
 import {CurrencyService} from "./services/currency.service";
 import { ParticlesComponent } from './particles/particles.component';
+import {ScriptService} from "./services/script.service";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ParticlesComponent } from './particles/particles.component';
     ModalModule.forChild()
   ],
   providers: [
-    CurrencyService
+    CurrencyService,
+    ScriptService
   ],
   bootstrap: [AppComponent]
 })
