@@ -8,7 +8,7 @@ export class CurrencyService {
   private readonly currenciesUrl: string;
 
   constructor(private http: HttpClient) {
-    this.currenciesUrl = 'http://backend4cash_dev:8069/api/coins/gleb'
+    this.currenciesUrl = 'http://backend4cash_dev:8080/api/coins/gleb'
   }
 
   public getAllCurrencies(): Observable<Currency[]> {
