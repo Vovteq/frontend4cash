@@ -7,13 +7,12 @@ import Currency from "../../scripts/ts/currency/Currency";
 export class CurrencyService {
   private readonly currenciesUrl: string;
 
-  private readonly localUrl = 'http://localhost:8069/api/coins/gleb';
   private readonly prodUrl = 'http://backend4cash_prod:8069/api/coins/gleb';
   private readonly devUrl = 'http://backend4cash_dev:8069/api/coins/gleb';
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
-      this.currenciesUrl = this.localUrl;
+      this.currenciesUrl = this.devUrl;
     } else {
       this.currenciesUrl = this.prodUrl;
     }
