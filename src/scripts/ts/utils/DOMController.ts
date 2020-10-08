@@ -4,6 +4,8 @@ import ParallaxContext from "../dynamic-objects/parallax/ParallaxContext";
 import ParallaxObject from "../dynamic-objects/parallax/ParallaxObject";
 
 export default class DOMController {
+  private constructor() { }
+
   public static convertToDynamic(target: HTMLElement, objectType: string): DynamicObject {
     return DynamicObjectFactory.create(objectType, target);
   }

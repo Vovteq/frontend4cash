@@ -20,7 +20,7 @@ compile:
     - npm i
     - npm ci
   script:
-    - ng build --prod --verbose=true
+    - ng build --prod=false
 
 build:
   stage: build image

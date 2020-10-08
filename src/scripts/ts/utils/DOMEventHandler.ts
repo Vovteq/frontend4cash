@@ -1,6 +1,8 @@
 type Delegate = () => void;
 
 export default class DOMEventHandler {
+  private constructor() { }
+
   public static addOnLoad(func: Delegate) {
     window.addEventListener('load', func, false);
   }

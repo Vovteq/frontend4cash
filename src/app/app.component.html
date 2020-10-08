@@ -4,6 +4,7 @@
 </section>
 
 <section class="welcome__section">
+  <app-particles></app-particles>
   <div class="parallax-object">
     <h1>Welcome to <span>Bits4Cash</span></h1>
     <p>Spend 10 racks on a new blockchain</p>
@@ -11,19 +12,50 @@
 </section>
 
 <section>
-  <app-chart-container
-    [series]="[{
+  <div class="charts-container">
+    <app-chart-container
+      [requestData]="true"
+      [series]="[{
         name: 'sales',
         data: [30, 40, 50, 60, 40, 50]
     }]"
-    [chart]="{
+      [chart]="{
       type: 'area'
     }"
-    [xaxis]="{
+      [xaxis]="{
       categories: [2014, 2015, 2016, 2017, 2018, 2019]
     }"
-    [title]="'Title'"
-  >
-  </app-chart-container>
+      [title]="'Title'"
+    >
+    </app-chart-container>
+    <app-chart-container
+      [series]="[{
+        name: 'sales',
+        data: [30, 40, 50, 60, 40, 50]
+    }]"
+      [chart]="{
+      type: 'area'
+    }"
+      [xaxis]="{
+      categories: [2014, 2015, 2016, 2017, 2018, 2019]
+    }"
+      [title]="'Title'"
+    >
+    </app-chart-container>
+    <app-chart-container
+      [series]="[{
+        name: 'sales',
+        data: [30, 40, 50, 60, 40, 50]
+    }]"
+      [chart]="{
+      type: 'area'
+    }"
+      [xaxis]="{
+      categories: [2014, 2015, 2016, 2017, 2018, 2019]
+    }"
+      [title]="'Title'"
+    >
+    </app-chart-container>
+  </div>
 </section>
 

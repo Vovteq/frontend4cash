@@ -23,6 +23,7 @@ export class ChartContainerComponent implements OnInit {
       console.log("requesting currency for " + this.title);
       this.currencyService.getAllCurrencies().subscribe( data => {
         this.data = data;
+        console.log(this.data);
       });
     }
   }

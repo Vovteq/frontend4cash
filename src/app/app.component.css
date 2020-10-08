@@ -22,6 +22,16 @@
   letter-spacing: 2px;
 }
 
+.charts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+.charts-container app-chart-container + app-chart-container {
+  margin-left: 1rem;
+}
+
 section {
   box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
 }

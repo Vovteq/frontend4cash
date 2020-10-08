@@ -1,5 +1,6 @@
 import DOMController from "./DOMController";
 import ParallaxContext from "../dynamic-objects/parallax/ParallaxContext";
+import DynamicObjectFactory from "../dynamic-objects/DynamicObjectFactory";
 
 export default class DOMParser {
   private static readonly parseRules: Array<(elem: HTMLElement) => void> = [
