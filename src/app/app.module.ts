@@ -13,6 +13,7 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
 import {CurrencyService} from "./services/currency.service";
+import { ParticlesComponent } from './particles/particles.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {CurrencyService} from "./services/currency.service";
     NavbarComponent,
     LinkButtonComponent,
     ScriptBridgeComponent,
-    ChartContainerComponent
+    ChartContainerComponent,
+    ParticlesComponent
   ],
   imports: [
     BrowserModule,
