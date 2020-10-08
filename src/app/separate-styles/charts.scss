@@ -1,0 +1,10 @@
+.charts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+
+  app-chart-container + app-chart-container {
+    margin-left: 1rem;
+  }
+}
