@@ -8,7 +8,7 @@ export class CurrencyService {
   private readonly currenciesUrl: string;
 
   private readonly prodUrl = 'http://backend4cash_prod:8069/api/coins/gleb';
-  private readonly devUrl = 'http://backend4cash_dev:8069/api/coins/gleb';
+  private readonly devUrl = 'http://172.21.0.2:8069/api/coins/gleb';
 
   constructor(private http: HttpClient) {
     if (isDevMode()) {
