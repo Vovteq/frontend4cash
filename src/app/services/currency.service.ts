@@ -6,7 +6,7 @@ import Currency from "../../scripts/ts/currency/Currency";
 @Injectable()
 export class CurrencyService {
   private readonly currenciesUrl: string;
-
+  # komit
   constructor(private http: HttpClient) {
     this.currenciesUrl = 'http://backend4cash_dev:8080/api/coins/gleb'
   }
