@@ -8,10 +8,11 @@ import Currency from "../../scripts/ts/currency/Currency";
   styleUrls: ['./chart-container.component.scss']
 })
 export class ChartContainerComponent implements OnInit {
-  @Input() series;
-  @Input() xaxis;
+  private series;
+  private xaxis;
+
   @Input() chart;
-  @Input() title;
+  @Input() id: string;
   @Input() requestData: boolean;
 
   private data: Currency;
@@ -21,7 +22,7 @@ export class ChartContainerComponent implements OnInit {
   ngOnInit(): void {
     if (this.requestData) {
 
-      this.currencyService.getAllCurrencies().subscribe( data => {
+      this.currencyService.getCurrency(this.id).subscribe( data => {
         this.data = data;
       });
 

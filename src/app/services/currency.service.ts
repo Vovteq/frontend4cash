@@ -11,6 +11,10 @@ export class CurrencyService {
     this.currenciesUrl = 'http://localhost:8069/api/coins/get_prices/'
   }
 
+  public getCurrency(id: string): Observable<any> {
+    return this.http.get<any>(this.currenciesUrl + "/" + id);
+  }
+
   public getAllCurrencies(): Observable<any> {
     return this.http.get<any>(this.currenciesUrl);
   }
