@@ -1,14 +1,22 @@
-import { Dictionary } from "../data-handling/Dictionary";
+import {Dictionary} from "../data-handling/Dictionary";
 
 export default class Currency {
   public id: string;
-  public readonly priceStory: Dictionary<string, number>;
+  public readonly priceStory: Dictionary<string, string>;
 
-  constructor(id: string, ...data: { date: string, price: number }[]) {
+  constructor(id: string, data: any[]) {
     this.id = id;
-    this.priceStory = new Dictionary<string, number>();
+    this.priceStory = new Dictionary<string, string>();
     for (let elem of data) {
-      this.priceStory.addPair(elem.date, elem.price);
+      const date = new Date(elem[0]);
+
+      this.priceStory.addPair(date.getDay() + "." + date.getMonth() + "." + date.getFullYear(), elem[1]);
     }
+  }
+
+  public static fromJson(id: string, json: any): Currency {
+    const data: any[] = json;
+    console.log(data);
+    return new Currency(id, data);
   }
 }
