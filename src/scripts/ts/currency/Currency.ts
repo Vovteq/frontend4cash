@@ -1,10 +1,15 @@
 import {Dictionary} from "../data-handling/Dictionary";
 
+interface CurrencyPrice {
+  timestamp: number;
+  price: string;
+}
+
 export default class Currency {
   public id: string;
   public readonly priceStory: Dictionary<string, string>;
 
-  constructor(id: string, data: any[]) {
+  constructor(id: string, data: CurrencyPrice[]) {
     this.id = id;
     this.priceStory = new Dictionary<string, string>();
     for (let elem of data) {

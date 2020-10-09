@@ -28,7 +28,8 @@
       color: $dark;
 
       span {
-        color: $green;
+        color: $darkgreen;
+        text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
       }
     }
   }

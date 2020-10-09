@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
 import { CurrencyService } from "../services/currency.service";
 import Currency from "../../scripts/ts/currency/Currency";
+import StringUtils from "../../scripts/ts/utils/StringUtils";
 
 @Component({
   selector: 'app-chart-container',
@@ -16,14 +17,18 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   @Input() requestData: boolean;
 
   public data: Currency;
+  private _lastPrice: number;
 
   constructor(private currencyService: CurrencyService) { }
+
+  get lastPrice(): number {
+    return this._lastPrice || 0;
+  }
 
   ngOnInit(): void {
     if (this.requestData) {
       this.currencyService.getCurrency(this.id).subscribe( data => {
         this.data = Currency.fromJson(this.id, data);
-        console.log(this.data.priceStory.get(0).key);
         this.render();
       });
     } else {
@@ -35,6 +40,11 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   private render() {
     this.series = [{name: 'Price', data: this.data.priceStory.getValues().map(entry => entry as unknown as number)}];
     this.xaxis = {categories: this.data.priceStory.getKeys().map(entry => entry as unknown as number) };
+    this.updateValues();
+  }
+
+  private updateValues() {
+    this._lastPrice = this.data ? this.data.priceStory.get(0).value as unknown as number : 0;
   }
 
   ngAfterViewInit(): void {
@@ -44,7 +54,11 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
     }
   }
 
+  getName(): string {
+    return StringUtils.capitalize(this.id);
+  }
+
   setDefault(): void {
-    this.data = new Currency(this.id, [[1, 1], [2, 2], [3, 3]]);
+    //this.data = new Currency(this.id, [[1, 1], [2, 2], [3, 3]]);
   }
 }

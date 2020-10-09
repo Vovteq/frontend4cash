@@ -15,6 +15,7 @@ import {ModalModule} from "ngx-bootstrap/modal";
 import {CurrencyService} from "./services/currency.service";
 import { ParticlesComponent } from './particles/particles.component';
 import {ScriptService} from "./services/script.service";
+import { ContextButtonComponent } from './buttons/context-button/context-button.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {ScriptService} from "./services/script.service";
     LinkButtonComponent,
     ScriptBridgeComponent,
     ChartContainerComponent,
-    ParticlesComponent
+    ParticlesComponent,
+    ContextButtonComponent
   ],
   imports: [
     BrowserModule,
