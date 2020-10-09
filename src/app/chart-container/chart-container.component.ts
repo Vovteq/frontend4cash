@@ -14,17 +14,33 @@ export class ChartContainerComponent implements OnInit {
   @Input() title;
   @Input() requestData: boolean;
 
-  private data: Currency[];
+  private data: Currency;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
     if (this.requestData) {
-      console.log("requesting currency for " + this.title);
+
       this.currencyService.getAllCurrencies().subscribe( data => {
         this.data = data;
-        console.log(this.data);
       });
+
+      console.log(this.data);
+
+
+      /*
+      this.data = new Currency("Bitcoin",
+        { date: '2014', price: 100 },
+        { date: '2015', price: 120 },
+        { date: '2016', price: 150 },
+        { date: '2017', price: 130 },
+        { date: '2018', price: 200 },
+        );
+      this.title = this.data.id;
+      this.series = [{name: 'Price', data: this.data.priceStory.getValues()}];
+      this.xaxis = {categories: this.data.priceStory.getKeys() };
+
+       */
     }
   }
 
