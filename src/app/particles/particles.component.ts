@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ScriptService} from "../services/script.service";
+import {Component, OnInit, Input} from '@angular/core';
 
 @Component({
   selector: 'app-particles',
@@ -7,11 +6,15 @@ import {ScriptService} from "../services/script.service";
   styleUrls: ['./particles.component.scss']
 })
 export class ParticlesComponent implements OnInit {
+  @Input() style;
+  @Input() params;
+  @Input() width;
+  @Input() height;
 
-  constructor(private scripts: ScriptService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.scripts.load('particles-js')
+
   }
 
 }

@@ -45,4 +45,12 @@ export class Dictionary<K, V> extends DataStream<KeyValuePair<K, V>> {
   removeByKey(key: K): void {
     delete this.content.find(pair => pair.key === key)[0];
   }
+
+  getValues(): Array<V> {
+    return this.content.map(entry => entry.value);
+  }
+
+  getKeys(): Array<K> {
+    return this.content.map(entry => entry.key);
+  }
 }
