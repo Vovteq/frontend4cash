@@ -12,7 +12,7 @@ export class CurrencyService {
   }
 
   public getCurrency(id: string): Observable<any> {
-    const url = this.currenciesUrl + "/" + id;
+    const url = this.currenciesUrl + id;
     console.log("requesting data on address: " + url);
     return this.http.get<any>(url);
   }
