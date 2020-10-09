@@ -8,8 +8,8 @@ import Currency from "../../scripts/ts/currency/Currency";
   styleUrls: ['./chart-container.component.scss']
 })
 export class ChartContainerComponent implements OnInit {
-  private series;
-  private xaxis;
+  public series;
+  public xaxis;
 
   @Input() chart;
   @Input() id: string;
