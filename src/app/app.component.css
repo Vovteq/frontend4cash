@@ -11,15 +11,29 @@
 .welcome__section h1 {
   font-size: 50px;
   font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 .welcome__section h1 span {
-  color: #2282c7;
+  color: #fff;
   text-shadow: 0 0 10px rgba(34, 130, 199, 0.4);
 }
 .welcome__section p {
   font-size: 20px;
   margin-top: -10px;
   letter-spacing: 2px;
+}
+.welcome__section .row app-context-button + app-context-button {
+  margin-left: 1rem;
+}
+
+.welcome-bg {
+  position: absolute;
+  left: 30%;
+  z-index: -1;
+  width: 800px;
+  height: 650px;
+  top: -15%;
+  opacity: 60%;
 }
 
 .charts-container {
@@ -38,6 +52,11 @@ section {
 
 section + section {
   margin-top: 2rem;
+}
+
+.centered {
+  align-items: center;
+  justify-content: center;
 }
 
 /*# sourceMappingURL=app.component.css.map */

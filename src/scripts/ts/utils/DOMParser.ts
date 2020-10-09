@@ -7,7 +7,13 @@ export default class DOMParser {
     // Parallax effect
     (elem: HTMLElement) => {
       if (elem.classList.contains('parallax-object')) {
-        DOMController.addParallaxEffect(elem, new ParallaxContext());
+        DOMController.addParallaxEffect(elem,
+          new ParallaxContext
+          (
+            (elem.getAttribute("parallax-speed") as unknown as number) || -0.4,
+            (elem.getAttribute("parallax-offset") as unknown as number) || -0.4
+          )
+          );
       }
     }
   ];

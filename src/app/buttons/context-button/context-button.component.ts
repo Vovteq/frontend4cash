@@ -1,5 +1,8 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {Delegate} from "../../../scripts/ts/delegates/Delegate";
+import {ButtonService} from "../../services/button.service";
+import {Property} from "csstype";
+import Color = Property.Color;
+import {Style} from "@angular/cli/lib/config/schema";
 
 @Component({
   selector: 'app-context-button',
@@ -8,13 +11,21 @@ import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 })
 export class ContextButtonComponent implements OnInit {
 
-  @Input() clickCtx;
+  @Input() context: Function;
+  @Input() args: any[];
+  @Input() text: string;
 
-  public contexts: Delegate<Array<any>>;
+  // Style
+  @Input() color: Color;
 
-  constructor() { }
+  constructor(public buttonService: ButtonService) { }
 
   ngOnInit(): void {
+
+  }
+
+  handleOnClick(): void {
+    this.context?.call(null, this.args);
   }
 
 }

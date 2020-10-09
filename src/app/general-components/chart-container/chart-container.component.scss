@@ -18,6 +18,10 @@
 
   .chart-container {
     padding: 0 40px;
+
+    app-chart-container + app-chart-container {
+      margin-left: 1rem;
+    }
   }
 
   .chart-stats {

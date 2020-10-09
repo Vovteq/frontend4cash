@@ -16,6 +16,8 @@ import {CurrencyService} from "./services/currency.service";
 import { ParticlesComponent } from './general-components/particles/particles.component';
 import {ScriptService} from "./services/script.service";
 import { ContextButtonComponent } from './buttons/context-button/context-button.component';
+import {ReferenceService} from "./services/reference.service";
+import {ButtonService} from "./services/button.service";
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { ContextButtonComponent } from './buttons/context-button/context-button.
   ],
   providers: [
     CurrencyService,
-    ScriptService
+    ScriptService,
+    ReferenceService,
+    ButtonService
   ],
   bootstrap: [AppComponent]
 })

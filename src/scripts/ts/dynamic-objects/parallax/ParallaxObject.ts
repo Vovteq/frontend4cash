@@ -14,10 +14,16 @@ export default class ParallaxObject extends DynamicObject {
   }
 
   public applyDynamics(): void {
-    DOMEventHandler.addOnScroll(() => {
-      const scroll = InputHandler.getMouseScroll('y');
-      this.target.style.transform = "translate3d(0," + scroll * this.ctx.speed + "px, 0)";
+    DOMEventHandler.addOnLoad(() => {
+      this.move()
     });
+    DOMEventHandler.addOnScroll(() => {
+      this.move()
+    });
+  }
+
+  private move() {
+    this.target.style.transform = "translateY(" + (InputHandler.getMouseScroll('y') * this.ctx.speed + this.ctx.offset) + "px)";
   }
 
   public setContext(context: ParallaxContext): void {

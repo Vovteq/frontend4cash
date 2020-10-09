@@ -9,9 +9,10 @@
   h1 {
     font-size: 50px;
     font-weight: bold;
+    text-shadow: 0 0 10px rgba($white, 0.4);
 
     span {
-      color: $blue;
+      color: $white;
       text-shadow: 0 0 10px rgba($blue, 0.4);
     }
   }
@@ -21,4 +22,20 @@
     margin-top: -10px;
     letter-spacing: 2px;
   }
+
+  .row {
+    app-context-button  + app-context-button {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.welcome-bg {
+  position: absolute;
+  left: 30%;
+  z-index: -1;
+  width: 800px;
+  height: 650px;
+  top: -15%;
+  opacity: 60%;
 }

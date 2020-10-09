@@ -4,15 +4,35 @@
     <app-navbar></app-navbar>
   </section>
 
-  <section class="welcome__section">
-
-    <div class="parallax-object">
+  <section class="welcome__section parallax-object" parallax-speed="-0.3">
+    <img src="../assets/img/fluid-obj.png" class="welcome-bg">
+    <div class="parallax-object" parallax-speed="-0.4">
       <h1>Welcome to <span>Bits4Cash</span></h1>
       <p>Spend 10 racks on a new blockchain</p>
+      <div class="row centered">
+        <app-context-button
+          [context]="buttonService.showModal"
+          [args]="[0]"
+          [text]="'Create account'"
+        >
+        </app-context-button>
+        <app-context-button
+          [context]="buttonService.showModal"
+          [args]="[0]"
+          [text]="'Forum'"
+        >
+        </app-context-button>
+        <app-context-button
+          [context]="buttonService.showModal"
+          [args]="[0]"
+          [text]="'News'"
+        >
+        </app-context-button>
+      </div>
     </div>
   </section>
 
-  <section>
+  <section class="monitoring__section">
     <div class="charts-container">
       <app-chart-container
         [requestData]="true"
@@ -23,5 +43,13 @@
       >
       </app-chart-container>
     </div>
+  </section>
+
+  <section class="blog__section">
+
+  </section>
+
+  <section class="forum__section">
+
   </section>
 </div>

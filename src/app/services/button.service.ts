@@ -7,5 +7,10 @@ export class ButtonService {
 
   public showModal(windowId: string): void {
     //TODO: Show modal using bootstrap
+    console.log("Showing modal: " + windowId);
+  }
+
+  public scrollTo(elemId: string): void {
+
   }
 }
