@@ -27,7 +27,6 @@ export class ChartContainerComponent implements OnInit {
 
       console.log(this.data);
 
-
       /*
       this.data = new Currency("Bitcoin",
         { date: '2014', price: 100 },
