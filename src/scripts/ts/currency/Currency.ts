@@ -8,15 +8,16 @@ export default class Currency {
     this.id = id;
     this.priceStory = new Dictionary<string, string>();
     for (let elem of data) {
-      const date = new Date(elem[0]);
+      console.log(elem.timestamp);
+      const date = new Date(elem.timestamp * 1000);
+      this.priceStory.addPair(date.getDay() + "." + date.getMonth() + "." + date.getFullYear(), elem.price.split('.')[0]);
 
-      this.priceStory.addPair(date.getDay() + "." + date.getMonth() + "." + date.getFullYear(), elem[1]);
     }
   }
 
   public static fromJson(id: string, json: any): Currency {
+    console.log(json);
     const data: any[] = json;
-    console.log(data);
     return new Currency(id, data);
   }
 }

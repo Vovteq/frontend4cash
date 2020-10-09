@@ -13,4 +13,8 @@ export default abstract class DataStream<T> {
   public clear(): void {
     this.content = new Array<T>();
   }
+
+  public last(): T {
+    return this.content[this.content.length - 1];
+  }
 }

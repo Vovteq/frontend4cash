@@ -15,16 +15,20 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   @Input() id: string;
   @Input() requestData: boolean;
 
-  private data: Currency;
+  public data: Currency;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
     if (this.requestData) {
       this.currencyService.getCurrency(this.id).subscribe( data => {
-        this.data = Currency.fromJson(this.id, data.prices);
+        this.data = Currency.fromJson(this.id, data);
+        console.log(this.data.priceStory.get(0).key);
         this.render();
       });
+    } else {
+      this.setDefault();
+      this.render();
     }
   }
 
@@ -35,7 +39,12 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.data === undefined) {
+      this.setDefault();
       this.render();
     }
+  }
+
+  setDefault(): void {
+    this.data = new Currency(this.id, [[1, 1], [2, 2], [3, 3]]);
   }
 }
