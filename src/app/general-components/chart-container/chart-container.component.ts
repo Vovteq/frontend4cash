@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
-import { CurrencyService } from "../services/currency.service";
-import Currency from "../../scripts/ts/currency/Currency";
-import StringUtils from "../../scripts/ts/utils/StringUtils";
+import { CurrencyService } from "../../services/currency.service";
+import Currency from "../../../scripts/ts/currency/Currency";
+import StringUtils from "../../../scripts/ts/utils/StringUtils";
 
 @Component({
   selector: 'app-chart-container',
@@ -21,8 +21,8 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
 
   constructor(private currencyService: CurrencyService) { }
 
-  get lastPrice(): number {
-    return this._lastPrice || 0;
+  get lastPrice(): string {
+    return (this._lastPrice.toString() || 0) + " " + this.currencyService.globalCurrency;
   }
 
   ngOnInit(): void {
@@ -59,6 +59,10 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   }
 
   setDefault(): void {
-    //this.data = new Currency(this.id, [[1, 1], [2, 2], [3, 3]]);
+    this.data = new Currency(this.id, [
+      { price: "1", timestamp: 1 },
+      { price: "2", timestamp: 3 },
+      { price: "2", timestamp: 3 }
+      ]);
   }
 }

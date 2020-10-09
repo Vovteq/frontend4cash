@@ -7,6 +7,8 @@ import Currency from "../../scripts/ts/currency/Currency";
 export class CurrencyService {
   private readonly currenciesUrl: string;
 
+  public globalCurrency: string = "USD";
+
   constructor(private http: HttpClient) {
     this.currenciesUrl = 'http://localhost:8069/api/coins/'
   }

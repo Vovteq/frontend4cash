@@ -1,8 +1,8 @@
-@import "../utils/scss/colors";
+@import "../../utils/scss/colors";
 
 .chart-wrapper {
-  max-width: 800px;
-  max-height: 400px;
+  min-width: 600px;
+  min-height: 400px;
   box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
   transition: all 200ms;
   cursor: pointer;

@@ -2,7 +2,20 @@
 
 .link-button {
   cursor: pointer;
-  background-color: $blue;
-  color: $white;
-  padding: 5px 10px;
+  background: transparent;
+  color: $blue;
+  padding: 5px 20px;
+  border: 2px solid $lightblue;
+  border-radius: 20px;
+  box-shadow: 0 0 5px 0 rgba($dark,0.3), inset 0 0 5px 0 rgba($dark,0.2);
+  text-decoration: none;
+  transition: all 200ms;
+  letter-spacing: 2px;
+  font-weight: normal;
+
+  &:hover {
+    box-shadow: 0 0 5px 0 rgba($blue,0.5), inset 0 0 5px 0 rgba($blue,0.5);
+    text-shadow: 0 0 20px rgba($blue, 0.6);
+    letter-spacing: 3px;
+  }
 }
