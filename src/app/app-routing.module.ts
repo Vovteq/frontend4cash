@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {ChartComponent} from "ng-apexcharts";
 
 const routes: Routes = [
-  { path: 'charts', component: ChartComponent }
+  { path: 'charts', component: ChartComponent },
 ];
 
 @NgModule({

@@ -18,6 +18,7 @@ import {ScriptService} from "./services/script.service";
 import { ContextButtonComponent } from './buttons/context-button/context-button.component';
 import {ReferenceService} from "./services/reference.service";
 import {ButtonService} from "./services/button.service";
+import { NewsComponent } from './general-components/news/news.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {ButtonService} from "./services/button.service";
     ScriptBridgeComponent,
     ChartContainerComponent,
     ParticlesComponent,
-    ContextButtonComponent
+    ContextButtonComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,

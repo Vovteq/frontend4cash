@@ -4,8 +4,10 @@
     <app-navbar></app-navbar>
   </section>
 
-  <section class="welcome__section parallax-object" parallax-speed="-0.3">
-    <img src="../assets/img/fluid-obj.png" class="welcome-bg">
+  <section class="welcome__section">
+    <div class="absolute-center-wrapper" style="left: 30%; top: 2%">
+      <img src="../assets/img/fluid-obj.png" class="welcome-bg parallax-object" parallax-speed="-0.3">
+    </div>
     <div class="parallax-object" parallax-speed="-0.4">
       <h1>Welcome to <span>Bits4Cash</span></h1>
       <p>Spend 10 racks on a new blockchain</p>
@@ -33,7 +35,20 @@
   </section>
 
   <section class="monitoring__section">
+    <h1>Most popular currencies</h1>
+    <p>Observe most popular currencies in runtime</p>
     <div class="charts-container">
+      <app-chart-container
+        [requestData]="true"
+        [id]="'bitcoin'"
+        [chart]="{
+        type: 'line',
+        toolbar: {
+          show: false
+        }
+      }"
+      >
+      </app-chart-container>
       <app-chart-container
         [requestData]="true"
         [id]="'bitcoin'"
@@ -46,10 +61,27 @@
   </section>
 
   <section class="blog__section">
+    <h1>Latest news</h1>
+    <div class="row centered">
+      <div class="news-wrapper">
+        <app-news [title]="'News title'" [hot]="true" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
+    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
+        <app-news [title]="'News title'" [hot]="false" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
+    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
+      </div>
+    </div>
+    <div class="row centered">
+      <div class="news-wrapper">
+        <app-news [title]="'News title'" [hot]="false" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
+    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
+        <app-news [title]="'News title'" [hot]="false" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
+    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
+      </div>
+    </div>
 
   </section>
 
   <section class="forum__section">
-
+    <h1>Forum</h1>
   </section>
 </div>

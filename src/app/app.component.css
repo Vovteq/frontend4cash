@@ -2,6 +2,15 @@
   color: #2282c7;
 }
 
+.absolute-center-wrapper {
+  position: absolute;
+  left: 50%;
+}
+.absolute-center-wrapper .absolute-center-container {
+  position: relative;
+  left: -50%;
+}
+
 .welcome__section {
   box-shadow: none;
   text-align: center;
@@ -46,6 +55,38 @@
   margin-left: 1rem;
 }
 
+.header__section {
+  z-index: 1;
+}
+
+.blue {
+  color: #2282c7;
+}
+
+.monitoring__section p {
+  margin-bottom: 2rem;
+  font-size: 25px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(87, 87, 87, 0.4);
+}
+
+.blog__section {
+  padding-bottom: 1rem !important;
+}
+.blog__section .news-wrapper {
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.blog__section .news-wrapper app-news + app-news {
+  margin-left: 1rem;
+}
+.blog__section .row + .row {
+  margin-top: 1rem;
+}
+
 section {
   box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
 }
@@ -57,6 +98,22 @@ section + section {
 .centered {
   align-items: center;
   justify-content: center;
+}
+
+.general-section, .monitoring__section, .blog__section, .forum__section {
+  padding: 0 0 5rem 0;
+  text-align: center;
+  background: #fff;
+  border: 2px solid #2282c7;
+  border-top: 10px solid #2282c7;
+  border-bottom-left-radius: 45px;
+  border-bottom-right-radius: 45px;
+}
+.general-section h1, .monitoring__section h1, .blog__section h1, .forum__section h1 {
+  margin-bottom: 1rem;
+  background: #2282c7;
+  padding-bottom: 1rem;
+  color: #fff;
 }
 
 /*# sourceMappingURL=app.component.css.map */

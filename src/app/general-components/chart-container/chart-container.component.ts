@@ -22,7 +22,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   constructor(private currencyService: CurrencyService) { }
 
   get lastPrice(): string {
-    return (this._lastPrice.toString() || 0) + " " + this.currencyService.globalCurrency;
+    return (this._lastPrice?.toString() || 0) + " " + this.currencyService.globalCurrency;
   }
 
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   }
 
   private updateValues() {
-    this._lastPrice = this.data ? this.data.priceStory.get(0).value as unknown as number : 0;
+    this._lastPrice = this.data ? this.data.priceStory.last().value as unknown as number : 0;
   }
 
   ngAfterViewInit(): void {

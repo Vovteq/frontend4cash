@@ -1,0 +1,20 @@
+.blog__section {
+  @extend .general-section;
+
+  padding-bottom: 1rem !important;
+
+  .news-wrapper {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    app-news + app-news {
+      margin-left: 1rem;
+    }
+  }
+
+  .row + .row {
+    margin-top: 1rem;
+  }
+}

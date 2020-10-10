@@ -1,5 +1,9 @@
 @import "separate-styles/welcome";
 @import "separate-styles/charts";
+@import "separate-styles/header";
+@import "separate-styles/monitoring";
+@import "separate-styles/blog";
+@import "separate-styles/forum";
 
 section {
   box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
@@ -12,4 +16,21 @@ section + section {
 .centered {
   align-items: center;
   justify-content: center;
+}
+
+.general-section {
+  padding: 0 0 5rem 0;
+  text-align: center;
+  background: $white;
+  border: 2px solid $blue;
+  border-top: 10px solid $blue;
+  border-bottom-left-radius: 45px;
+  border-bottom-right-radius: 45px;
+
+  h1 {
+    margin-bottom: 1rem;
+    background: $blue;
+    padding-bottom: 1rem;
+    color: $white;
+  }
 }
