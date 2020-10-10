@@ -26,14 +26,20 @@ export class ModalService implements OnDestroy{
         <label>Password</label>
       </div>
       <div class="row centered">
-        <button (click)="close()">Create account</button>
+        <button class="registerModalButton" (click)="close()">Create account</button>
       </div>
     `
   };
 
   public contexts: {[id: string]: (modal: ModalComponent) => void} = {
     register: modal => {
-      console.log(`context: ${modal.id}`);
+      console.log(modal.getElement().querySelectorAll('*'));
+      modal
+        .getElement()
+        .querySelectorAll('*')
+        .item(0)
+        .querySelector('.registerModalButton')
+        .addEventListener('click', () => { console.log("Created account")});
     }
   };
 
@@ -45,7 +51,7 @@ export class ModalService implements OnDestroy{
   public showModal(windowId: string): void {
     const modal = ModalInspector.get(windowId[0]);
     if (modal !== null || undefined) {
-      modal.show(true);
+      modal.show();
     }
   }
 
