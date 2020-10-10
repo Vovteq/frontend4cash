@@ -1,4 +1,7 @@
-<div class="modal-bg"></div>
-<div class="modal-wrapper" (click)="handleOnClick()">
+<div *ngIf="shown" [@showHide]="animationState" class="modal-wrapper" (click)="handleOnClick()">
   <div [ngClass]="'modal-html-content'" [innerHTML]="modalService.modals[modalTemplateId] | sanitizeHtml"></div>
+  <div class="separator"></div>
+  <div class="modal-window-menu">
+    <button (click)="hide(true)">Close window</button>
+  </div>
 </div>

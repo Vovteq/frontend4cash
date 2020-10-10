@@ -34,3 +34,8 @@ section + section {
     color: $white;
   }
 }
+
+app-modal {
+  position: absolute;
+  display: block;
+}

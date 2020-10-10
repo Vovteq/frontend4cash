@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {ButtonService} from "./services/button.service";
+import {ModalService} from "./services/modal.service";
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import {ButtonService} from "./services/button.service";
 export class AppComponent {
   title = 'frontend4cash';
 
-  constructor(public buttonService: ButtonService) {}
+  constructor(public modalService: ModalService) {}
 }

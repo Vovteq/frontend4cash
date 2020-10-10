@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import {ModalComponent} from "../general-components/modal/modal.component";
 import {Dictionary} from "../../scripts/ts/data-handling/Dictionary";
+import ModalInspector from "../../scripts/ts/utils/ModalInspector";
 
 @Injectable()
-export class ModalService {
+export class ModalService implements OnDestroy{
 
-  private registeredModals: Dictionary<string, ModalComponent> = new Dictionary<string, ModalComponent>();
   public focusedModal: ModalComponent;
 
   constructor() { }
@@ -17,26 +17,39 @@ export class ModalService {
       <div class="separator"></div>
       <div class="modal-input-wrapper">
         <input size="40" type="email">
-        <span class="highlight"></span>
         <span class="bar"></span>
         <label>E-mail</label>
       </div>
       <div class="modal-input-wrapper">
         <input size="40" type="password">
-        <span class="highlight"></span>
         <span class="bar"></span>
         <label>Password</label>
       </div>
-      <div class="row centered"><button>Create</button></div>
+      <div class="row centered">
+        <button (click)="close()">Create account</button>
+      </div>
     `
   };
 
+  public contexts: {[id: string]: (modal: ModalComponent) => void} = {
+    register: modal => {
+      console.log(`context: ${modal.id}`);
+    }
+  };
+
   public registerModal(id: string, modal: ModalComponent): void {
-    this.registeredModals.addPair(id, modal);
+    ModalInspector.add(id, modal);
     console.log(`registered ${modal.modalTemplateId} as ${id}`);
   }
 
-  public getModal(id: string) {
-    this.registeredModals.getByKey(id);
+  public showModal(windowId: string): void {
+    const modal = ModalInspector.get(windowId[0]);
+    if (modal !== null || undefined) {
+      modal.show(true);
+    }
+  }
+
+  ngOnDestroy(): void {
+    console.log("Modal service destroyed");
   }
 }

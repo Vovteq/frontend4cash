@@ -1,5 +1,4 @@
 <div class="container-fluid">
-  <app-script-bridge></app-script-bridge>
   <section class="header__section" >
     <app-navbar></app-navbar>
   </section>
@@ -13,25 +12,33 @@
       <p>Spend 10 racks on a new blockchain</p>
       <div class="row centered">
         <app-context-button
-          [context]="buttonService.showModal"
-          [args]="[0]"
+          [context]="modalService.showModal"
+          [args]="['register-modal']"
           [text]="'Create account'"
         >
         </app-context-button>
         <app-context-button
-          [context]="buttonService.showModal"
+          [context]="modalService.showModal"
           [args]="[0]"
           [text]="'Forum'"
         >
         </app-context-button>
         <app-context-button
-          [context]="buttonService.showModal"
+          [context]="modalService.showModal"
           [args]="[0]"
           [text]="'News'"
         >
         </app-context-button>
       </div>
     </div>
+    <app-modal
+      [modalTemplateId]="'register'"
+      [id]="'register-modal'"
+      [keepOpened]="false"
+      style="right: 3%; top: 10%;"
+      class="parallax-object" parallax-speed="-0.1"
+    >
+    </app-modal>
   </section>
 
   <section class="monitoring__section">
@@ -87,7 +94,5 @@
   <section class="forum__section">
     <h1>Forum</h1>
   </section>
-
-  <!--Modals test-->
-  <app-modal [modalTemplateId]="'register'" [id]="'register-modal'"></app-modal>
 </div>
+<app-script-bridge></app-script-bridge>

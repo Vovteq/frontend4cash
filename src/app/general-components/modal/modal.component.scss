@@ -1,6 +1,10 @@
 @import "../../utils/scss/colors";
 @import "../../buttons/context-button/context-button.component";
 
+:host {
+  display: block;
+}
+
 .modal-wrapper {
   z-index: 10;
   border: 1px solid $blue;
@@ -9,6 +13,26 @@
   padding: 1rem 2rem 1rem 2rem;
   box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
   margin-bottom: 2rem;
+  background: $white;
+  display: block;
+
+  .separator {
+    height: 1px;
+    width: 100%;
+    background: rgba($blue, 0.4);
+    margin: 1rem 0;
+    box-shadow: 0 0 17px 0 rgba(0,0,0,0.5);
+  }
+
+  .modal-window-menu {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  button {
+    @extend .ctx-button;
+  }
 
 
   .modal-html-content {
@@ -29,6 +53,8 @@
         top:10px;
         font-size: 22px;
         transition:0.2s ease all;
+        text-align: left;
+        width: 100%;
       }
 
       input {
@@ -39,6 +65,12 @@
         border:none;
         border-bottom:1px solid #757575;
         letter-spacing: 2px;
+        z-index: 2;
+        height: 40px;
+
+        &:valid {
+          color: $darkgreen;
+        }
 
         &:focus {
           outline: none;
@@ -54,6 +86,7 @@
         &:focus ~ .bar:before, &:focus ~ .bar:after {
           width:50%;
         }
+
       }
 
       .bar 	{
@@ -95,13 +128,6 @@
         color: $white;
         background: $lightblue;
       }
-    }
-
-    .separator {
-      height: 1px;
-      width: 100%;
-      background: $blue;
-      margin: 1rem 0;
     }
   }
 }

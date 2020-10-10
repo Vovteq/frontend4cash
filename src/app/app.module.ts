@@ -22,6 +22,7 @@ import { NewsComponent } from './general-components/news/news.component';
 import { ModalComponent } from './general-components/modal/modal.component';
 import {ModalService} from "./services/modal.service";
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forChild(),
+    BrowserAnimationsModule
   ],
   providers: [
     CurrencyService,

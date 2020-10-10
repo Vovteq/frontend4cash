@@ -15,6 +15,15 @@ export default class DOMParser {
           )
           );
       }
+    },
+    // Static bind
+    (elem: HTMLElement) => {
+      if (elem.classList.contains('static-bind')) {
+        DOMController.staticBind(elem,
+          elem.getAttribute("static-bind-lambda"),
+          elem.getAttribute("static-bind-trigger")
+          );
+      }
     }
   ];
 
@@ -28,11 +37,12 @@ export default class DOMParser {
     console.log("DOMParser started parsing...");
     const time = Date.now();
 
-    const elems = document.querySelectorAll('*');
+    const elems = document.querySelectorAll('*:not(.parsed)');
     for(let elem of Array.from(elems)) {
       for (let rule of this.parseRules) {
         rule(elem as HTMLElement);
       }
+      elem.classList.add("parsed");
     }
 
     console.log("DOMParser done parsing (" + (Date.now() - time) + " ms).");
