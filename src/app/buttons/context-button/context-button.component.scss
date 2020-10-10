@@ -19,4 +19,8 @@
     letter-spacing: 1px;
     color: $white;
   }
+
+  &:focus {
+    outline: none;
+  }
 }

@@ -18,4 +18,8 @@
     text-shadow: 0 0 20px rgba($blue, 0.6);
     letter-spacing: 3px;
   }
+
+  &:focus {
+    outline: none;
+  }
 }

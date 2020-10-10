@@ -14,6 +14,10 @@ export class Delegate<TArg extends Array<any>> {
         sub(args);
       }
     }
+
+    add(sub: DelegateSubscriber<TArg, any>) {
+      this.subs.push(sub);
+    }
 }
 
 export class Func<TArg extends Array<any>, TRet> extends Delegate<Array<any>> {

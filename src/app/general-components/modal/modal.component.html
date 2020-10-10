@@ -1,7 +1,4 @@
 <div class="modal-bg"></div>
-<div class="modal-wrapper">
-  <div [innerHTML]="modalService.modals[modalId]"></div>
-  <label>
-    <input>
-  </label>
+<div class="modal-wrapper" (click)="handleOnClick()">
+  <div [ngClass]="'modal-html-content'" [innerHTML]="modalService.modals[modalTemplateId] | sanitizeHtml"></div>
 </div>

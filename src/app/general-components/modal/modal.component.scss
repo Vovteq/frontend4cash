@@ -1,14 +1,107 @@
 @import "../../utils/scss/colors";
+@import "../../buttons/context-button/context-button.component";
 
 .modal-wrapper {
   z-index: 10;
   border: 1px solid $blue;
-  display: flex;
-  flex-direction: column;
   width: fit-content;
   height: fit-content;
-  padding: 1rem 2rem 2rem 2rem;
-  text-align: center;
+  padding: 1rem 2rem 1rem 2rem;
   box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
   margin-bottom: 2rem;
+
+
+  .modal-html-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2 {
+      text-align: center;
+    }
+
+    .modal-input-wrapper {
+      label {
+        color:#999;
+        font-weight:normal;
+        pointer-events:none;
+        left:5px;
+        top:10px;
+        font-size: 22px;
+        transition:0.2s ease all;
+      }
+
+      input {
+        font-size:18px;
+        padding:10px 10px 10px 5px;
+        display:block;
+        width:300px;
+        border:none;
+        border-bottom:1px solid #757575;
+        letter-spacing: 2px;
+
+        &:focus {
+          outline: none;
+          color: $blue;
+        }
+
+        &:focus ~ label {
+          top:-20px;
+          color:$blue;
+          font-size: 18px;
+        }
+
+        &:focus ~ .bar:before, &:focus ~ .bar:after {
+          width:50%;
+        }
+      }
+
+      .bar 	{
+        position:relative;
+        display:block;
+        width:300px;
+
+        &:before, &:after {
+          content:'';
+          height:2px;
+          width:0;
+          bottom:1px;
+          position:absolute;
+          background:$blue;
+          transition:0.2s ease all;
+        }
+
+        &:before {
+          left:50%;
+        }
+
+        &:after {
+          right: 50%;
+        }
+      }
+    }
+
+    button {
+      @extend .ctx-button;
+
+      margin-top: 1rem;
+      border-radius: 30px;
+
+      &:hover {
+        box-shadow: 0 0 5px 0 rgba($blue,0.8);
+        text-shadow: 0 0 20px rgba($white, 0.6);
+        border-radius: 20px;
+        letter-spacing: 1px;
+        color: $white;
+        background: $lightblue;
+      }
+    }
+
+    .separator {
+      height: 1px;
+      width: 100%;
+      background: $blue;
+      margin: 1rem 0;
+    }
+  }
 }
