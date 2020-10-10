@@ -1,0 +1,14 @@
+@import "../../utils/scss/colors";
+
+.modal-wrapper {
+  z-index: 10;
+  border: 1px solid $blue;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: fit-content;
+  padding: 1rem 2rem 2rem 2rem;
+  text-align: center;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  margin-bottom: 2rem;
+}

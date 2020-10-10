@@ -17,12 +17,17 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   @Input() requestData: boolean;
 
   public data: Currency;
-  private _lastPrice: number;
+  private _lastPrice: number = 0;
+  private _lastUpdate: string = "now";
 
   constructor(private currencyService: CurrencyService) { }
 
   get lastPrice(): string {
-    return (this._lastPrice?.toString() || 0) + " " + this.currencyService.globalCurrency;
+    return this._lastPrice.toString() + " " + this.currencyService.globalCurrency;
+  }
+
+  get lastUpdate(): string {
+    return this._lastUpdate;
   }
 
   ngOnInit(): void {
@@ -45,6 +50,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
 
   private updateValues() {
     this._lastPrice = this.data ? this.data.priceStory.last().value as unknown as number : 0;
+    this._lastUpdate = this.data ? this.data.priceStory.last().key : "now";
   }
 
   ngAfterViewInit(): void {

@@ -1,4 +1,5 @@
 import {Dictionary} from "../data-handling/Dictionary";
+import StringUtils from "../utils/StringUtils";
 
 interface CurrencyPrice {
   timestamp: number;
@@ -15,7 +16,7 @@ export default class Currency {
     for (let elem of data) {
       console.log(elem.timestamp);
       const date = new Date(elem.timestamp * 1000);
-      this.priceStory.addPair(date.getDay() + "." + date.getMonth() + "." + date.getFullYear(), elem.price.split('.')[0]);
+      this.priceStory.addPair(StringUtils.getTime(date.getHours(), date.getMinutes()), elem.price.split('.')[0]);
 
     }
   }

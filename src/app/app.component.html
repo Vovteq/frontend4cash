@@ -51,9 +51,12 @@
       </app-chart-container>
       <app-chart-container
         [requestData]="true"
-        [id]="'bitcoin'"
+        [id]="'ethereum'"
         [chart]="{
-        type: 'line'
+        type: 'line',
+        toolbar: {
+          show: false
+        }
       }"
       >
       </app-chart-container>
@@ -84,4 +87,6 @@
   <section class="forum__section">
     <h1>Forum</h1>
   </section>
+
+  <app-modal [modalId]="'register'"></app-modal>
 </div>

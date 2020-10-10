@@ -19,6 +19,9 @@ import { ContextButtonComponent } from './buttons/context-button/context-button.
 import {ReferenceService} from "./services/reference.service";
 import {ButtonService} from "./services/button.service";
 import { NewsComponent } from './general-components/news/news.component';
+import { ModalComponent } from './general-components/modal/modal.component';
+import {ModalService} from "./services/modal.service";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { NewsComponent } from './general-components/news/news.component';
     ChartContainerComponent,
     ParticlesComponent,
     ContextButtonComponent,
-    NewsComponent
+    NewsComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
@@ -38,13 +42,15 @@ import { NewsComponent } from './general-components/news/news.component';
     NgApexchartsModule,
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forChild()
+    ModalModule.forChild(),
+    BrowserAnimationsModule
   ],
   providers: [
     CurrencyService,
     ScriptService,
     ReferenceService,
-    ButtonService
+    ButtonService,
+    ModalService
   ],
   bootstrap: [AppComponent]
 })
