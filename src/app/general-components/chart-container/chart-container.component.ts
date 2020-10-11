@@ -1,6 +1,6 @@
 import {Component, Input, OnInit, AfterViewInit} from '@angular/core';
 import { CurrencyService } from "../../services/currency.service";
-import Currency from "../../../scripts/ts/currency/Currency";
+import { Currency } from "../../../scripts/ts/metadata/Currency";
 import StringUtils from "../../../scripts/ts/utils/StringUtils";
 
 @Component({

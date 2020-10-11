@@ -23,6 +23,9 @@ import { ModalComponent } from './general-components/modal/modal.component';
 import {ModalService} from "./services/modal.service";
 import { SanitizeHtmlPipe } from './pipes/sanitize-html.pipe';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {PostService} from "./services/post.service";
+import { PostComponent } from './general-components/post/post.component';
+import { CutTextPipe } from './pipes/cut-text.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ContextButtonComponent,
     NewsComponent,
     ModalComponent,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    PostComponent,
+    CutTextPipe
   ],
   imports: [
     BrowserModule,
@@ -52,7 +57,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ScriptService,
     ReferenceService,
     ButtonService,
-    ModalService
+    ModalService,
+    PostService
   ],
   bootstrap: [AppComponent]
 })

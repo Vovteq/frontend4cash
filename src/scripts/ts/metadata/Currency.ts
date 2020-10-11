@@ -1,12 +1,12 @@
 import {Dictionary} from "../data-handling/Dictionary";
 import StringUtils from "../utils/StringUtils";
 
-interface CurrencyPrice {
+export interface CurrencyPrice {
   timestamp: number;
   price: string;
 }
 
-export default class Currency {
+export class Currency {
   public id: string;
   public readonly priceStory: Dictionary<string, string>;
 

@@ -1,0 +1,17 @@
+<div class="post-wrapper">
+  <div class="post-header">
+    {{title}}
+  </div>
+  <div class="post-content">
+    <div class="post-message">
+      <p [innerHTML]="message | cutText : 150: 40"></p>
+    </div>
+    <span class="separator"></span>
+    <div class="post-user">
+      <div class="post-user-image">
+        {{user.nickname.charAt(0).toUpperCase()}}
+      </div>
+      <p>{{user.nickname}}</p>
+    </div>
+  </div>
+</div>

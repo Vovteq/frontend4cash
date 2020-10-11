@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import {ModalComponent} from "../general-components/modal/modal.component";
-import {Dictionary} from "../../scripts/ts/data-handling/Dictionary";
 import ModalInspector from "../../scripts/ts/utils/ModalInspector";
 
 @Injectable()
@@ -55,6 +54,7 @@ export class ModalService implements OnDestroy{
         .addEventListener('click', () => { console.log("Created account")});
     },
     'tooltip': (modal, args) => {
+      (modal.getElement().querySelectorAll('*').item(0) as HTMLElement).style.borderRadius = '40px';
       this.getModalElementByClass(modal, '.tooltipHeader').innerHTML = args[0];
       this.getModalElementByClass(modal, '.tooltipText').innerHTML = args[1];
       this.getModalElementByClass(modal, '.closeTooltipButton').innerHTML = args[2];

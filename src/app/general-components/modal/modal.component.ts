@@ -52,6 +52,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.onSelect.add(() => { this._selected = !this._selected; console.log(this._selected)});
     this.modalService.registerModal(this.id, this);
+
   }
 
   ngAfterViewInit(): void {

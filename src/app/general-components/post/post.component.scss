@@ -1,0 +1,70 @@
+@import "../../utils/scss/colors";
+
+.post-wrapper {
+  min-width: 300px;
+  max-width: 600px;
+  margin-bottom: 3rem;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  border: 1px solid $blue;
+  border-radius: 10px;
+
+  .post-header {
+    background: $blue;
+    color: $white;
+    font-size: 25px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    padding: 0 1rem;
+    letter-spacing: 5px;
+  }
+
+  .post-content {
+    display: flex;
+    height: fit-content;
+    padding: 10px 20px;
+    align-items: stretch;
+
+    .separator {
+      height: 80px;
+      width: 1px;
+      background: $blue;
+      margin: 0 1rem;
+    }
+  }
+
+  .post-message {
+    min-width: 85%;
+
+    .post-message-fading {
+      background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2805497198879552) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .post-user {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    .post-user-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      background: $blue;
+      color: $white;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

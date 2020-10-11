@@ -34,7 +34,6 @@
     @extend .ctx-button;
   }
 
-
   .modal-html-content {
     display: flex;
     justify-content: center;
@@ -45,10 +44,6 @@
     }
 
     .modal-tooltip {
-      .separator {
-        background: $white;
-      }
-
       h2 {
         font-size: 25px;
       }
