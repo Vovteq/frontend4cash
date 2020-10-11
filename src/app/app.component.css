@@ -89,6 +89,10 @@
 
 .forum__section {
   margin-bottom: 2rem;
+  padding: 1rem 2rem;
+}
+.forum__section .posts-container {
+  padding: 1rem 2rem;
 }
 
 section {

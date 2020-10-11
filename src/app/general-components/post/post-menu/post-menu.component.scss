@@ -1,0 +1,37 @@
+@import "../../../utils/scss/colors";
+@import "../../../buttons/context-button/context-button.component";
+
+
+.row {
+  margin: 0 0 10px 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+button {
+  @extend .ctx-button;
+  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  border-radius: 20px;
+  border-width: 1px;
+
+  &:hover {
+    background: $lightblue;
+    color: $white;
+    box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
+  }
+}
+
+button + button {
+  margin-left: 1rem;
+}
+
+.orange {
+  border: 1px solid $orange;
+  color: $orange;
+
+  &:hover {
+    background: $orange;
+    color: $white;
+    box-shadow: 0 0 17px 0 rgba(0, 0, 0, 0.15);
+  }
+}

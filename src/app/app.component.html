@@ -107,10 +107,18 @@
 
   <section class="forum__section">
     <h1>Forum</h1>
+    <div class="posts-container">
+      <app-post
+        [requestData]="true"
+        [postId]="'5761'"
+      ></app-post>
+    </div>
+
   </section>
-  <app-post
-    [requestData]="true"
-    [postId]="'5761'"
-  ></app-post>
+
+  <section class="footer__section">
+    footer
+  </section>
+
 </div>
 <app-script-bridge></app-script-bridge>

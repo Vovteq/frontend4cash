@@ -1,7 +1,9 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PostService} from "../../services/post.service";
-import {UserInfo} from "../../../scripts/ts/metadata/User";
+import {User, UserInfo} from "../../../scripts/ts/metadata/User";
 import {Post} from "../../../scripts/ts/metadata/Post";
+import {PostMenuComponent} from "./post-menu/post-menu.component";
+import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 
 @Component({
   selector: 'app-post',
@@ -10,15 +12,35 @@ import {Post} from "../../../scripts/ts/metadata/Post";
   encapsulation: ViewEncapsulation.None
 })
 export class PostComponent implements OnInit {
-  public title: string;
-  public user: UserInfo;
-  public message: string;
-  public id: string;
+  public _title: string;
+  public _user: UserInfo;
+  public _message: string;
+  public _id: string;
 
   @Input() requestData: boolean;
   @Input() postId: string;
 
   private data: Post;
+  @ViewChild(PostMenuComponent) menu: PostMenuComponent;
+  public hover: boolean;
+
+  public onHover: Delegate<[boolean]> = new Delegate<[boolean]>();
+
+  get title(): string {
+    return this._title || 'Title not found';
+  }
+
+  get user(): UserInfo {
+    return this._user || {nickname: 'Not found'};
+  }
+
+  get message(): string {
+    return this._message || 'Message not found';
+  }
+
+  get id(): string {
+    return this._id || 'Id not found';
+  }
 
   constructor(private postService: PostService) { }
 
@@ -32,13 +54,15 @@ export class PostComponent implements OnInit {
       this.setDefault();
       this.populateWithInfo();
     }
+
+    this.onHover.add(([hovered]) => { this.menu.show = hovered; console.log(`hovered: ${hovered}`) });
   }
 
   private populateWithInfo(): void {
-    this.id = this.data.id;
-    this.user = this.data.user;
-    this.message = this.data.message;
-    this.title = `#${this.id}`
+    this._id = this.data.id;
+    this._user = this.data.user;
+    this._message = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at doloremque dolores eveniet neque non odio perspiciatis rerum, tempora tenetur.';
+    this._title = `#${this.id}`
   }
 
   setDefault(): void {

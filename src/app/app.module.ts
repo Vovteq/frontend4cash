@@ -26,6 +26,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {PostService} from "./services/post.service";
 import { PostComponent } from './general-components/post/post.component';
 import { CutTextPipe } from './pipes/cut-text.pipe';
+import { HoverPipe } from './pipes/hover.pipe';
+import { PostMenuComponent } from './general-components/post/post-menu/post-menu.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CutTextPipe } from './pipes/cut-text.pipe';
     ModalComponent,
     SanitizeHtmlPipe,
     PostComponent,
-    CutTextPipe
+    CutTextPipe,
+    HoverPipe,
+    PostMenuComponent
   ],
   imports: [
     BrowserModule,
