@@ -10,7 +10,9 @@ export class ModalService implements OnDestroy{
 
   constructor() { }
 
+  // Custom modal templates. Used by modals to match specific template.
   public modals: {[id: string]: string} = {
+    // Register template (standard)
     register: `
       <h2>Register</h2>
       <p>Create new account and start trading now!</p>
@@ -28,18 +30,37 @@ export class ModalService implements OnDestroy{
       <div class="row centered">
         <button class="registerModalButton" (click)="close()">Create account</button>
       </div>
+    `,
+
+    // Tooltip template (custom)
+    /* Arguments:
+       0 - header text <string>
+       1 - body text <string>
+       2 - button text <string>
+       3 - max-width <number>
+     */
+    tooltip: `
+      <div class="modal-tooltip">
+        <h2 class="tooltipHeader">Tooltip header</h2>
+        <div class="separator"></div>
+        <p class="tooltipText">Tooltip message</p>
+        <button class="closeTooltipButton">Close</button>
+      </div>
     `
   };
 
-  public contexts: {[id: string]: (modal: ModalComponent) => void} = {
-    register: modal => {
-      console.log(modal.getElement().querySelectorAll('*'));
-      modal
-        .getElement()
-        .querySelectorAll('*')
-        .item(0)
-        .querySelector('.registerModalButton')
+  public contexts: {[id: string]: (modal: ModalComponent, ...args: any[]) => void} = {
+    'register': modal => {
+      this.getModalElementByClass(modal, '.registerModalButton')
         .addEventListener('click', () => { console.log("Created account")});
+    },
+    'tooltip': (modal, args) => {
+      this.getModalElementByClass(modal, '.tooltipHeader').innerHTML = args[0];
+      this.getModalElementByClass(modal, '.tooltipText').innerHTML = args[1];
+      this.getModalElementByClass(modal, '.closeTooltipButton').innerHTML = args[2];
+      this.getModalElementByClass(modal, '.closeTooltipButton')
+        .addEventListener('click', () => {modal.hide()});
+      this.getModalElementByClass(modal, '.modal-tooltip').style.maxWidth = args[3];
     }
   };
 
@@ -53,6 +74,10 @@ export class ModalService implements OnDestroy{
     if (modal !== null || undefined) {
       modal.show();
     }
+  }
+
+  private getModalElementByClass(modal: ModalComponent, className: string): HTMLElement {
+    return modal.getElement().querySelectorAll('*').item(0).querySelector(className);
   }
 
   ngOnDestroy(): void {

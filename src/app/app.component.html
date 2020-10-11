@@ -38,6 +38,21 @@
       class="parallax-object" parallax-speed="-0.1"
     >
     </app-modal>
+    <app-modal
+      [modalTemplateId]="'tooltip'"
+      [id]="'test-tooltip-modal'"
+      [initiallyShown]="true"
+      [useCustomTemplate]="true"
+      [customTemplateArgs]="[
+      'Tooltip header',
+      'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, incidunt.',
+      'Got it',
+      '400px'
+      ]"
+      style="left: 3%; top: 10%;"
+      class="parallax-object" parallax-speed="-0.1"
+    >
+    </app-modal>
   </section>
 
   <section class="monitoring__section">

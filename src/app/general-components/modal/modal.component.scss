@@ -44,6 +44,20 @@
       text-align: center;
     }
 
+    .modal-tooltip {
+      .separator {
+        background: $white;
+      }
+
+      h2 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 15px;
+      }
+    }
+
     .modal-input-wrapper {
       label {
         color:#999;

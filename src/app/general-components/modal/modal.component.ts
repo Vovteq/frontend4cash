@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewEncapsulation, AfterViewInit, ElementRef} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-modal',
@@ -26,6 +26,10 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 export class ModalComponent implements OnInit, AfterViewInit {
   @Input() modalTemplateId;
   @Input() id: string = "modal";
+  @Input() useCustomTemplate: boolean;
+  @Input() customTemplateArgs: any[];
+  @Input() initiallyShown: boolean;
+  @Input() showBg: boolean;
 
   public onSelect: Delegate<void[]> = new Delegate<void[]>();
   private _selected: boolean = false;
@@ -51,6 +55,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    if (this.initiallyShown) this.show();
   }
 
   handleOnClick(): void {
@@ -72,7 +77,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   // There is no elements in this component during animation, so we need to use anim-end callback.
   animEnd(): void {
     if (this.shown) {
-      this.modalService.contexts[this.modalTemplateId]?.call(this, this);
+      this.modalService.contexts[this.modalTemplateId]?.call(this, this, this.customTemplateArgs || []);
     }
   }
 }
