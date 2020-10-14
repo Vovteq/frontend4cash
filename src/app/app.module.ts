@@ -13,7 +13,6 @@ import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
 import {CurrencyService} from "./services/currency.service";
-import { ParticlesComponent } from './general-components/particles/particles.component';
 import {ScriptService} from "./services/script.service";
 import { ContextButtonComponent } from './buttons/context-button/context-button.component';
 import {ReferenceService} from "./services/reference.service";
@@ -36,7 +35,6 @@ import { PostMenuComponent } from './general-components/post/post-menu/post-menu
     LinkButtonComponent,
     ScriptBridgeComponent,
     ChartContainerComponent,
-    ParticlesComponent,
     ContextButtonComponent,
     NewsComponent,
     ModalComponent,

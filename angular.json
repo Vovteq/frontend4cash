@@ -33,7 +33,8 @@
               "./node_modules/apexcharts/dist/apexcharts.css"
             ],
             "scripts": [
-              "./node_modules/apexcharts/dist/apexcharts.min.js"
+              "./node_modules/apexcharts/dist/apexcharts.min.js",
+              "./node_modules/particles.js/particles.js"
             ]
           },
           "configurations": {
