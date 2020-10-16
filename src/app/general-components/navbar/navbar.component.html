@@ -4,11 +4,14 @@
   </div>
   <div class="col">
     <app-link-button [text]="'Home'" ></app-link-button>
-    <app-link-button [text]="'Account'"></app-link-button>
+    <app-link-button *ngIf="userService.isLoggedIn()" [text]="'Account'"></app-link-button>
   </div>
   <div class="col right">
-    <span>
+    <span *ngIf="!userService.isLoggedIn()">
       You are not logged in
+    </span>
+    <span *ngIf="userService.isLoggedIn()">
+      Welcome, {{userService.getLocalUser().nickname}}
     </span>
   </div>
 </div>

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +7,8 @@ import { faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public questionIcon = faQuestionCircle;
 
-  constructor() {
+  constructor(public userService: UserService) {
   }
 
   ngOnInit(): void {

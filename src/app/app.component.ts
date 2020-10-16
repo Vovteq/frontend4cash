@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ButtonService} from "./services/button.service";
 import {ModalService} from "./services/modal.service";
 import * as AOS from 'aos';
+import {UserService} from "./services/user.service";
 
 declare var particlesJS: any;
 
@@ -13,12 +13,15 @@ declare var particlesJS: any;
 export class AppComponent implements OnInit{
   title = 'frontend4cash';
 
-  constructor(public modalService: ModalService) {}
+  constructor(public modalService: ModalService, public userService: UserService) {}
 
   ngOnInit(): void {
     particlesJS.load('particles-js', 'assets/config/particles.json');
     AOS.init();
   }
 
+  scroll(elem: Element): void {
+    elem.scrollIntoView();
+  }
 
 }

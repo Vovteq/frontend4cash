@@ -27,11 +27,13 @@ export default class DOMParser {
     }
   ];
 
-
   public static findElementByClass(elemClass: string): HTMLCollectionOf<Element> {
     return document.getElementsByClassName(elemClass);
   }
 
+  public static findElementById<T extends any>(elemId: string): T {
+    return document.getElementById(elemId) as any;
+  }
 
   public static parse(): void {
     console.log("DOMParser started parsing...");

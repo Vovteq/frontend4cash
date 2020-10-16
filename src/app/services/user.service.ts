@@ -7,11 +7,15 @@ export class UserService {
 
   constructor() { }
 
-  public static isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     return LocalUser.loggedIn();
   }
 
-  public static logIn(user: UserInfo) {
+  public logIn(user: UserInfo) {
     LocalUser.logIn(user);
+  }
+
+  public getLocalUser(): UserInfo {
+    return LocalUser.user;
   }
 }

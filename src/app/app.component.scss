@@ -5,6 +5,7 @@
 @import "separate-styles/blog";
 @import "separate-styles/forum";
 @import "separate-styles/about";
+@import "utils/scss/colors";
 
 section {
   box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
@@ -39,4 +40,15 @@ section + section {
 app-modal {
   position: absolute;
   display: block;
+}
+
+.warning {
+  color: $red;
+  letter-spacing: 2px;
+  font-size: 25px;
+  text-shadow: 0 0 10px rgba(#000, 0.3);
+}
+
+.container-fluid {
+  padding: 0;
 }

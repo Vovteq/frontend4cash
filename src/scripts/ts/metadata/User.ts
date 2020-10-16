@@ -3,8 +3,8 @@ export interface UserInfo {
 }
 
 export class User {
-  public readonly nickname: string;
-  public readonly id: string;
+  public nickname: string;
+  public id: string;
 
   constructor(id: string, data: UserInfo) {
     this.id = id;

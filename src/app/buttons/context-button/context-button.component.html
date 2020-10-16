@@ -1,1 +1,1 @@
-<button class="ctx-button" (click)="handleOnClick()">{{text}}</button>
+<button *ngIf="shown" [@showHide] class="ctx-button" (click)="handleOnClick()">{{text}}</button>

@@ -44,7 +44,12 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
 
   private render() {
     this.series = [{name: 'Price', data: this.data.priceStory.getValues().map(entry => entry as unknown as number)}];
-    this.xaxis = {categories: this.data.priceStory.getKeys().map(entry => entry as unknown as number) };
+    this.xaxis = {
+      categories:
+        this.data.priceStory
+          .getKeys()
+          .map(entry => entry as unknown as number)
+    };
     this.updateValues();
   }
 

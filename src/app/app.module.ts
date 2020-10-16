@@ -15,8 +15,6 @@ import {ModalModule} from "ngx-bootstrap/modal";
 import {CurrencyService} from "./services/currency.service";
 import {ScriptService} from "./services/script.service";
 import { ContextButtonComponent } from './buttons/context-button/context-button.component';
-import {ReferenceService} from "./services/reference.service";
-import {ButtonService} from "./services/button.service";
 import { NewsComponent } from './general-components/news/news.component';
 import { ModalComponent } from './general-components/modal/modal.component';
 import {ModalService} from "./services/modal.service";
@@ -31,6 +29,7 @@ import { StickyMessageComponent } from './general-components/sticky-message/stic
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserService} from "./services/user.service";
 import { CurrencyComponent } from './general-components/currency/currency.component';
+import {AngularDraggableModule} from "angular2-draggable";
 
 @NgModule({
   declarations: [
@@ -59,13 +58,12 @@ import { CurrencyComponent } from './general-components/currency/currency.compon
     TooltipModule.forRoot(),
     ModalModule.forChild(),
     BrowserAnimationsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AngularDraggableModule
   ],
   providers: [
     CurrencyService,
     ScriptService,
-    ReferenceService,
-    ButtonService,
     ModalService,
     PostService,
     UserService

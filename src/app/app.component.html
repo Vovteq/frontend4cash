@@ -9,21 +9,21 @@
       <h1>Welcome to <span>Bits4Cash</span></h1>
       <p>Spend 10 racks on a new blockchain</p>
       <div class="row centered">
-        <app-context-button id="createAccountButton"
+        <app-context-button *ngIf="!userService.isLoggedIn()"
           [context]="modalService.showModal"
           [args]="['register-modal']"
           [text]="'Create account'"
         >
         </app-context-button>
         <app-context-button
-          [context]="modalService.showModal"
-          [args]="[0]"
+          [context]="scroll"
+          [args]="[forum]"
           [text]="'Forum'"
         >
         </app-context-button>
         <app-context-button
-          [context]="modalService.showModal"
-          [args]="[0]"
+          [context]="scroll"
+          [args]="[news]"
           [text]="'News'"
         >
         </app-context-button>
@@ -32,13 +32,14 @@
     <app-modal
       [modalTemplateId]="'register'"
       [id]="'register-modal'"
+      [draggable]="true"
       style="right: 3%; top: 10%;"
       class="parallax-object" parallax-speed="-0.1"
     >
     </app-modal>
     <app-modal
       [modalTemplateId]="'tooltip'"
-      [id]="'test-tooltip-modal'"
+      [id]="'newcomer-tooltip-modal'"
       [initiallyShown]="true"
       [useCustomTemplate]="true"
       [customTemplateArgs]="[
@@ -88,7 +89,7 @@
   </section>
 
   <section class="monitoring__section">
-    <h1>Most popular currencies</h1>
+    <h1>Monitoring</h1>
     <p>Observe most popular currencies in runtime</p>
     <div class="charts-container">
       <app-chart-container
@@ -144,7 +145,7 @@
   </section>
 
   <section class="blog__section">
-    <h1>Latest news</h1>
+    <h1 #news>Latest news</h1>
     <div class="row centered">
       <div class="news-wrapper">
         <app-news [title]="'News title'" [hot]="true" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
@@ -165,14 +166,32 @@
   </section>
 
   <section class="forum__section">
-    <h1>Forum</h1>
+    <h1 #forum>Forum</h1>
+    <app-modal
+      [modalTemplateId]="'write_post'"
+      [id]="'write-pos-modal'"
+      [draggable]="true"
+      style="right: 45%"
+    >
+    </app-modal>
     <div class="posts-container">
       <app-post
         [requestData]="true"
-        [postId]="'2064'"
+        [postId]="'2066'"
       ></app-post>
     </div>
+    <div class="col">
 
+    </div>
+    <div class="row centered">
+      <p class="warning" *ngIf="userService.isLoggedIn()">You must be logged in to write posts</p>
+      <app-context-button *ngIf="!userService.isLoggedIn()"
+        [text]="'Write post'"
+        [context]="modalService.showModal"
+        [args]="['write-pos-modal']"
+      >
+      </app-context-button>
+    </div>
   </section>
 
   <section class="footer__section">

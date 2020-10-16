@@ -6,9 +6,9 @@ export interface PostInfo {
 }
 
 export class Post {
-  public readonly id: string;
-  public readonly message: string;
-  public readonly user: UserInfo;
+  public id: string;
+  public message: string;
+  public user: UserInfo;
 
   constructor(id: string, data: PostInfo) {
     this.id = id;

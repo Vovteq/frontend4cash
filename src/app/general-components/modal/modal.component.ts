@@ -30,6 +30,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() customTemplateArgs: any[];
   @Input() initiallyShown: boolean;
   @Input() showBg: boolean;
+  @Input() draggable: boolean = false;
 
   public onSelect: Delegate<void[]> = new Delegate<void[]>();
   private _selected: boolean = false;

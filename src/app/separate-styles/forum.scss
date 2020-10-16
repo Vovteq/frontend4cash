@@ -1,8 +1,8 @@
 .forum__section {
   @extend .general-section;
 
-  margin-bottom: 2rem;
-  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem !important;
 
   .posts-container {
     padding: 1rem 2rem;
