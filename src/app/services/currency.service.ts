@@ -13,7 +13,7 @@ export class CurrencyService {
   }
 
   public getCurrency(id: string): Observable<any> {
-    const url = this.currenciesUrl + id + "/price_past_day";
+    const url = this.currenciesUrl + id + "/pricedata";
     console.log("requesting data on address: " + url);
     return this.http.get<any>(url);
   }

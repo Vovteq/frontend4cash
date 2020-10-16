@@ -11,4 +11,26 @@
   app-link-button + app-link-button {
     margin-left: 5px;
   }
+
+  .col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      letter-spacing: 3px;
+    }
+  }
+
+  .right {
+    justify-content: flex-end;
+  }
+
+  .left {
+    justify-content: flex-start;
+  }
+}
+
+.navbar-icon-question:hover {
+  box-shadow: 0 0 15px 0 rgba(#000, 1);
 }

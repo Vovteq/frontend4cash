@@ -80,6 +80,10 @@ export class ModalService implements OnDestroy{
     return modal.getElement().querySelectorAll('*').item(0).querySelector(className);
   }
 
+  public focus(modal: ModalComponent): void {
+    this.focusedModal = modal;
+  }
+
   ngOnDestroy(): void {
     console.log("Modal service destroyed");
   }

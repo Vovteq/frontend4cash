@@ -27,6 +27,9 @@ import { PostComponent } from './general-components/post/post.component';
 import { CutTextPipe } from './pipes/cut-text.pipe';
 import { HoverPipe } from './pipes/hover.pipe';
 import { PostMenuComponent } from './general-components/post/post-menu/post-menu.component';
+import { StickyMessageComponent } from './general-components/sticky-message/sticky-message.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {UserService} from "./services/user.service";
 
 @NgModule({
   declarations: [
@@ -42,7 +45,8 @@ import { PostMenuComponent } from './general-components/post/post-menu/post-menu
     PostComponent,
     CutTextPipe,
     HoverPipe,
-    PostMenuComponent
+    PostMenuComponent,
+    StickyMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,8 @@ import { PostMenuComponent } from './general-components/post/post-menu/post-menu
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forChild(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FontAwesomeModule
   ],
   providers: [
     CurrencyService,
@@ -60,7 +65,8 @@ import { PostMenuComponent } from './general-components/post/post-menu/post-menu
     ReferenceService,
     ButtonService,
     ModalService,
-    PostService
+    PostService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

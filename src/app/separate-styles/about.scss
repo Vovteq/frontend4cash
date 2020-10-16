@@ -1,0 +1,42 @@
+@import "../utils/scss/colors";
+
+.about__section {
+  background: $white;
+  text-align: center;
+  padding: 1rem 2rem;
+
+  h1 {
+    font-size: 35px;
+  }
+
+  .about-module {
+    padding: 0;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.4);
+
+    h4 {
+      color: $white;
+      text-shadow: 0 0 15px rgba(#000, 0.3);
+      letter-spacing: 10px;
+    }
+
+    p {
+      padding: 10px;
+      font-size: 20px;
+    }
+
+    .about-module-header {
+      padding: 5px;
+      background: linear-gradient(90deg, rgba(62,189,255,1) 0%, rgba(145,164,255,1) 100%);
+
+      img {
+        width: 128px;
+        height: 128px;
+      }
+    }
+
+  }
+
+  .about-module + .about-module {
+    margin-left: 1rem;
+  }
+}

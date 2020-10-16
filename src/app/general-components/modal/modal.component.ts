@@ -24,7 +24,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
   encapsulation: ViewEncapsulation.None
 })
 export class ModalComponent implements OnInit, AfterViewInit {
-  @Input() modalTemplateId;
+  @Input() modalTemplateId: string;
   @Input() id: string = "modal";
   @Input() useCustomTemplate: boolean;
   @Input() customTemplateArgs: any[];
@@ -39,10 +39,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
     return this._selected;
   }
 
-  get animationState(): string {
-    return this._shown ? 'shown' : 'hidden';
-  }
-
   get shown(): boolean {
     return this._shown;
   }
@@ -52,7 +48,6 @@ export class ModalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.onSelect.add(() => { this._selected = !this._selected; console.log(this._selected)});
     this.modalService.registerModal(this.id, this);
-
   }
 
   ngAfterViewInit(): void {
@@ -61,6 +56,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   handleOnClick(): void {
     this.onSelect.invoke(null);
+    this.modalService.focus(this);
   }
 
   getElement(): HTMLElement {
