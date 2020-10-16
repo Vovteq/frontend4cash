@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ButtonService} from "./services/button.service";
 import {ModalService} from "./services/modal.service";
+import * as AOS from 'aos';
 
 declare var particlesJS: any;
 
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     particlesJS.load('particles-js', 'assets/config/particles.json');
+    AOS.init();
   }
 
 
