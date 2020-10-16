@@ -85,6 +85,12 @@
 .monitoring__section .currencies-wrapper {
   margin-top: 1rem;
 }
+.monitoring__section .currencies-wrapper .currencies-container .row {
+  justify-content: center;
+}
+.monitoring__section .currencies-wrapper .currencies-container .row app-currency + app-currency {
+  margin-left: 1rem;
+}
 
 .blog__section {
   padding-bottom: 1rem !important;

@@ -1,0 +1,25 @@
+@import "../../utils/scss/colors";
+
+.currency-wrapper {
+  display: flex;
+  border: 1px solid $blue;
+  border-radius: 15px;
+  box-shadow: 0 0 10px 0 rgba(#000, 0.3);
+
+  .currency-header {
+    padding: 5px;
+    background: $blue;
+    color: $white;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 14px;
+    font-size: 25px;
+  }
+
+  .currency-body {
+    padding: 5px;
+    font-size: 23px;
+    line-height: 40px;
+    color: $blue;
+    text-shadow: 0 0 5px rgba(#000, 0.1);
+  }
+}

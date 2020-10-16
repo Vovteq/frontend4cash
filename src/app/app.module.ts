@@ -30,6 +30,7 @@ import { PostMenuComponent } from './general-components/post/post-menu/post-menu
 import { StickyMessageComponent } from './general-components/sticky-message/sticky-message.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserService} from "./services/user.service";
+import { CurrencyComponent } from './general-components/currency/currency.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {UserService} from "./services/user.service";
     CutTextPipe,
     HoverPipe,
     PostMenuComponent,
-    StickyMessageComponent
+    StickyMessageComponent,
+    CurrencyComponent
   ],
   imports: [
     BrowserModule,
