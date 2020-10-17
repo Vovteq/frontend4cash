@@ -31,7 +31,7 @@ export class PostComponent implements OnInit {
   }
 
   get user(): UserInfo {
-    return this._user || {nickname: 'Not found'};
+    return this._user || {id: '0', nickname: 'Not found', password: '', email: ''};
   }
 
   get message(): string {
@@ -66,6 +66,6 @@ export class PostComponent implements OnInit {
   }
 
   setDefault(): void {
-    this.data = new Post('-1', {message: 'Post message', user: {nickname: 'user'}})
+    this.data = new Post('-1', { message: 'Post message', user: {id: '0', nickname: 'user', email: '', password: ''}})
   }
 }

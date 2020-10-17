@@ -10,8 +10,18 @@
     <span *ngIf="!userService.isLoggedIn()">
       You are not logged in
     </span>
+    <app-context-button *ngIf="!userService.isLoggedIn()"
+      [text]="'Login'"
+    >
+    </app-context-button>
     <span *ngIf="userService.isLoggedIn()">
       Welcome, {{userService.getLocalUser().nickname}}
     </span>
+    <app-context-button *ngIf="userService.isLoggedIn()"
+      [text]="'Logout'"
+      [context]="userService.logOut"
+      [args]="[]"
+    >
+    </app-context-button>
   </div>
 </div>

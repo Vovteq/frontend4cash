@@ -2,12 +2,15 @@ import {Injectable, OnDestroy} from '@angular/core';
 import {ModalComponent} from "../general-components/modal/modal.component";
 import ModalInspector from "../../scripts/ts/utils/ModalInspector";
 import {UserService} from "./user.service";
+import {PostService} from "./post.service";
+import {Post} from "../../scripts/ts/metadata/Post";
+import {User, UserInfo} from "../../scripts/ts/metadata/User";
 
 @Injectable()
 export class ModalService implements OnDestroy{
   public focusedModal: ModalComponent;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private postService: PostService) {}
 
   // Custom modal templates. Used by modals to match specific template.
   public modals: {[id: string]: string} = {
@@ -17,12 +20,17 @@ export class ModalService implements OnDestroy{
       <p>Create new account and start trading now!</p>
       <div class="separator"></div>
       <div class="modal-input-wrapper">
+        <input size="40" class="register-nickname">
+        <span class="bar"></span>
+        <label>Nickname</label>
+      </div>
+      <div class="modal-input-wrapper">
         <input size="40" type="email" class="register-email">
         <span class="bar"></span>
         <label>E-mail</label>
       </div>
       <div class="modal-input-wrapper">
-        <input size="40" type="password">
+        <input size="40" type="password" class="register-password">
         <span class="bar"></span>
         <label>Password</label>
       </div>
@@ -53,12 +61,12 @@ export class ModalService implements OnDestroy{
       <p style="color:#575757;">Share your ideas with the community</p>
       <div class="separator"></div>
       <div class="modal-input-wrapper">
-        <input size="40">
+        <input class="postHeader" size="40">
         <span class="bar"></span>
         <label>Post title</label>
       </div>
       <div class="modal-input-wrapper">
-        <textarea rows="6"></textarea>
+        <textarea class="postText" rows="6"></textarea>
         <span class="bar"></span>
         <label>Message</label>
       </div>
@@ -70,9 +78,18 @@ export class ModalService implements OnDestroy{
     'register': modal => {
       this.getModalElementByClass(modal, '.registerModalButton')
         .addEventListener('click', () => {
-          this.userService.logIn({nickname: this.getModalElementByClass<HTMLInputElement>(modal, '.register-email').value});
-          modal.hide();
-          ModalInspector.get('newcomer-tooltip-modal').hide();
+          const nickname = this.getModalElementByClass<HTMLInputElement>(modal, '.register-nickname');
+          const id = (100 + Math.floor(Math.random()  * 1000)).toString();
+          const email = this.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
+          const password = this.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
+          const info: UserInfo = { id: id, nickname: nickname.value, password: password.value, email: email.value };
+          console.log(`saving user: ${info.id} | ${info.nickname} | ${info.email} | ${info.password}`);
+          this.userService.saveUser(new User(id, info)).subscribe(e => {
+            this.userService.registerUser(id);
+            this.userService.logIn(id);
+            modal.hide();
+            ModalInspector.get('newcomer-tooltip-modal').hide();
+          });
         });
     },
     'tooltip': (modal, args) => {
@@ -86,7 +103,12 @@ export class ModalService implements OnDestroy{
     },
     'write_post': modal => {
       this.getModalElementByClass(modal, '.writePostButton').addEventListener('click', () => {
-        console.log("post posted");
+        const postHeader = this.getModalElementByClass<HTMLInputElement>(modal, '.postHeader');
+        const postText = this.getModalElementByClass<HTMLTextAreaElement>(modal, '.postText');
+        this.postService.savePost(new Post("none", {
+          message: postText.value,
+          user: this.userService.getLocalUser()
+        })).subscribe(e => { console.log("post posted!"); modal.hide();})
       })
     }
   };

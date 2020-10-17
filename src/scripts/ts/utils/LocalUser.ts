@@ -1,10 +1,15 @@
-import {UserInfo} from "../metadata/User";
+import {User, UserInfo} from "../metadata/User";
+import {Observable} from "rxjs";
+import {UserService} from "../../../app/services/user.service";
 
 export default class LocalUser {
   private static _user: UserInfo;
 
-  public static logIn(user: UserInfo): void {
-    this._user = user;
+  public static logIn(userId: string, service: UserService): boolean {
+    console.log(userId);
+    if (userId === null) return false;
+    service.getUser(userId).subscribe(user => {this._user = user});
+    return true;
   }
 
   public static loggedIn(): boolean {
@@ -13,5 +18,9 @@ export default class LocalUser {
 
   public static get user(): UserInfo {
     return this._user;
+  }
+
+  public static logOut() {
+    this._user = undefined;
   }
 }

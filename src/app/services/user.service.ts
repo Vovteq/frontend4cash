@@ -1,21 +1,46 @@
-import { Injectable } from '@angular/core';
-import {UserInfo} from "../../scripts/ts/metadata/User";
+import {Injectable} from '@angular/core';
+import {User, UserInfo} from "../../scripts/ts/metadata/User";
 import LocalUser from "../../scripts/ts/utils/LocalUser";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export class UserService {
+  private readonly usersUrl;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.usersUrl = 'http://localhost:8069/api/users/';
+  }
 
   public isLoggedIn(): boolean {
     return LocalUser.loggedIn();
   }
 
-  public logIn(user: UserInfo) {
-    LocalUser.logIn(user);
+  public logIn(id: string) {
+    console.log("trying to log in user...");
+    LocalUser.logIn(id, this);
+  }
+
+  public registerUser(id: string) {
+    console.log(`registered user${id} to localstorage`);
+    localStorage.setItem('lastRegistered', id);
+  }
+
+  public logOut() {
+    localStorage.removeItem('lastRegistered');
+    LocalUser.logOut();
   }
 
   public getLocalUser(): UserInfo {
     return LocalUser.user;
+  }
+
+  public getUser(id: string): Observable<any> {
+    const self = this;
+    return self.http.get<any>(`${self.usersUrl}${id}`);
+  }
+
+  public saveUser(user: User): Observable<any> {
+    return this.http.post(this.usersUrl, user);
   }
 }

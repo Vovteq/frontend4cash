@@ -184,8 +184,8 @@
 
     </div>
     <div class="row centered">
-      <p class="warning" *ngIf="userService.isLoggedIn()">You must be logged in to write posts</p>
-      <app-context-button *ngIf="!userService.isLoggedIn()"
+      <p class="warning" *ngIf="!userService.isLoggedIn()">You must be logged in to write posts</p>
+      <app-context-button *ngIf="userService.isLoggedIn()"
         [text]="'Write post'"
         [context]="modalService.showModal"
         [args]="['write-pos-modal']"

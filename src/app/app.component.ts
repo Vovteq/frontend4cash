@@ -10,7 +10,7 @@ declare var particlesJS: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'frontend4cash';
 
   constructor(public modalService: ModalService, public userService: UserService) {}
@@ -18,10 +18,13 @@ export class AppComponent implements OnInit{
   ngOnInit(): void {
     particlesJS.load('particles-js', 'assets/config/particles.json');
     AOS.init();
+    const lastId = localStorage.getItem('lastRegistered');
+    if (lastId !== null) {
+      this.userService.logIn(lastId);
+    }
   }
 
   scroll(elem: Element): void {
     elem.scrollIntoView();
   }
-
 }

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Post} from "../../scripts/ts/metadata/Post";
+import {UserService} from "./user.service";
 
 @Injectable()
 export class PostService {
   private readonly postsUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     this.postsUrl = 'http://localhost:8069/api/posts/'
   }
 
@@ -22,6 +23,6 @@ export class PostService {
   }
 
   public savePost(post: Post): Observable<any> {
-    return this.http.post<Post>(this.postsUrl, post);
+    return this.http.post<any>(this.postsUrl, {message: post.message, user: this.userService.getLocalUser().id});
   }
 }
