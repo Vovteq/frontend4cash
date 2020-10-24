@@ -184,6 +184,8 @@ section + section {
   background: #2282c7;
   padding-bottom: 1rem;
   color: #fff;
+  width: 100%;
+  right: 50%;
 }
 
 app-modal {

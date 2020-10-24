@@ -1,27 +1,35 @@
 <div class="navbar-container">
-  <div class="col left">
+  <div class="row">
+    <div class="col left">
 
-  </div>
-  <div class="col">
-    <app-link-button [text]="'Home'" ></app-link-button>
-    <app-link-button *ngIf="userService.isLoggedIn()" [text]="'Account'"></app-link-button>
-  </div>
-  <div class="col right">
+    </div>
+    <div class="col">
+      <a>Home</a>
+      <a>Monitoring</a>
+      <a>News</a>
+      <a>Forum</a>
+      <app-link-button *ngIf="userService.isLoggedIn()" [text]="'Account'"></app-link-button>
+    </div>
+    <div class="col right">
     <span *ngIf="!userService.isLoggedIn()">
       You are not logged in
     </span>
-    <app-context-button *ngIf="!userService.isLoggedIn()"
-      [text]="'Login'"
-    >
-    </app-context-button>
-    <span *ngIf="userService.isLoggedIn()">
+      <app-context-button *ngIf="!userService.isLoggedIn()"
+                          [text]="'Login'"
+      >
+      </app-context-button>
+      <span *ngIf="userService.isLoggedIn()">
       Welcome, {{userService.getLocalUser().nickname}}
     </span>
-    <app-context-button *ngIf="userService.isLoggedIn()"
-      [text]="'Logout'"
-      [context]="userService.logOut"
-      [args]="[]"
-    >
-    </app-context-button>
+      <app-context-button *ngIf="userService.isLoggedIn()"
+                          [text]="'Logout'"
+                          [context]="userService.logOut"
+                          [args]="[]"
+      >
+      </app-context-button>
+    </div>
+  </div>
+  <div class="row" style="justify-content: center; margin-top: 10px">
+
   </div>
 </div>
