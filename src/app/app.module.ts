@@ -30,6 +30,11 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {UserService} from "./services/user.service";
 import { CurrencyComponent } from './general-components/currency/currency.component';
 import {AngularDraggableModule} from "angular2-draggable";
+import { LinkComponent } from './general-components/link/link.component';
+import { HomePageComponent } from './outlet-components/home-page/home-page.component';
+import { MonitoringPageComponent } from './outlet-components/monitoring-page/monitoring-page.component';
+import { ForumPageComponent } from './outlet-components/forum-page/forum-page.component';
+import { NewsPageComponent } from './outlet-components/news-page/news-page.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,12 @@ import {AngularDraggableModule} from "angular2-draggable";
     HoverPipe,
     PostMenuComponent,
     StickyMessageComponent,
-    CurrencyComponent
+    CurrencyComponent,
+    LinkComponent,
+    HomePageComponent,
+    MonitoringPageComponent,
+    ForumPageComponent,
+    NewsPageComponent
   ],
   imports: [
     BrowserModule,

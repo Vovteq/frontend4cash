@@ -4,10 +4,10 @@
 
     </div>
     <div class="col">
-      <a>Home</a>
-      <a>Monitoring</a>
-      <a>News</a>
-      <a>Forum</a>
+      <a routerLink="" routerLinkActive="active">Home</a>
+      <a routerLink="monitoring" routerLinkActive="active">Monitoring</a>
+      <a routerLink="news" routerLinkActive="active">News</a>
+      <a routerLink="forum" routerLinkActive="active">Forum</a>
       <app-link-button *ngIf="userService.isLoggedIn()" [text]="'Account'"></app-link-button>
     </div>
     <div class="col right">

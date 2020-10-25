@@ -1,0 +1,26 @@
+@import "src/app/utils/scss/colors.scss";
+@import "src/app/app.component.scss";
+
+p {
+  margin-bottom: 2rem;
+  font-size: 25px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba($dark, 0.4);
+  text-align: center;
+}
+
+.currencies-wrapper {
+  margin-top: 1rem;
+
+  .currencies-container {
+    .row {
+      justify-content: center;
+
+      app-currency + app-currency {
+        margin-left: 1rem;
+      }
+    }
+  }
+
+}

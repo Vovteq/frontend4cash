@@ -1,7 +1,5 @@
-@import "separate-styles/welcome";
 @import "separate-styles/charts";
 @import "separate-styles/header";
-@import "separate-styles/monitoring";
 @import "separate-styles/blog";
 @import "separate-styles/forum";
 @import "separate-styles/about";
@@ -29,14 +27,7 @@ section + section {
   border-bottom-left-radius: 45px;
   border-bottom-right-radius: 45px;
 
-  h1 {
-    margin-bottom: 1rem;
-    background: $blue;
-    padding-bottom: 1rem;
-    color: $white;
-    width: 100%;
-    right: 50%;
-  }
+
 }
 
 app-modal {
@@ -53,4 +44,16 @@ app-modal {
 
 .container-fluid {
   padding: 0;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+  background: $blue;
+  padding-bottom: 0.5rem;
+  color: $white;
+  width: 100%;
+  right: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 45px;
 }

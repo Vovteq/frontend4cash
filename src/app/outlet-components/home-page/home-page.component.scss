@@ -1,5 +1,4 @@
-@import "../utils/scss/colors";
-@import "../utils/scss/absolute-center";
+@import "src/app/utils/scss/colors.scss";
 
 .welcome__section {
   box-shadow: none;
@@ -37,14 +36,4 @@
     height: 100%;
     top: 1%;
   }
-}
-
-.welcome-bg {
-  position: absolute;
-  left: 30%;
-  z-index: -49;
-  width: 800px;
-  height: 650px;
-  top: -15%;
-  opacity: 60%;
 }

@@ -1,14 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ModalService} from "./services/modal.service";
-import * as AOS from 'aos';
 import {UserService} from "./services/user.service";
 
-declare var particlesJS: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   title = 'frontend4cash';
@@ -16,12 +15,13 @@ export class AppComponent implements OnInit {
   constructor(public modalService: ModalService, public userService: UserService) {}
 
   ngOnInit(): void {
-    particlesJS.load('particles-js', 'assets/config/particles.json');
-    AOS.init();
     const lastId = localStorage.getItem('lastRegistered');
     if (lastId !== null) {
       this.userService.logIn(lastId);
     }
+  }
+
+  init(): void {
   }
 
   scroll(elem: Element): void {

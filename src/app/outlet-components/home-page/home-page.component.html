@@ -1,0 +1,80 @@
+<section class="welcome__section">
+  <div id="particles-js"></div>
+  <div class="parallax-object" parallax-speed="-0.4">
+    <h1>Welcome to <span>Bits4Cash</span></h1>
+    <p>Spend 10 racks on a new blockchain</p>
+    <div class="row centered">
+      <app-context-button *ngIf="!userService.isLoggedIn()"
+                          [context]="modalService.showModal"
+                          [args]="['register-modal']"
+                          [text]="'Create account'"
+      >
+      </app-context-button>
+      <app-context-button
+        [text]="'Forum'"
+      >
+      </app-context-button>
+      <app-context-button
+        [text]="'News'"
+      >
+      </app-context-button>
+    </div>
+  </div>
+  <app-modal
+    [modalTemplateId]="'register'"
+    [id]="'register-modal'"
+    [draggable]="true"
+    style="right: 3%; top: 10%;"
+    class="parallax-object" parallax-speed="-0.1"
+  >
+  </app-modal>
+  <app-modal
+    [modalTemplateId]="'tooltip'"
+    [id]="'newcomer-tooltip-modal'"
+    [initiallyShown]="true"
+    [useCustomTemplate]="true"
+    [customTemplateArgs]="[
+      'Newcomer?',
+      'Create new account by clicking button \'Create account\' and follow instructions.',
+      'Got it',
+      '400px'
+      ]"
+    style="left: 10%; top: 20%;"
+    class="parallax-object" parallax-speed="-0.1"
+  >
+  </app-modal>
+</section>
+
+<section class="about__section">
+  <h1>About us</h1>
+  <p>About_us_text</p>
+  <div class="row">
+    <div class="col about-module" data-aos="fade-up">
+      <div class="about-module-header">
+        <img src="../assets/img/security.png">
+        <h4>We value your privacy</h4>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi eius eum excepturi, id illum impedit laboriosam vel.
+        A alias aperiam aut consequatur delectus dolore eveniet facere, facilis incidunt labore laboriosam nisi obcaecati placeat quasi,
+        quidem rerum, voluptate voluptates. Maiores, provident?</p>
+    </div>
+    <div class="col about-module" data-aos="fade-up">
+      <div class="about-module-header">
+        <img src="../assets/img/return-of-investment.png">
+        <h4>We value your privacy</h4>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi eius eum excepturi, id illum impedit laboriosam vel.
+        A alias aperiam aut consequatur delectus dolore eveniet facere, facilis incidunt labore laboriosam nisi obcaecati placeat quasi,
+        quidem rerum, voluptate voluptates. Maiores, provident?</p>
+    </div>
+    <div class="col about-module" data-aos="fade-up">
+      <div class="about-module-header">
+        <img src="../assets/img/credit-card.png">
+        <h4>Flexible system</h4>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi eius eum excepturi, id illum impedit laboriosam vel.
+        A alias aperiam aut consequatur delectus dolore eveniet facere, facilis incidunt labore laboriosam nisi obcaecati placeat quasi,
+        quidem rerum, voluptate voluptates. Maiores, provident?</p>
+    </div>
+  </div>
+</section>
