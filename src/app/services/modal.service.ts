@@ -16,8 +16,8 @@ export class ModalService implements OnDestroy{
   public modals: {[id: string]: string} = {
     // Register template (standard)
     register: `
-      <h2>Register</h2>
-      <p>Create new account and start trading now!</p>
+      <h2 style="margin-bottom: 1rem">Register</h2>
+      <p style="font-weight: lighter">Create new account and <br> start trading now!</p>
       <div class="separator"></div>
       <div class="modal-input-wrapper">
         <input size="40" class="register-nickname">
@@ -37,6 +37,26 @@ export class ModalService implements OnDestroy{
       <div class="row centered">
         <button class="registerModalButton">Create account</button>
       </div>
+    `,
+
+    // Login template (standard)
+    login: `
+      <h2 style="margin-bottom: 1rem">Login</h2>
+      <p>Login tooltip</p>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper">
+        <input size="40" class="login-nickname">
+        <span class="bar"></span>
+        <label>Nickname or email</label>
+      </div>
+      <div class="modal-input-wrapper">
+        <input size="40" type="password" class="login-password">
+        <span class="bar"></span>
+        <label>Password</label>
+      </div>
+      <div class="row centered">
+        <button class="loginModalButton">Log in</button>
+      </div>    
     `,
 
     // Tooltip template (custom)
@@ -83,7 +103,6 @@ export class ModalService implements OnDestroy{
           const email = this.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
           const password = this.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
           const info: UserInfo = { id: id, nickname: nickname.value, password: password.value, email: email.value };
-          console.log(`saving user: ${info.id} | ${info.nickname} | ${info.email} | ${info.password}`);
           this.userService.saveUser(new User(id, info)).subscribe(e => {
             this.userService.registerUser(id);
             this.userService.logIn(id);
@@ -109,6 +128,14 @@ export class ModalService implements OnDestroy{
           message: postText.value,
           user: this.userService.getLocalUser()
         })).subscribe(e => { console.log("post posted!"); modal.hide();})
+      })
+    },
+    'login': modal => {
+      this.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
+        const alias = this.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
+        this.userService.logInAlias(alias).then(() => { modal.hide(); }).catch(() => {
+          console.log('No such user');
+        });
       })
     }
   };

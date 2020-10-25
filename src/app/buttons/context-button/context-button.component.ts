@@ -1,7 +1,7 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {Property} from "csstype";
-import Color = Property.Color;
 import {animate, style, transition, trigger} from "@angular/animations";
+import Color = Property.Color;
 
 @Component({
   selector: 'app-context-button',
@@ -17,7 +17,8 @@ import {animate, style, transition, trigger} from "@angular/animations";
         animate('200ms cubic-bezier(0.600, -0.280, 0.735, 0.045)', style({ opacity: 0, transform: 'translateY(40px) scale(0.9)' })),
       ]),
     ])
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None
 })
 export class ContextButtonComponent implements OnInit {
   public shown: boolean = true;

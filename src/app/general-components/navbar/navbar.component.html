@@ -4,18 +4,20 @@
 
     </div>
     <div class="col">
-      <a routerLink="" routerLinkActive="active">Home</a>
-      <a routerLink="monitoring" routerLinkActive="active">Monitoring</a>
-      <a routerLink="news" routerLinkActive="active">News</a>
-      <a routerLink="forum" routerLinkActive="active">Forum</a>
-      <app-link-button *ngIf="userService.isLoggedIn()" [text]="'Account'"></app-link-button>
+      <app-link [route]="''" [routeLink]="true" [text]="'Home'"></app-link>
+      <app-link [route]="'monitoring'" [routeLink]="true" [text]="'Monitoring'"></app-link>
+      <app-link [route]="'news'" [routeLink]="true" [text]="'News'"></app-link>
+      <app-link [route]="'forum'" [routeLink]="true" [text]="'Forum'"></app-link>
+      <app-link *ngIf="userService.isLoggedIn()" [route]="'account'" [routeLink]="true" [text]="'Account'"></app-link>
     </div>
     <div class="col right">
     <span *ngIf="!userService.isLoggedIn()">
       You are not logged in
     </span>
       <app-context-button *ngIf="!userService.isLoggedIn()"
-                          [text]="'Login'"
+                          [context]="modalService.showModal"
+                          [args]="['login-modal']"
+                          [text]="'Log in'"
       >
       </app-context-button>
       <span *ngIf="userService.isLoggedIn()">

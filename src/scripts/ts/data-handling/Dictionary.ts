@@ -20,6 +20,9 @@ export class Dictionary<K, V> extends DataStream<KeyValuePair<K, V>> {
   }
 
   addPair(key: K, value: V) {
+    if (this.getByKey(key) !== null) {
+      this.removeByKey(key);
+    }
     this.add(new KeyValuePair<K, V>(key, value));
   }
 

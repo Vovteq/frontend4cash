@@ -29,6 +29,14 @@
   >
   </app-modal>
   <app-modal
+    [modalTemplateId]="'login'"
+    [id]="'login-modal'"
+    [draggable]="true"
+    style="right: 5%; top: 10%;"
+    class="parallax-object" parallax-speed="-0.1"
+  >
+  </app-modal>
+  <app-modal
     [modalTemplateId]="'tooltip'"
     [id]="'newcomer-tooltip-modal'"
     [initiallyShown]="true"

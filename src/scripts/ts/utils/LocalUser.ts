@@ -6,7 +6,6 @@ export default class LocalUser {
   private static _user: UserInfo;
 
   public static logIn(userId: string, service: UserService): boolean {
-    console.log(userId);
     if (userId === null) return false;
     service.getUser(userId).subscribe(user => {this._user = user});
     return true;
@@ -22,5 +21,9 @@ export default class LocalUser {
 
   public static logOut() {
     this._user = undefined;
+  }
+
+  public static forceLogIn(user: UserInfo) {
+    this._user = user;
   }
 }
