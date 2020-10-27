@@ -9,7 +9,7 @@ export class CurrencyService {
   public globalCurrency: string = "USD";
 
   constructor(private http: HttpClient) {
-    this.currenciesUrl = 'http://localhost:8069/api/coins/'
+    this.currenciesUrl = 'http://backend4cashdev:8080/api/coins/'
   }
 
   public getCurrency(id: string): Observable<any> {

@@ -9,7 +9,7 @@ export class UserService {
   private readonly usersUrl;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8069/api/users/';
+    this.usersUrl = 'http://backend4cashdev:8080/api/users/';
   }
 
   public isLoggedIn(): boolean {
