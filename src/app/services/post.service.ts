@@ -9,7 +9,7 @@ export class PostService {
   private readonly postsUrl: string;
 
   constructor(private http: HttpClient, private userService: UserService) {
-    this.postsUrl = 'http://backend4cashdev:8080/api/posts/'
+    this.postsUrl = '/api/posts/'
   }
 
   public getPost(id: string): Observable<any> {
