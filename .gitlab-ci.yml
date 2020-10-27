@@ -9,7 +9,7 @@ pull:
   stage: pull the code
   before_script:
     - cd /home/ubuntu/bits4cash/frontend4cash
-    - git reset --hard HEAD
+    - git reset --hard ${CI_COMMIT_REF_NAME}
   script:
     - git pull git@gitlab.cs.ttu.ee:kigris/frontend4cash.git ${CI_COMMIT_REF_NAME}
 
