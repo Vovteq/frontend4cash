@@ -3,13 +3,14 @@ import {User, UserInfo} from "../../scripts/ts/metadata/User";
 import LocalUser from "../../scripts/ts/utils/LocalUser";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import URLRouter from "../../scripts/ts/utils/URLRouter";
 
 @Injectable()
 export class UserService {
   private readonly usersUrl;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = '/api/users/';
+    this.usersUrl = URLRouter.getRoute('users');
   }
 
   public isLoggedIn(): boolean {
