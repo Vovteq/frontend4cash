@@ -8,9 +8,9 @@
       <app-link [route]="'monitoring'" [routeLink]="true" [text]="'Monitoring'"></app-link>
       <app-link [route]="'news'" [routeLink]="true" [text]="'News'"></app-link>
       <app-link [route]="'forum'" [routeLink]="true" [text]="'Forum'"></app-link>
-      <app-link *ngIf="userService.isLoggedIn()" [route]="'account'" [routeLink]="true" [text]="'Account'"></app-link>
+      <app-link *ngIf="userService.isLoggedIn()" [route]="'/account/home'" [routeLink]="true" [text]="'Account'"></app-link>
     </div>
-    <div class="col right">
+    <div class="col right" style="padding-right: 1rem">
     <span *ngIf="!userService.isLoggedIn()">
       You are not logged in
     </span>

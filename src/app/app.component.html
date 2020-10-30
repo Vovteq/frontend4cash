@@ -2,7 +2,7 @@
   <section class="header__section" >
     <app-navbar></app-navbar>
   </section>
-
+  <div *ngIf="showLoading" class="loading"></div>
   <router-outlet></router-outlet>
 </div>
 <app-script-bridge></app-script-bridge>

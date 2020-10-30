@@ -1,9 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ModalService} from "./services/modal.service";
 import {UserService} from "./services/user.service";
-import {ActivationStart, Router, RouterEvent} from "@angular/router";
-import {filter} from "rxjs/operators";
-import {AccountGuard} from "./guards/account.guard";
 
 
 @Component({
@@ -14,8 +10,9 @@ import {AccountGuard} from "./guards/account.guard";
 })
 export class AppComponent implements OnInit {
   title = 'frontend4cash';
+  public showLoading: boolean = false;
 
-  constructor(public modalService: ModalService, public userService: UserService, private router: Router) {
+  constructor(public userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -23,12 +20,6 @@ export class AppComponent implements OnInit {
     if (lastId !== null) {
       this.userService.logIn(lastId);
     }
-
-    AccountGuard.onRouteResolved.add((route, active) => {
-      if (!active) {
-        this.router.navigateByUrl('/**');
-      }
-    })
   }
 
   init(): void {

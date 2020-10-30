@@ -2,10 +2,11 @@
   <nav class="account-navigation">
     <h3>Account</h3>
     <div class="separator"></div>
-    <a routerLink="home" routerLinkActive="account-active-link">Home</a>
-    <a routerLink="privacy" routerLinkActive="account-active-link">Privacy</a>
+    <a routerLink="home" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="account-active-link">Home</a>
+    <a routerLink="privacy" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="account-active-link">Privacy</a>
   </nav>
   <div class="account-content">
+    <fa-icon [icon]=""></fa-icon>
     <router-outlet></router-outlet>
   </div>
 </section>

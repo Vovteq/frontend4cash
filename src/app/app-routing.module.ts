@@ -16,10 +16,10 @@ const routes: Routes = [
   { path: 'monitoring', component: MonitoringPageComponent },
   { path: 'forum', component: ForumPageComponent },
   { path: 'account', component: AccountPageComponent, canActivate: [AccountGuard], children: [
-      {path: '', redirectTo: 'home', pathMatch: 'full'},
-      {path: 'home', component: AccountHomePageComponent }
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component: AccountHomePageComponent }
     ]},
-  {path: '**', component: ErrorPageComponent}
+  { path: '**', component: ErrorPageComponent}
 ];
 
 @NgModule({
