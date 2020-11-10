@@ -1,4 +1,4 @@
-@import "src/app/utils/scss/colors.scss";
+@import "../../utils/scss/colors.scss";
 
 .welcome__section {
   box-shadow: none;
@@ -35,5 +35,28 @@
     width: 100%;
     height: 100%;
     top: 1%;
+  }
+}
+
+.about__section {
+  .header {
+    background: $alterblue;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  padding: 0;
+
+  h1 {
+    color: $white;
+  }
+
+  .about-module {
+    background: $white;
+  }
+
+  .row {
+    margin-top: 1rem;
+    padding: 0 4rem;
   }
 }

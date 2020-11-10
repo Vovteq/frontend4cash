@@ -5,12 +5,21 @@ import {HomePageComponent} from "./outlet-components/home-page/home-page.compone
 import {NewsPageComponent} from "./outlet-components/news-page/news-page.component";
 import {MonitoringPageComponent} from "./outlet-components/monitoring-page/monitoring-page.component";
 import {ForumPageComponent} from "./outlet-components/forum-page/forum-page.component";
+import {AccountPageComponent} from "./outlet-components/account-page/account-page.component";
+import {AccountHomePageComponent} from "./outlet-components/account-page/outlets/account-home-page/account-home-page.component";
+import {AccountGuard} from "./guards/account.guard";
+import {ErrorPageComponent} from "./outlet-components/error-page/error-page.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'news', component: NewsPageComponent },
   { path: 'monitoring', component: MonitoringPageComponent },
-  { path: 'forum', component: ForumPageComponent }
+  { path: 'forum', component: ForumPageComponent },
+  { path: 'account', component: AccountPageComponent, canActivate: [AccountGuard], children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full'},
+      { path: 'home', component: AccountHomePageComponent }
+    ]},
+  { path: '**', component: ErrorPageComponent}
 ];
 
 @NgModule({

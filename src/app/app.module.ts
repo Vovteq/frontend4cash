@@ -35,6 +35,9 @@ import { HomePageComponent } from './outlet-components/home-page/home-page.compo
 import { MonitoringPageComponent } from './outlet-components/monitoring-page/monitoring-page.component';
 import { ForumPageComponent } from './outlet-components/forum-page/forum-page.component';
 import { NewsPageComponent } from './outlet-components/news-page/news-page.component';
+import { AccountPageComponent } from './outlet-components/account-page/account-page.component';
+import { AccountHomePageComponent } from './outlet-components/account-page/outlets/account-home-page/account-home-page.component';
+import { ErrorPageComponent } from './outlet-components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +60,10 @@ import { NewsPageComponent } from './outlet-components/news-page/news-page.compo
     HomePageComponent,
     MonitoringPageComponent,
     ForumPageComponent,
-    NewsPageComponent
+    NewsPageComponent,
+    AccountPageComponent,
+    AccountHomePageComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

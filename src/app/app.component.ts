@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ModalService} from "./services/modal.service";
 import {UserService} from "./services/user.service";
 
 
@@ -11,8 +10,10 @@ import {UserService} from "./services/user.service";
 })
 export class AppComponent implements OnInit {
   title = 'frontend4cash';
+  public showLoading: boolean = false;
 
-  constructor(public modalService: ModalService, public userService: UserService) {}
+  constructor(public userService: UserService) {
+  }
 
   ngOnInit(): void {
     const lastId = localStorage.getItem('lastRegistered');

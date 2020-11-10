@@ -3,13 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Post} from "../../scripts/ts/metadata/Post";
 import {UserService} from "./user.service";
+import URLRouter from "../../scripts/ts/utils/URLRouter";
 
 @Injectable()
 export class PostService {
   private readonly postsUrl: string;
 
   constructor(private http: HttpClient, private userService: UserService) {
-    this.postsUrl = '/api/posts/'
+    this.postsUrl = URLRouter.getRoute('posts');
   }
 
   public getPost(id: string): Observable<any> {
