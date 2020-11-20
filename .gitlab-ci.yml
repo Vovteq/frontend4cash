@@ -3,6 +3,7 @@ stages:
   - compile angular
   - build image
   - stop running container
+  - remove previously running container
   - run container
 
 pull:
@@ -32,17 +33,20 @@ build:
 stop:
   stage: stop running container
   allow_failure: true
-  before_script:
-    - source .${CI_COMMIT_REF_NAME}.env
   script:
-    - docker stop $APP_NAME
-    - docker container rm $APP_NAME
+    - docker stop $(docker ps -f "name=frontend4cash" -q)
+
+remove:
+  stage: remove previously running container
+  allow_failure: true
+  script:
+    - docker container rm $(docker ps -af "name=frontend4cash" -q)
 
 deploy:
   stage: run container
   before_script:
     # no need to cd but let it be here for a while
     - cd /home/ubuntu/bits4cash/frontend4cash
-    - source .${CI_COMMIT_REF_NAME}.env
-  script: docker container run -d --name $APP_NAME --net=$NETWORK_NAME --net-alias=$APP_NAME -p 80:80 $IMAGE_NAME
+    - source .${CI_COMMIT_REF_N AME}.env
+  script: docker container run -d --name $APP_NAME --net=$NETWORK_NAME --net-alias=$APP_NAME -v ~/logs4front:/var/log/nginx/ -p 80:80 $IMAGE_NAME
 # i am a comment for test
