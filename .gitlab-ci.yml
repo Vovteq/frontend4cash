@@ -29,6 +29,9 @@ build:
     - cd /home/ubuntu/bits4cash/frontend4cash
     - source .${CI_COMMIT_REF_NAME}.env
   script: docker build -t $IMAGE_NAME .
+  after_script:
+    # after we build the image, completely remove built stuff so no disk space is taken (we dont have much disk space left, pls send help)
+    - rm -rf dist/*
 
 stop:
   stage: stop running container
