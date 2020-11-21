@@ -48,8 +48,7 @@ remove:
 deploy:
   stage: run container
   before_script:
-    # no need to cd but let it be here for a while
     - cd /home/ubuntu/bits4cash/frontend4cash
-    - source .${CI_COMMIT_REF_N AME}.env
+    - source .${CI_COMMIT_REF_NAME}.env
   script: docker container run -d --name $APP_NAME --net=$NETWORK_NAME --net-alias=$APP_NAME -v ~/logs4front:/var/log/nginx/ -p 80:80 $IMAGE_NAME
 # i am a comment for test
