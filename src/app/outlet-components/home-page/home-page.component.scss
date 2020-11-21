@@ -1,5 +1,4 @@
-@import "../utils/scss/colors";
-@import "../utils/scss/absolute-center";
+@import "../../utils/scss/colors.scss";
 
 .welcome__section {
   box-shadow: none;
@@ -39,12 +38,25 @@
   }
 }
 
-.welcome-bg {
-  position: absolute;
-  left: 30%;
-  z-index: -49;
-  width: 800px;
-  height: 650px;
-  top: -15%;
-  opacity: 60%;
+.about__section {
+  .header {
+    background: $alterblue;
+    width: 100%;
+    padding: 2rem;
+  }
+
+  padding: 0;
+
+  h1 {
+    color: $white;
+  }
+
+  .about-module {
+    background: $white;
+  }
+
+  .row {
+    margin-top: 1rem;
+    padding: 0 4rem;
+  }
 }

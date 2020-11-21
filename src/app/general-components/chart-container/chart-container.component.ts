@@ -10,7 +10,7 @@ import StringUtils from "../../../scripts/ts/utils/StringUtils";
 })
 export class ChartContainerComponent implements OnInit, AfterViewInit {
   public series = [{name: 'Price', data: [1, 2, 3]}];
-  public xaxis = {categories: [1, 2, 3]};
+  public xaxis: Object = {categories: [1, 2, 3]};
 
   @Input() chart;
   @Input() id: string;
@@ -45,10 +45,8 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   private render() {
     this.series = [{name: 'Price', data: this.data.priceStory.getValues().map(entry => entry as unknown as number)}];
     this.xaxis = {
-      categories:
-        this.data.priceStory
-          .getKeys()
-          .map(entry => entry as unknown as number)
+      categories: this.data.priceStory.getKeys().map(entry => entry as unknown as number),
+      tickAmount: 10
     };
     this.updateValues();
   }

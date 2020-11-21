@@ -12,4 +12,8 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 
+html[theme=dark-mode] {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,55 @@
+@import "../../utils/scss/colors";
+
+.link-wrapper {
+  cursor: pointer;
+  font-size: 20px;
+  color: $dark;
+  font-weight: lighter;
+
+  a {
+    position: relative;
+    transition: 200ms all;
+    color: $blue;
+    text-shadow: 0 0 10px rgba($lightblue, 0);
+
+    &:before, &:after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      width: 0;
+      height: 4px;
+      transition: 200ms all;
+      opacity: 0;
+      background: $blue;
+    }
+
+    &:before {
+      left: 50%;
+    }
+
+    &:after {
+      right: 50%;
+    }
+
+    &:hover {
+      text-decoration: none;
+      font-size: 23px;
+      text-shadow: 0 0 15px rgba($lightblue, 0.6);
+
+      &:before, &:after {
+        width: 52%;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.active-link {
+  font-size: 23px;
+
+  &:before, &:after {
+    width: 52% !important;
+    height: 4px !important;
+    opacity: 1 !important;
+  }
+}

@@ -3,13 +3,14 @@ import {User, UserInfo} from "../../scripts/ts/metadata/User";
 import LocalUser from "../../scripts/ts/utils/LocalUser";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import URLRouter from "../../scripts/ts/utils/URLRouter";
 
 @Injectable()
 export class UserService {
   private readonly usersUrl;
 
   constructor(private http: HttpClient) {
-    this.usersUrl = 'http://localhost:8069/api/users/';
+    this.usersUrl = URLRouter.getRoute('users');
   }
 
   public isLoggedIn(): boolean {
@@ -17,8 +18,29 @@ export class UserService {
   }
 
   public logIn(id: string) {
-    console.log("trying to log in user...");
     LocalUser.logIn(id, this);
+  }
+
+  private forceLogIn(user: UserInfo) {
+    LocalUser.forceLogIn(user);
+  }
+
+  public logInAlias(alias: string): Promise<void> {
+    let user: UserInfo;
+    return new Promise<void>((resolve, reject) => {
+      this.getAllUsers().subscribe(users => {
+        try {
+          user = users.filter(u => u.email === alias || u.nickname === alias)[0];
+        } catch (e) {
+          user = undefined;
+        }
+        if (user !== undefined) {
+          this.forceLogIn(user);
+          localStorage.setItem('lastRegistered', user.id);
+          resolve();
+        } else { reject(); }
+      });
+    });
   }
 
   public registerUser(id: string) {
@@ -35,9 +57,14 @@ export class UserService {
     return LocalUser.user;
   }
 
-  public getUser(id: string): Observable<any> {
+  public getUser(id: string): Observable<UserInfo> {
     const self = this;
-    return self.http.get<any>(`${self.usersUrl}${id}`);
+    return self.http.get<UserInfo>(`${self.usersUrl}${id}`);
+  }
+
+  public getAllUsers(): Observable<UserInfo[]> {
+    const self = this;
+    return self.http.get<UserInfo[]>(this.usersUrl);
   }
 
   public saveUser(user: User): Observable<any> {

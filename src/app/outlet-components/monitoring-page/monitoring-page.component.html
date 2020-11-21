@@ -1,0 +1,56 @@
+<div class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0">
+  <div class="section-header" style="margin-top: 5rem">Monitoring</div>
+  <p>Observe most popular currencies in runtime</p>
+  <div class="charts-container">
+    <app-chart-container
+      [requestData]="true"
+      [id]="'bitcoin'"
+      [chart]="{
+      type: 'line',
+      toolbar: {
+        show: false
+      }
+    }"
+    >
+    </app-chart-container>
+    <app-chart-container
+      [requestData]="true"
+      [id]="'ethereum'"
+      [chart]="{
+      type: 'line',
+      toolbar: {
+        show: false
+      }
+    }"
+    >
+    </app-chart-container>
+  </div>
+  <div class="currencies-wrapper">
+    <p>Other currencies</p>
+    <div class="currencies-container">
+      <div class="row">
+        <app-currency
+          [requestData]="true"
+          [currencyId]="'chainlink'"
+        >
+        </app-currency>
+        <app-currency
+          [requestData]="true"
+          [currencyId]="'polkadot'"
+        >
+        </app-currency>
+        <app-currency
+          [requestData]="true"
+          [currencyId]="'binancecoin'"
+        >
+        </app-currency>
+        <app-currency
+          [requestData]="true"
+          [currencyId]="'tether'"
+        >
+        </app-currency>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,5 @@
+<div class="link-wrapper">
+  <a *ngIf="routeLink" routerLink="{{route}}" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">{{text}}</a>
+  <a *ngIf="!routeLink" href="{{url}}" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">{{text}}</a>
+  <span></span>
+</div>

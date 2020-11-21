@@ -1,15 +1,22 @@
 @import "../../utils/scss/colors";
 
 .navbar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 1px solid $dark;
+  padding-top: 10px;
+  position: fixed;
+  width: 100%;
+  background: $white;
+  top: 0;
+  box-shadow: 0 0 35px 0 rgba($dark, 0.3);
+
+  border-bottom: 1px solid $blue;
   z-index: 1;
 
-  app-link-button + app-link-button {
-    margin-left: 5px;
+  .row {
+    width: 100%;
+  }
+
+  app-link + app-link {
+    margin-left: 2rem;
   }
 
   .col {
@@ -33,6 +40,41 @@
   .left {
     justify-content: flex-start;
   }
+}
+
+a {
+  font-size: 22px;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: $blue;
+  box-shadow: 0 0 8px 0 rgba($dark, 0);
+  border-radius: 0px;
+  background: $white;
+  transition: 200ms all, 100ms border;
+  font-weight: lighter;
+  border: 0 solid $lightblue;
+
+  &:hover {
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba($blue, 0.5);
+    box-shadow: 0 0 8px 0 rgba($dark, 0.4);
+    border-radius: 25px;
+    letter-spacing: 2px;
+    font-weight: normal;
+    border: 1px solid $lightblue;
+    border-left-width: 3px;
+    border-right-width: 3px;
+  }
+
+  &:active {
+    background: $lightblue;
+    color: $white;
+    border: 1px solid $lightblue;
+  }
+}
+
+a + a {
+  margin-left: 1rem;
 }
 
 .navbar-icon-question:hover {

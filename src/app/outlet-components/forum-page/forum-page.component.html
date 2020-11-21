@@ -1,0 +1,28 @@
+<section class="forum__section">
+  <div class="section-header" style="margin-top: 5rem">Forum</div>
+  <app-modal
+    [modalTemplateId]="'write_post'"
+    [id]="'write-pos-modal'"
+    [draggable]="true"
+    style="right: 45%"
+  >
+  </app-modal>
+  <div class="posts-container">
+    <app-post
+      [requestData]="true"
+      [postId]="'2065'"
+    ></app-post>
+  </div>
+  <div class="col">
+
+  </div>
+  <div class="row centered">
+    <p class="warning" *ngIf="!userService.isLoggedIn()">You must be logged in to write posts</p>
+    <app-context-button *ngIf="userService.isLoggedIn()"
+                        [text]="'Write post'"
+                        [context]="modalService.showModal"
+                        [args]="['write-pos-modal']"
+    >
+    </app-context-button>
+  </div>
+</section>

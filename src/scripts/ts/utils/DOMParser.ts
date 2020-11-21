@@ -39,12 +39,11 @@ export default class DOMParser {
     console.log("DOMParser started parsing...");
     const time = Date.now();
 
-    const elems = document.querySelectorAll('*:not(.parsed)');
+    const elems = document.querySelectorAll('*');
     for(let elem of Array.from(elems)) {
       for (let rule of this.parseRules) {
         rule(elem as HTMLElement);
       }
-      elem.classList.add("parsed");
     }
 
     console.log("DOMParser done parsing (" + (Date.now() - time) + " ms).");

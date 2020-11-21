@@ -1,19 +1,9 @@
-@import "separate-styles/welcome";
 @import "separate-styles/charts";
 @import "separate-styles/header";
-@import "separate-styles/monitoring";
 @import "separate-styles/blog";
 @import "separate-styles/forum";
 @import "separate-styles/about";
 @import "utils/scss/colors";
-
-section {
-  box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
-}
-
-section + section {
-  margin-top: 2rem;
-}
 
 .centered {
   align-items: center;
@@ -28,13 +18,6 @@ section + section {
   border-top: 10px solid $blue;
   border-bottom-left-radius: 45px;
   border-bottom-right-radius: 45px;
-
-  h1 {
-    margin-bottom: 1rem;
-    background: $blue;
-    padding-bottom: 1rem;
-    color: $white;
-  }
 }
 
 app-modal {
@@ -51,4 +34,33 @@ app-modal {
 
 .container-fluid {
   padding: 0;
+}
+
+.section-header {
+  margin-bottom: 1rem;
+  background: $blue;
+  padding-bottom: 0.5rem;
+  color: $white;
+  width: 100%;
+  right: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 45px;
+}
+
+.col {
+  padding: 0;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.loading {
+  background: rgba(255,255,255, 0.4);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  backdrop-filter: blur(8px);
 }

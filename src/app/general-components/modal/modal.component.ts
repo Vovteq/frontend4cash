@@ -2,6 +2,7 @@ import {Component, Input, OnInit, ViewEncapsulation, AfterViewInit, ElementRef} 
 import {ModalService} from "../../services/modal.service";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {Dictionary} from "../../../scripts/ts/data-handling/Dictionary";
 
 @Component({
   selector: 'app-modal',
@@ -35,6 +36,8 @@ export class ModalComponent implements OnInit, AfterViewInit {
   public onSelect: Delegate<void[]> = new Delegate<void[]>();
   private _selected: boolean = false;
   private _shown: boolean;
+
+  public readonly cache: Dictionary<string, any> = new Dictionary<string, any>();
 
   get selected(): boolean {
     return this._selected;

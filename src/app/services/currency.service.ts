@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import URLRouter from "../../scripts/ts/utils/URLRouter";
 
 @Injectable()
 export class CurrencyService {
@@ -9,7 +10,7 @@ export class CurrencyService {
   public globalCurrency: string = "USD";
 
   constructor(private http: HttpClient) {
-    this.currenciesUrl = 'http://localhost:8069/api/coins/'
+    this.currenciesUrl = URLRouter.getRoute('currency');
   }
 
   public getCurrency(id: string): Observable<any> {
