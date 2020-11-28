@@ -32,6 +32,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() initiallyShown: boolean;
   @Input() showBg: boolean;
   @Input() draggable: boolean = false;
+  @Input() customContent: string;
 
   public onSelect: Delegate<void[]> = new Delegate<void[]>();
   private _selected: boolean = false;
@@ -73,6 +74,10 @@ export class ModalComponent implements OnInit, AfterViewInit {
 
   hide(): void {
     this._shown = false;
+  }
+
+  private getInnerHtml() {
+    return this.customContent === undefined ? this.modalService.modals[this.modalTemplateId] : this.customContent;
   }
 
   // There is no elements in this component during animation, so we need to use anim-end callback.

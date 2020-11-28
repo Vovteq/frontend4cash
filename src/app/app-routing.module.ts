@@ -9,6 +9,7 @@ import {AccountPageComponent} from "./outlet-components/account-page/account-pag
 import {AccountHomePageComponent} from "./outlet-components/account-page/outlets/account-home-page/account-home-page.component";
 import {AccountGuard} from "./guards/account.guard";
 import {ErrorPageComponent} from "./outlet-components/error-page/error-page.component";
+import {AccountPrivacyPageComponent} from "./outlet-components/account-page/outlets/account-privacy-page/account-privacy-page.component";
 
 const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'forum', component: ForumPageComponent },
   { path: 'account', component: AccountPageComponent, canActivate: [AccountGuard], children: [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
-      { path: 'home', component: AccountHomePageComponent }
+      { path: 'home', component: AccountHomePageComponent },
+      { path: 'privacy', component: AccountPrivacyPageComponent }
     ]},
   { path: '**', component: ErrorPageComponent}
 ];

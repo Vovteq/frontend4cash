@@ -43,13 +43,13 @@
     background: $alterblue;
     width: 100%;
     padding: 2rem;
+
+    p, h1 {
+      color: $white;
+    }
   }
 
   padding: 0;
-
-  h1 {
-    color: $white;
-  }
 
   .about-module {
     background: $white;

@@ -1,15 +1,21 @@
-export interface DelegateSubscriber<TArg extends Array<any>, TRet> {
+export interface DelegateSubscriber<TArg extends Array<any> | void, TRet> {
   (...args: TArg[]): TRet;
 }
 
-export class Delegate<TArg extends Array<any>> {
+export class Delegate<TArg extends Array<any> | void> {
     protected readonly subs: Array<DelegateSubscriber<TArg, any>>;
+    private unboxed;
+
+    public isUnboxed() {
+      return this.unboxed;
+    }
 
     constructor() {
       this.subs = new Array<DelegateSubscriber<TArg, void>>()
     }
 
     public invoke(args: TArg): void {
+      this.unboxed = true;
       for (let sub of this.subs) {
         sub(args);
       }
