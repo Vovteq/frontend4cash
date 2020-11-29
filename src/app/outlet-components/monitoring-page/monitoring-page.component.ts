@@ -15,9 +15,9 @@ import {ChartContainerComponent} from "../../general-components/chart-container/
 export class MonitoringPageComponent implements OnInit{
   public shownCurrency: Currency;
   public renderCurrencyChart: boolean;
+  public error: string;
 
   private currencyChart: ChartContainerComponent;
-  private error: string;
   private onChartRendered: Delegate<void> = new Delegate<void>();
 
   @ViewChild('shownCurrencyChart', { static: false}) set chart(chart: ChartContainerComponent) {
