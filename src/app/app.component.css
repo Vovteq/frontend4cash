@@ -116,8 +116,6 @@
   padding: 0 0 5rem 0;
   text-align: center;
   background: #fff;
-  border: 2px solid #2282c7;
-  border-top: 10px solid #2282c7;
   border-bottom-left-radius: 45px;
   border-bottom-right-radius: 45px;
 }
@@ -140,7 +138,7 @@ app-modal {
 
 .section-header {
   margin-bottom: 1rem;
-  background: #2282c7;
+  background: #4287f5;
   padding-bottom: 0.5rem;
   color: #fff;
   width: 100%;

@@ -6,11 +6,42 @@ import {ModalComponent} from "../../general-components/modal/modal.component";
 import {ChartComponent} from "ng-apexcharts";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 import {ChartContainerComponent} from "../../general-components/chart-container/chart-container.component";
+import {animate, group, query, stagger, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-monitoring-page',
   templateUrl: './monitoring-page.component.html',
-  styleUrls: ['./monitoring-page.component.scss']
+  styleUrls: ['./monitoring-page.component.scss'],
+  animations: [
+    trigger('show', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(200px)' }),
+        group([
+          animate('300ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({ opacity: 1 })),
+          animate('800ms cubic-bezier(0.680, -0.550, 0.265, 1.550)', style({ transform: 'translateY(0)' })),
+        ])
+      ])
+    ]),
+    trigger('currencyChartAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(40px) scale(0.9)' }),
+        animate('500ms cubic-bezier(0.175, 0.885, 0.320, 1.275)', style({ opacity: 1, transform: 'translateY(0) scale(1)' })),
+      ]),
+      transition(':leave', [
+        animate('500ms cubic-bezier(0.600, -0.280, 0.735, 0.045)', style({ opacity: 0, transform: 'translateY(40px) scale(0.9)' })),
+      ]),
+    ]),
+    trigger('errorAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'scale(0.9)', textShadow: '0 0 15px rgba(255, 69, 69, 0)' }),
+        animate('500ms cubic-bezier(0.175, 0.885, 0.320, 1.275)', style({ opacity: 1, transform: 'scale(1)', textShadow: '10px 10px 30px rgba(199, 46, 46, 1)' })),
+        animate('500ms cubic-bezier(0.175, 0.885, 0.320, 1.275)', style({ textShadow: '0 0 15px rgba(255, 69, 69, 0.4)' }))
+      ]),
+      transition(':leave', [
+        animate('500ms cubic-bezier(0.600, -0.280, 0.735, 0.045)', style({ opacity: 0, transform: 'scale(0.9)' }))
+      ]),
+    ])
+  ]
 })
 export class MonitoringPageComponent implements OnInit{
   public shownCurrency: Currency;

@@ -17,6 +17,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   @Input() requestData: boolean;
 
   public data: Currency;
+
   private _lastPrice: number = 0;
   private _lastUpdate: string = "now";
 

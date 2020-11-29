@@ -1,10 +1,11 @@
-<div>
+<div *ngIf="initComplete">
   <section class="header__section" >
     <app-navbar></app-navbar>
   </section>
   <div *ngIf="showLoading" class="loading"></div>
   <router-outlet></router-outlet>
   <app-modal
+    [blockRender]="userService.isLoggedIn()"
     [modalTemplateId]="'login'"
     [id]="'login-modal'"
     [draggable]="true"

@@ -37,7 +37,6 @@ export class ContextButtonComponent implements OnInit {
   }
 
   handleOnClick(): void {
-    console.log(this.context);
     this.context?.call(null, this.args);
   }
 

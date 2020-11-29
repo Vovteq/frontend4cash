@@ -29,6 +29,7 @@
   >
   </app-modal>
   <app-modal
+    [blockRender]="userService.isLoggedIn()"
     [modalTemplateId]="'tooltip'"
     [id]="'newcomer-tooltip-modal'"
     [initiallyShown]="true"

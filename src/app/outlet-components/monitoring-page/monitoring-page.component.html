@@ -1,4 +1,4 @@
-<div class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0">
+<div [@show] class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0">
   <div class="section-header" style="margin-top: 5rem">Monitoring</div>
   <p>Observe most popular currencies in runtime</p>
   <div class="charts-container">
@@ -65,8 +65,8 @@
       <button *ngIf="renderCurrencyChart" style="font-size: 25px; margin: 1rem 0 1rem 1rem;" (click)="closeCurrencyChart()">Close chart</button>
       <button *ngIf="renderCurrencyChart" style="font-size: 25px; margin: 1rem 0 1rem 1rem;">Go to page</button>
     </div>
-    <p style="color: #ef4b43" *ngIf="error !== undefined && error.length > 0" [innerHTML]="error"></p>
-    <div *ngIf="renderCurrencyChart" class="result-chart">
+    <p [@errorAnimation] style="color: #ef4b43" *ngIf="error !== undefined && error.length > 0" [innerHTML]="error"></p>
+    <div *ngIf="renderCurrencyChart" [@currencyChartAnimation] class="result-chart">
       <app-chart-container #shownCurrencyChart
         [requestData]="false"
         [id]="'bitcoin'"

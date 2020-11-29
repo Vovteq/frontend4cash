@@ -14,8 +14,6 @@
   padding: 0 0 5rem 0;
   text-align: center;
   background: $white;
-  border: 2px solid $blue;
-  border-top: 10px solid $blue;
   border-bottom-left-radius: 45px;
   border-bottom-right-radius: 45px;
 }
@@ -38,7 +36,7 @@ app-modal {
 
 .section-header {
   margin-bottom: 1rem;
-  background: $blue;
+  background: $alterblue;
   padding-bottom: 0.5rem;
   color: $white;
   width: 100%;
