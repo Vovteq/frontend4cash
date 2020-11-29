@@ -42,6 +42,7 @@ import { AccountAttributeComponent } from './outlet-components/account-page/outl
 import { AccountPrivacyPageComponent } from './outlet-components/account-page/outlets/account-privacy-page/account-privacy-page.component';
 import {HttpErrorInterceptor} from "./interceptors/http-error.interceptor";
 import { ExchangePageComponent } from './outlet-components/exchange-page/exchange-page.component';
+import { AccountCurrencyComponent } from './outlet-components/account-page/outlets/account-home-page/account-currency/account-currency.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { ExchangePageComponent } from './outlet-components/exchange-page/exchang
     ErrorPageComponent,
     AccountAttributeComponent,
     AccountPrivacyPageComponent,
-    ExchangePageComponent
+    ExchangePageComponent,
+    AccountCurrencyComponent
   ],
   imports: [
     BrowserModule,

@@ -4,5 +4,13 @@
   </section>
   <div *ngIf="showLoading" class="loading"></div>
   <router-outlet></router-outlet>
+  <app-modal
+    [modalTemplateId]="'login'"
+    [id]="'login-modal'"
+    [draggable]="true"
+    style="right: 5%; top: 10%;"
+    class="parallax-object" parallax-speed="-0.1"
+  >
+  </app-modal>
 </div>
 <app-script-bridge></app-script-bridge>

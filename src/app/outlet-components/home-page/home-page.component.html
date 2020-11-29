@@ -29,14 +29,6 @@
   >
   </app-modal>
   <app-modal
-    [modalTemplateId]="'login'"
-    [id]="'login-modal'"
-    [draggable]="true"
-    style="right: 5%; top: 10%;"
-    class="parallax-object" parallax-speed="-0.1"
-  >
-  </app-modal>
-  <app-modal
     [modalTemplateId]="'tooltip'"
     [id]="'newcomer-tooltip-modal'"
     [initiallyShown]="true"
@@ -53,7 +45,7 @@
   </app-modal>
 </section>
 
-<section class="about__section">
+<section [@showAbout] class="about__section">
   <div class="header">
     <h1>About us</h1>
     <p>We at Bits4Cash were wondering, how easy it was to profit using cryptocurrency without having to set up your own mining rigs.
