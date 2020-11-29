@@ -41,6 +41,7 @@ import { ErrorPageComponent } from './outlet-components/error-page/error-page.co
 import { AccountAttributeComponent } from './outlet-components/account-page/outlets/account-home-page/account-attribute/account-attribute.component';
 import { AccountPrivacyPageComponent } from './outlet-components/account-page/outlets/account-privacy-page/account-privacy-page.component';
 import {HttpErrorInterceptor} from "./interceptors/http-error.interceptor";
+import { ExchangePageComponent } from './outlet-components/exchange-page/exchange-page.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {HttpErrorInterceptor} from "./interceptors/http-error.interceptor";
     AccountHomePageComponent,
     ErrorPageComponent,
     AccountAttributeComponent,
-    AccountPrivacyPageComponent
+    AccountPrivacyPageComponent,
+    ExchangePageComponent
   ],
   imports: [
     BrowserModule,
