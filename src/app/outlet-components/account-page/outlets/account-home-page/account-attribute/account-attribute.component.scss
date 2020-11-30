@@ -1,0 +1,41 @@
+@import "../../../../../utils/scss/colors";
+
+.account-attribute-wrapper {
+  color: $white;
+  font-size: 20px;
+  text-align: center;
+  position: relative;
+
+  .attribute-name, .attribute-value {
+    padding: 1rem;
+  }
+
+  .attribute-name {
+    background: $alterblue;
+  }
+
+  .attribute-value {
+    color: $dark;
+  }
+
+  .connector-left::before, .connector-right::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    z-index: 5;
+    height: 25px;
+    width: 51px;
+    box-shadow: 20px 0 0 0 $alterblue;
+  }
+
+  .connector-left::before {
+    left: -50px;
+    border-top-right-radius: 40px;
+  }
+
+  .connector-right::before {
+    right: -50px;
+    box-shadow: -20px 0 0 0 $alterblue;
+    border-top-left-radius: 40px;
+  }
+}

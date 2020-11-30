@@ -1,47 +1,105 @@
 @import "../../../../utils/scss/colors";
 
-.header {
-  background: #4287f5;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-h2 {
-  text-align: center;
-  color: $white;
-  font-size: 40px;
-  margin-top: 2rem;
-  letter-spacing: 5px;
-}
-
 .col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
   padding: 0;
 }
 
-.account-avatar-wrapper {
-  margin: 2rem 0;
+.header-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  .account-avatar-bg {
-    background: $blue;
-    width: 100px;
-    height: 100px;
-    padding-top: 10px;
-    border-radius: 50%;
 
-    div {
-      color: $white;
-      text-align: center;
-      font-size: 50px;
-    }
+  .header {
+    background: #4287f5;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  p {
-    font-size: 25px;
+  h2 {
+    text-align: center;
     color: $white;
+    font-size: 40px;
+    margin-top: 2rem;
+    letter-spacing: 5px;
+  }
+
+
+  .account-avatar-wrapper {
+    margin: 2rem 0;
+
+    .account-avatar-bg {
+      background: $white;
+      width: 100px;
+      height: 100px;
+      padding-top: 10px;
+      border-radius: 50%;
+
+      div {
+        color: $alterblue;
+        text-align: center;
+        font-size: 50px;
+      }
+    }
+
+    p {
+      font-size: 25px;
+      color: $white;
+    }
+  }
+  .account-settings {
+    display: flex;
+
+    app-account-attribute + app-account-attribute {
+      margin-left: 4rem;
+    }
+  }
+}
+
+p {
+  text-align: center;
+}
+
+.account-currencies {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-currency {
+  width: 100px;
+  height: 100px;
+  padding: 1rem;
+  border: 1px dashed $alterblue;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+  transition: 200ms all;
+
+  p {
+    font-size: 60px;
+    text-align: center;
+    color: $alterblue;
+    transition: 200ms all;
+  }
+
+  &:hover {
+    background: $lightblue;
+    border-style: solid;
+    border-color: $lightblue;
+    cursor: pointer;
+    box-shadow: 0 0 20px 0 rgba($alterblue, 0.4);
+
+    p {
+      color: $white;
+      font-size: 70px;
+      font-weight: bold;
+      text-shadow: 0 0 20px rgba(#fff, 0.6);
+    }
   }
 }

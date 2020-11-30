@@ -29,14 +29,7 @@
   >
   </app-modal>
   <app-modal
-    [modalTemplateId]="'login'"
-    [id]="'login-modal'"
-    [draggable]="true"
-    style="right: 5%; top: 10%;"
-    class="parallax-object" parallax-speed="-0.1"
-  >
-  </app-modal>
-  <app-modal
+    [blockRender]="userService.isLoggedIn()"
     [modalTemplateId]="'tooltip'"
     [id]="'newcomer-tooltip-modal'"
     [initiallyShown]="true"
@@ -53,38 +46,35 @@
   </app-modal>
 </section>
 
-<section class="about__section">
+<section [@showAbout] class="about__section">
   <div class="header">
     <h1>About us</h1>
-    <p>About_us_text</p>
+    <p>We at Bits4Cash were wondering, how easy it was to profit using cryptocurrency without having to set up your own mining rigs.
+    So we developed a prototype with fictional currency to see if you can actually come out on top by just trading it.</p>
   </div>
   <div class="row">
-    <div class="col about-module" data-aos="fade-up">
+    <div class="col about-module">
       <div class="about-module-header">
-        <img src="../assets/img/security.png">
+        <img src="../../../assets/img/protection.png">
         <h4>We value your privacy</h4>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi eius eum excepturi, id illum impedit laboriosam vel.
-        A alias aperiam aut consequatur delectus dolore eveniet facere, facilis incidunt labore laboriosam nisi obcaecati placeat quasi,
-        quidem rerum, voluptate voluptates. Maiores, provident?</p>
+      <p>We prioritize safety above all else. We are working hard to ensure that your personal data is safe.</p>
     </div>
-    <div class="col about-module" data-aos="fade-up">
+    <div class="col about-module">
       <div class="about-module-header">
-        <img src="../assets/img/return-of-investment.png">
-        <h4>We value your privacy</h4>
+        <img src="../../../assets/img/time-is-money.png">
+        <h4>Always up to date</h4>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi eius eum excepturi, id illum impedit laboriosam vel.
-        A alias aperiam aut consequatur delectus dolore eveniet facere, facilis incidunt labore laboriosam nisi obcaecati placeat quasi,
-        quidem rerum, voluptate voluptates. Maiores, provident?</p>
+      <p>We are using actual prices for cryptocurrency. Our database is updated every minute to look for possible cryptocurrency price changes
+      for the trading to be as close to real life as possible.</p>
     </div>
-    <div class="col about-module" data-aos="fade-up">
+    <div class="col about-module">
       <div class="about-module-header">
-        <img src="../assets/img/credit-card.png">
-        <h4>Flexible system</h4>
+        <img src="../../../assets/img/bitcoin.png">
+        <h4>You are in this together</h4>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi eius eum excepturi, id illum impedit laboriosam vel.
-        A alias aperiam aut consequatur delectus dolore eveniet facere, facilis incidunt labore laboriosam nisi obcaecati placeat quasi,
-        quidem rerum, voluptate voluptates. Maiores, provident?</p>
+      <p>You can interact with other users on forum to see which cryptocurrencies are currently worth purchasing to try and collectively
+      figure if there is a way for everyone to profit on the same deal using different approaches.</p>
     </div>
   </div>
 </section>

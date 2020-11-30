@@ -1,4 +1,4 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable, isDevMode, OnDestroy} from '@angular/core';
 import {ModalComponent} from "../general-components/modal/modal.component";
 import ModalInspector from "../../scripts/ts/utils/ModalInspector";
 import {UserService} from "./user.service";
@@ -56,7 +56,7 @@ export class ModalService implements OnDestroy{
       </div>
       <div class="row centered">
         <button class="loginModalButton">Log in</button>
-      </div>    
+      </div>
     `,
 
     // Tooltip template (custom)
@@ -96,12 +96,12 @@ export class ModalService implements OnDestroy{
 
   public contexts: {[id: string]: (modal: ModalComponent, ...args: any[]) => void} = {
     'register': modal => {
-      this.getModalElementByClass(modal, '.registerModalButton')
+      ModalService.getModalElementByClass(modal, '.registerModalButton')
         .addEventListener('click', () => {
-          const nickname = this.getModalElementByClass<HTMLInputElement>(modal, '.register-nickname');
+          const nickname = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-nickname');
           const id = (100 + Math.floor(Math.random()  * 1000)).toString();
-          const email = this.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
-          const password = this.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
+          const email = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
+          const password = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
           const info: UserInfo = { id: id, nickname: nickname.value, password: password.value, email: email.value };
           this.userService.saveUser(new User(id, info)).subscribe(e => {
             this.userService.registerUser(id);
@@ -113,17 +113,17 @@ export class ModalService implements OnDestroy{
     },
     'tooltip': (modal, args) => {
       (modal.getElement().querySelectorAll('*').item(0) as HTMLElement).style.borderRadius = '40px';
-      this.getModalElementByClass(modal, '.tooltipHeader').innerHTML = args[0];
-      this.getModalElementByClass(modal, '.tooltipText').innerHTML = args[1];
-      this.getModalElementByClass(modal, '.closeTooltipButton').innerHTML = args[2];
-      this.getModalElementByClass(modal, '.closeTooltipButton')
+      ModalService.getModalElementByClass(modal, '.tooltipHeader').innerHTML = args[0];
+      ModalService.getModalElementByClass(modal, '.tooltipText').innerHTML = args[1];
+      ModalService.getModalElementByClass(modal, '.closeTooltipButton').innerHTML = args[2];
+      ModalService.getModalElementByClass(modal, '.closeTooltipButton')
         .addEventListener('click', () => {modal.hide()});
-      this.getModalElementByClass<HTMLElement>(modal, '.modal-tooltip').style.maxWidth = args[3];
+      ModalService.getModalElementByClass<HTMLElement>(modal, '.modal-tooltip').style.maxWidth = args[3];
     },
     'write_post': modal => {
-      this.getModalElementByClass(modal, '.writePostButton').addEventListener('click', () => {
-        const postHeader = this.getModalElementByClass<HTMLInputElement>(modal, '.postHeader');
-        const postText = this.getModalElementByClass<HTMLTextAreaElement>(modal, '.postText');
+      ModalService.getModalElementByClass(modal, '.writePostButton').addEventListener('click', () => {
+        const postHeader = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.postHeader');
+        const postText = ModalService.getModalElementByClass<HTMLTextAreaElement>(modal, '.postText');
         this.postService.savePost(new Post("none", {
           message: postText.value,
           user: this.userService.getLocalUser()
@@ -131,8 +131,8 @@ export class ModalService implements OnDestroy{
       })
     },
     'login': modal => {
-      this.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
-        const alias = this.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
+      ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
+        const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
         this.userService.logInAlias(alias).then(() => { modal.hide(); }).catch(() => {
           console.log('No such user');
         });
@@ -145,14 +145,18 @@ export class ModalService implements OnDestroy{
     console.log(`registered ${modal.modalTemplateId} as ${id}`);
   }
 
-  public showModal(windowId: string): void {
-    const modal = ModalInspector.get(windowId[0]);
+  public showModal(windowId): void {
+    const modal = ModalInspector.get(windowId instanceof Array ? windowId[0] : windowId);
     if (modal !== null || undefined) {
       modal.show();
+    } else {
+      if (isDevMode()) {
+        console.warn(`Modal ${windowId} can not be shown (null ref)`)
+      }
     }
   }
 
-  private getModalElementByClass<T extends Element>(modal: ModalComponent, className: string): T {
+  private static getModalElementByClass<T extends Element>(modal: ModalComponent, className: string): T {
     return modal.getElement().querySelectorAll('*').item(0).querySelector(className);
   }
 

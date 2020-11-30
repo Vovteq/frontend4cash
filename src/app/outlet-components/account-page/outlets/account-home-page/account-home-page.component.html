@@ -1,13 +1,39 @@
 <div class="col">
-  <div class="header">
-    <h2>Profile</h2>
-    <div class="account-avatar-wrapper">
-      <div class="account-avatar-bg">
-        <div>AB</div>
+  <div [@showHideHeader] class="header-wrapper">
+    <div class="header">
+      <h2>Profile</h2>
+      <div class="account-avatar-wrapper">
+        <div class="account-avatar-bg">
+          <div>AB</div>
+        </div>
+        <p>nickname</p>
       </div>
-      <p>nickname</p>
+    </div>
+    <div class="account-settings">
+      <app-account-attribute
+        [label]="'Nickname'"
+        [value]="'some nickname'"
+      >
+      </app-account-attribute>
+      <app-account-attribute
+        [label]="'Password'"
+        [value]="'**********'"
+      >
+      </app-account-attribute>
+      <app-account-attribute
+        [label]="'E-mail'"
+        [value]="'some@email.com'"
+      >
+      </app-account-attribute>
+
     </div>
   </div>
-
-
+  <p style="font-size: 40px; font-weight: lighter;">Your wallet</p>
+  <div style="margin-bottom: 2rem" class="account-currencies">
+    <app-account-currency></app-account-currency>
+    <app-account-currency></app-account-currency>
+    <div class="add-currency">
+      <p>+</p>
+    </div>
+  </div>
 </div>

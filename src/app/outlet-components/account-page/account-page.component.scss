@@ -43,7 +43,7 @@
       &:hover {
         text-decoration: none;
         color: $white;
-        background: $blue;
+        background: $alterblue;
         box-shadow: 0 0 10px 0 rgba($dark, 0.4);
         background: rgba($blue, 0.8);
         letter-spacing: 5px;
@@ -61,10 +61,11 @@
     padding: 59px 0 0 20%;
     width: 100%;
     height: 100%;
+    position: relative;
   }
 }
 
 .account-active-link {
-  background: $blue;
+  background: $alterblue;
   color: $white;
 }

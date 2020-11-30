@@ -1,5 +1,5 @@
 <div *ngIf="shown" [@showHide] (@showHide.done)="animEnd()" [ngDraggable]="draggable" class="modal-wrapper" (click)="handleOnClick()">
-  <div [ngClass]="'modal-html-content'" [innerHTML]="modalService.modals[modalTemplateId] | sanitizeHtml"></div>
+  <div [ngClass]="'modal-html-content'" [innerHTML]="getInnerHtml() | sanitizeHtml"></div>
   <div *ngIf="!useCustomTemplate" class="separator"></div>
   <div *ngIf="!useCustomTemplate" class="modal-window-menu">
     <button (click)="hide()">Close window</button>

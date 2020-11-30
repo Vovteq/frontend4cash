@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
+import {error} from "@angular/compiler/src/util";
 
 @Injectable()
 export class CurrencyService {
@@ -15,8 +16,17 @@ export class CurrencyService {
 
   public getCurrency(id: string): Observable<any> {
     const url = this.currenciesUrl + id + "/pricedata";
-    console.log("requesting data on address: " + url);
-    return this.http.get<any>(url);
+    if (isDevMode()) {
+      console.log("requesting data on address: " + url);
+    }
+    let obs = this.http.get<any>(url);
+    if (isDevMode()) {
+      obs.subscribe(error => {
+        console.warn('Minor error caught during currency GET method');
+      });
+    }
+
+    return obs;
   }
 
   public getAllCurrencies(): Observable<any> {

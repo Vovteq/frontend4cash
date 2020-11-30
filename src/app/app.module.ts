@@ -8,7 +8,7 @@ import { LinkButtonComponent } from './buttons/link-button/link-button.component
 import {NgApexchartsModule} from "ng-apexcharts";
 import { ScriptBridgeComponent } from './general-components/script-bridge/script-bridge.component';
 import { ChartContainerComponent } from './general-components/chart-container/chart-container.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
 import {TooltipModule} from "ngx-bootstrap/tooltip";
 import {ModalModule} from "ngx-bootstrap/modal";
@@ -38,6 +38,11 @@ import { NewsPageComponent } from './outlet-components/news-page/news-page.compo
 import { AccountPageComponent } from './outlet-components/account-page/account-page.component';
 import { AccountHomePageComponent } from './outlet-components/account-page/outlets/account-home-page/account-home-page.component';
 import { ErrorPageComponent } from './outlet-components/error-page/error-page.component';
+import { AccountAttributeComponent } from './outlet-components/account-page/outlets/account-home-page/account-attribute/account-attribute.component';
+import { AccountPrivacyPageComponent } from './outlet-components/account-page/outlets/account-privacy-page/account-privacy-page.component';
+import {HttpErrorInterceptor} from "./interceptors/http-error.interceptor";
+import { ExchangePageComponent } from './outlet-components/exchange-page/exchange-page.component';
+import { AccountCurrencyComponent } from './outlet-components/account-page/outlets/account-home-page/account-currency/account-currency.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +68,11 @@ import { ErrorPageComponent } from './outlet-components/error-page/error-page.co
     NewsPageComponent,
     AccountPageComponent,
     AccountHomePageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    AccountAttributeComponent,
+    AccountPrivacyPageComponent,
+    ExchangePageComponent,
+    AccountCurrencyComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +91,12 @@ import { ErrorPageComponent } from './outlet-components/error-page/error-page.co
     ScriptService,
     ModalService,
     PostService,
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

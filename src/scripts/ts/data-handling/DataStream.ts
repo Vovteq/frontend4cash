@@ -1,4 +1,4 @@
-export default abstract class DataStream<T> {
+export default abstract class DataStream<T> implements Iterable<T>{
   protected content: T[];
 
   protected constructor(...items: T[]) {
@@ -12,6 +12,22 @@ export default abstract class DataStream<T> {
 
   public clear(): void {
     this.content = new Array<T>();
+  }
+
+  *[Symbol.iterator]() : Iterator<T> {
+    for (let elem of this.content) {
+      yield elem;
+    }
+  }
+
+  public foreach(func: (elem: T) => void) {
+    for (let elem of this) {
+      func(elem);
+    }
+  }
+
+  public removeElement(elem: T) {
+    this.content = this.content.filter(o => o !== elem);
   }
 
   public last(): T {
