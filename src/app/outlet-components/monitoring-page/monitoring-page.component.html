@@ -1,4 +1,4 @@
-<div class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0">
+<div [@show] class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0">
   <div class="section-header" style="margin-top: 5rem">Monitoring</div>
   <p>Observe most popular currencies in runtime</p>
   <div class="charts-container">
@@ -41,7 +41,7 @@
         </app-currency>
         <app-currency
           [requestData]="true"
-          [currencyId]="'binancecoin'"
+          [currencyId]="'litecoin'"
         >
         </app-currency>
         <app-currency
@@ -52,5 +52,34 @@
       </div>
     </div>
   </div>
+  <p style="margin: 2rem 0 0 0;">Find specific currency</p>
+  <div class="find-currency">
+    <div class="input-wrapper">
+      <input id="currencyNameField" style="font-size: 30px; width: 500px" type="text" required>
+      <label>Currency name</label>
+      <span class="underline"></span>
+      <span class="underline-active"></span>
+    </div>
+    <div style="display: flex;">
+      <button style="font-size: 25px; margin: 1rem 0;" (click)="findCurrency()">Find</button>
+      <button *ngIf="renderCurrencyChart" style="font-size: 25px; margin: 1rem 0 1rem 1rem;" (click)="closeCurrencyChart()">Close chart</button>
+      <button *ngIf="renderCurrencyChart" style="font-size: 25px; margin: 1rem 0 1rem 1rem;">Go to page</button>
+    </div>
+    <p [@errorAnimation] style="color: #ef4b43" *ngIf="error !== undefined && error.length > 0" [innerHTML]="error"></p>
+    <div *ngIf="renderCurrencyChart" [@currencyChartAnimation] class="result-chart">
+      <app-chart-container #shownCurrencyChart
+        [requestData]="false"
+        [id]="'bitcoin'"
+        [chart]="{
+      type: 'line',
+      toolbar: {
+        show: false
+      }
+    }"
+      >
+      </app-chart-container>
+    </div>
+  </div>
+
 </div>
 

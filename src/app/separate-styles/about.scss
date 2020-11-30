@@ -1,7 +1,7 @@
 @import "../utils/scss/colors";
 
 .about__section {
-  background: $white;
+  background: $alterblue;
   text-align: center;
   padding: 1rem 4rem;
 
@@ -11,26 +11,53 @@
 
   .about-module {
     padding: 0;
-    box-shadow: 0 0 10px 0 rgba(#000, 0.4);
+    background: $alterblue !important;
 
     h4 {
-      color: $white;
-      text-shadow: 0 0 15px rgba(#000, 0.3);
+      color: $blue;
       letter-spacing: 10px;
     }
 
     p {
       padding: 10px;
       font-size: 20px;
+      color: $white;
     }
 
     .about-module-header {
       padding: 5px;
-      background: linear-gradient(90deg, rgba(62,189,255,1) 0%, rgba(145,164,255,1) 100%);
+      background: $white;
+      border-radius: 0 0 60px 60px;
+      box-shadow: 0 0 20px 0 rgba($white, 0.4);
+      position: relative;
 
       img {
         width: 128px;
         height: 128px;
+      }
+
+      &:before {
+        content: '';
+        background: transparent;
+        position: absolute;
+        left: 0;
+        top: -60px;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0 30px 0 0 $white;
+        border-bottom-left-radius: 50%;
+      }
+
+      &:after {
+        content: '';
+        background: transparent;
+        position: absolute;
+        right: 0;
+        top: -60px;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0 30px 0 0 $white;
+        border-bottom-right-radius: 50%;
       }
     }
 

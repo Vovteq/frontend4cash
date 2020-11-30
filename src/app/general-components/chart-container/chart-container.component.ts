@@ -17,6 +17,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   @Input() requestData: boolean;
 
   public data: Currency;
+
   private _lastPrice: number = 0;
   private _lastUpdate: string = "now";
 
@@ -42,7 +43,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private render() {
+  public render() {
     this.series = [{name: 'Price', data: this.data.priceStory.getValues().map(entry => entry as unknown as number)}];
     this.xaxis = {
       categories: this.data.priceStory.getKeys().map(entry => entry as unknown as number),
@@ -54,6 +55,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   private updateValues() {
     this._lastPrice = this.data ? this.data.priceStory.last().value as unknown as number : 0;
     this._lastUpdate = this.data ? this.data.priceStory.last().key : "now";
+    this.id = this.data.id;
   }
 
   ngAfterViewInit(): void {

@@ -1,5 +1,7 @@
-@import "../../utils/scss/colors.scss";
-@import "src/app/app.component.scss";
+@import "../../utils/scss/colors";
+@import "../../separate-styles/input";
+@import "../../buttons/context-button/context-button.component";
+@import "../../general-components/chart-container/chart-container.component";
 
 p {
   margin-bottom: 2rem;
@@ -8,6 +10,13 @@ p {
   letter-spacing: 1px;
   text-shadow: 0 0 10px rgba($dark, 0.4);
   text-align: center;
+}
+
+.find-currency {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .currencies-wrapper {
@@ -22,4 +31,43 @@ p {
       }
     }
   }
+}
+
+.input-wrapper {
+
+  input {
+    &:focus {
+      ~ label {
+        font-size: 0.9rem;
+        color: $blue;
+        top: -1.1rem;
+      }
+    }
+
+    &:valid {
+      ~ label {
+        top: -1.1rem;
+      }
+      ~ .underline {
+        width: 100%;
+      }
+    }
+  }
+
+  .underline {
+    width: 77%;
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+}
+
+button {
+  @extend .ctx-button;
+}
+
+.result-chart {
+  width: 60%;
+  height: 300px;
 }

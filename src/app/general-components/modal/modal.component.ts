@@ -3,6 +3,7 @@ import {ModalService} from "../../services/modal.service";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {Dictionary} from "../../../scripts/ts/data-handling/Dictionary";
+import LocalUser from "../../../scripts/ts/utils/LocalUser";
 
 @Component({
   selector: 'app-modal',
@@ -32,8 +33,11 @@ export class ModalComponent implements OnInit, AfterViewInit {
   @Input() initiallyShown: boolean;
   @Input() showBg: boolean;
   @Input() draggable: boolean = false;
+  @Input() customContent: string;
+  @Input() blockRender: boolean;
 
   public onSelect: Delegate<void[]> = new Delegate<void[]>();
+
   private _selected: boolean = false;
   private _shown: boolean;
 
@@ -50,7 +54,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
   constructor(public modalService: ModalService, private el: ElementRef) { }
 
   ngOnInit(): void {
-    this.onSelect.add(() => { this._selected = !this._selected; console.log(this._selected)});
+    this.onSelect.add(() => { this._selected = !this._selected });
     this.modalService.registerModal(this.id, this);
   }
 
@@ -68,11 +72,17 @@ export class ModalComponent implements OnInit, AfterViewInit {
   }
 
   show(): void {
-    this._shown = true;
+    if (!this.blockRender) {
+      this._shown = true;
+    }
   }
 
   hide(): void {
     this._shown = false;
+  }
+
+  private getInnerHtml() {
+    return this.customContent === undefined ? this.modalService.modals[this.modalTemplateId] : this.customContent;
   }
 
   // There is no elements in this component during animation, so we need to use anim-end callback.
