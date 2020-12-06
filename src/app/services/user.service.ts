@@ -5,9 +5,16 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
 
+export enum LoginError {
+  NoSuchUser,
+  InvalidPassword
+}
+
 @Injectable()
 export class UserService {
   private readonly usersUrl;
+
+
 
   constructor(private http: HttpClient) {
     this.usersUrl = URLRouter.getRoute('users');
@@ -25,7 +32,7 @@ export class UserService {
     LocalUser.forceLogIn(user);
   }
 
-  public logInAlias(alias: string): Promise<void> {
+  public logInAlias(alias: string, password: string): Promise<void> {
     let user: UserInfo;
     return new Promise<void>((resolve, reject) => {
       this.getAllUsers().subscribe(users => {
@@ -35,10 +42,14 @@ export class UserService {
           user = undefined;
         }
         if (user !== undefined) {
-          this.forceLogIn(user);
-          localStorage.setItem('lastRegistered', user.id);
-          resolve();
-        } else { reject(); }
+          if (user.password == password) {
+            this.forceLogIn(user);
+            localStorage.setItem('lastRegistered', user.id);
+            resolve();
+          } else {
+            reject(LoginError.InvalidPassword);
+          }
+        } else { reject(LoginError.NoSuchUser); }
       });
     });
   }

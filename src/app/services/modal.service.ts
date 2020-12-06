@@ -54,6 +54,9 @@ export class ModalService implements OnDestroy{
         <span class="bar"></span>
         <label>Password</label>
       </div>
+      <p class="loginModalError" style="color: #ff673d; font-size: 20px; letter-spacing: 1px; margin: 0;">
+
+      </p>
       <div class="row centered">
         <button class="loginModalButton">Log in</button>
       </div>
@@ -133,8 +136,11 @@ export class ModalService implements OnDestroy{
     'login': modal => {
       ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
         const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
-        this.userService.logInAlias(alias).then(() => { modal.hide(); }).catch(() => {
-          console.log('No such user');
+        const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
+        this.userService.logInAlias(alias, pass).then(() => { modal.hide(); }).catch((error) => {
+          console.log(error);
+          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Invalid alias or password`;
+          ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
         });
       })
     }
@@ -143,6 +149,10 @@ export class ModalService implements OnDestroy{
   public registerModal(id: string, modal: ModalComponent): void {
     ModalInspector.add(id, modal);
     console.log(`registered ${modal.modalTemplateId} as ${id}`);
+  }
+
+  public getModal(id: string): ModalComponent {
+    return ModalInspector.get(id);
   }
 
   public showModal(windowId): void {

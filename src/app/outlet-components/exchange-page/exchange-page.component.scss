@@ -57,9 +57,9 @@ $option-size: 320px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 1;
       min-height: $option-size / 2;
       max-width: $option-size;
+      z-index: -1;
 
       h2 {
         font-size: 35px;
