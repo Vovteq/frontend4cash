@@ -3,15 +3,12 @@
 $option-size: 320px;
 
 .options {
-  overflow: auto;
-  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.5rem;
+  padding: 3rem;
 
   .exchange-option-wrapper {
-    display: inline-block;
     min-width: $option-size;
     height: fit-content;
     transition: 300ms all cubic-bezier(0.670, -0.600, 0.365, 1.000);;
@@ -27,6 +24,7 @@ $option-size: 320px;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      transition: 400ms all;
 
       p {
         color: $alterblue;
@@ -52,7 +50,7 @@ $option-size: 320px;
 
     .exchange-option-content {
       background: $alterblue ;
-      transition: 200ms all;
+      transition: 400ms all;
       position: relative;
       box-shadow: 0 0 15px 0 rgba(#000, 0.2);
       border-radius: 0 0 40px 40px;
@@ -103,10 +101,23 @@ $option-size: 320px;
     &:hover {
       transition: 300ms all cubic-bezier(0.670, -2, 0.365, 1.000);;
       transform: scale(1.05);
+
+      .exchange-option-header, .exchange-option-content {
+        box-shadow: 0 0 30px 5px rgba($alterblue, 0.4);
+      }
     }
   }
 
-  .exchange-option-wrapper + .exchange-option-wrapper {
-    margin-left: 5rem;
+  img {
+    margin: 0 1rem;
+    opacity: 0.5;
+  }
+
+  .recursive-arrow {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
   }
 }
