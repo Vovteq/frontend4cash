@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'home', component: AccountHomePageComponent },
       { path: 'privacy', component: AccountPrivacyPageComponent }
     ]},
-  { path: '**', component: ErrorPageComponent}
+  { path: '**', component: ErrorPageComponent }
 ];
 
 @NgModule({

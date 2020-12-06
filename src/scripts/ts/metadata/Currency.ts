@@ -15,7 +15,9 @@ export class Currency {
     this.priceStory = new Dictionary<string, string>();
     for (let elem of data) {
       const date = new Date(elem.timestamp * 1000);
-      this.priceStory.addPair(StringUtils.getTime(date.getHours(), date.getMinutes()), elem.price.split('.')[0]);
+      const priceSpliced = elem.price.split('.')
+
+      this.priceStory.addPair(StringUtils.getTime(date.getHours(), date.getMinutes()), `${priceSpliced[0]},${priceSpliced[1].slice(0, 2)}`);
 
     }
   }

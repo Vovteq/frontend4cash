@@ -12,6 +12,41 @@
 
   .attribute-name {
     background: $alterblue;
+    border-radius: 0 0 20px 20px;
+    transition: 300ms all cubic-bezier(0.035, 0.970, 0.485, 0.995);
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    button {
+      position: relative;
+      margin-top: 0;
+      width: fit-content;
+      background: $white;
+      border: none;
+      border-radius: 20px;
+      color: $alterblue;
+      font-weight: normal;
+      max-height: 0;
+      max-width: 0;
+      transition: 200ms all;
+      font-size: 0;
+      opacity: 0;
+
+      &:hover {
+        box-shadow: 0 0 10px 0 rgba($white, 0.6);
+        letter-spacing: 2px;
+        background: $alterblue;
+        color: $white;
+        border: 1px solid $white;
+
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   .attribute-value {
@@ -37,5 +72,21 @@
     right: -50px;
     box-shadow: -20px 0 0 0 $alterblue;
     border-top-left-radius: 40px;
+  }
+
+  &:hover {
+    .attribute-name {
+      max-height: fit-content;
+      font-size: 24px;
+
+      button {
+        display: block;
+        max-height: 50px;
+        max-width: 100px;
+        font-size: 22px;
+        margin-top: 10px;
+        opacity: 1;
+      }
+    }
   }
 }

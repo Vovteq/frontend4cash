@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     LocalUser.onLogIn.add(([user]) => {
       if (isDevMode()) {
         console.log(self.userService.isLoggedIn());
-        console.log(user);
+        console.log(`Owned coins: ${user.ownedCoins}`);
       }
     });
     LocalUser.onLogTry.add(([success]) => {

@@ -1,4 +1,4 @@
-import {Injectable, isDevMode, OnDestroy} from '@angular/core';
+ import {Injectable, isDevMode, OnDestroy} from '@angular/core';
 import {ModalComponent} from "../general-components/modal/modal.component";
 import ModalInspector from "../../scripts/ts/utils/ModalInspector";
 import {UserService} from "./user.service";
@@ -102,7 +102,7 @@ export class ModalService implements OnDestroy{
           const id = (100 + Math.floor(Math.random()  * 1000)).toString();
           const email = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
           const password = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
-          const info: UserInfo = { id: id, nickname: nickname.value, password: password.value, email: email.value };
+          const info: UserInfo = { id: id, nickname: nickname.value, password: password.value, email: email.value, ownedCoins: [] };
           this.userService.saveUser(new User(id, info)).subscribe(e => {
             this.userService.registerUser(id);
             this.userService.logIn(id);

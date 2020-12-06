@@ -1,0 +1,112 @@
+@import "../../utils/scss/colors.scss";
+
+$option-size: 320px;
+
+.options {
+  overflow: auto;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+
+  .exchange-option-wrapper {
+    display: inline-block;
+    min-width: $option-size;
+    height: fit-content;
+    transition: 300ms all cubic-bezier(0.670, -0.600, 0.365, 1.000);;
+    cursor: pointer;
+
+    .exchange-option-header {
+      min-height: $option-size;
+      border-radius: 25%;
+      background: transparent;
+      box-shadow: 0 0 15px 0 rgba(#000, 0.2);
+      border: 1px solid $alterblue;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      p {
+        color: $alterblue;
+        text-shadow: 0 0 15px rgba(#000, 0.2);
+        margin: 0;
+
+        span {
+          color: $white;
+          -webkit-text-stroke-width: 2px;
+          -webkit-text-stroke-color: $alterblue;
+        }
+      }
+
+      .option-title {
+        font-size: 50px;
+      }
+
+      .option-subtitle {
+        font-size: 25px;
+        font-weight: lighter;
+      }
+    }
+
+    .exchange-option-content {
+      background: $alterblue ;
+      transition: 200ms all;
+      position: relative;
+      box-shadow: 0 0 15px 0 rgba(#000, 0.2);
+      border-radius: 0 0 40px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      min-height: $option-size / 2;
+      max-width: $option-size;
+
+      h2 {
+        font-size: 35px;
+        color: $white;
+        font-weight: lighter;
+        text-shadow: 0 0 10px rgba($white, 0.5);
+        text-align: center;
+      }
+
+      p {
+        color: $white;
+        font-size: 23px;
+        font-weight: lighter;
+        text-align: center;
+      }
+
+      &:before, &:after {
+        content: '';
+        background: transparent;
+        position: absolute;
+        top: -($option-size / 2);
+        width: $option-size / 2;
+        height: $option-size / 2;
+        box-shadow: 0 ($option-size / 4) 0 0 $alterblue;
+        z-index: -1;
+      }
+
+      &:before {
+        left: 0;
+        border-bottom-left-radius: 50%;
+      }
+
+      &:after {
+        right: 0;
+        border-bottom-right-radius: 50%;
+      }
+    }
+
+    &:hover {
+      transition: 300ms all cubic-bezier(0.670, -2, 0.365, 1.000);;
+      transform: scale(1.05);
+    }
+  }
+
+  .exchange-option-wrapper + .exchange-option-wrapper {
+    margin-left: 5rem;
+  }
+}
