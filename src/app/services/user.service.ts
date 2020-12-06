@@ -7,13 +7,13 @@ import URLRouter from "../../scripts/ts/utils/URLRouter";
 
 export enum LoginError {
   NoSuchUser,
-  InvalidPassword
+  InvalidPassword,
+  EmptyFields
 }
 
 @Injectable()
 export class UserService {
   private readonly usersUrl;
-
 
 
   constructor(private http: HttpClient) {
@@ -36,6 +36,9 @@ export class UserService {
     let user: UserInfo;
     return new Promise<void>((resolve, reject) => {
       this.getAllUsers().subscribe(users => {
+        if (alias.length == 0 || password.length == 0) {
+          reject(LoginError.EmptyFields);
+        }
         try {
           user = users.filter(u => u.email === alias || u.nickname === alias)[0];
         } catch (e) {
