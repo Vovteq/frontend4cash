@@ -34,6 +34,9 @@ export class ModalService implements OnDestroy{
         <span class="bar"></span>
         <label>Password</label>
       </div>
+      <p class="registerModalError" style="color: #ff673d; font-size: 20px; letter-spacing: 1px; margin: 0;">
+
+      </p>
       <div class="row centered">
         <button class="registerModalButton">Create account</button>
       </div>
@@ -102,15 +105,17 @@ export class ModalService implements OnDestroy{
       ModalService.getModalElementByClass(modal, '.registerModalButton')
         .addEventListener('click', () => {
           const nickname = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-nickname');
-          const id = (100 + Math.floor(Math.random()  * 1000)).toString();
           const email = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
           const password = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
-          const info: UserInfo = { id: id, nickname: nickname.value, password: password.value, email: email.value, ownedCoins: [] };
-          this.userService.saveUser(new User(id, info)).subscribe(e => {
-            this.userService.registerUser(id);
+          const info: UserInfo = { id: '0', nickname: nickname.value, password: password.value, email: email.value, ownedCoins: {}, cash: "0", status: "" };
+          this.userService.registerUser(info).then((id) => {
             this.userService.logIn(id);
             modal.hide();
             ModalInspector.get('newcomer-tooltip-modal').hide();
+          }).catch((error) => {
+            console.log(error);
+            const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Invalid alias or password`;
+            ModalService.getModalElementByClass(modal, '.registerModalError').innerHTML = errorMessage;
           });
         });
     },

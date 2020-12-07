@@ -11,10 +11,16 @@ export enum LoginError {
   EmptyFields
 }
 
+export enum RegisterError {
+  UserAlreadyExists,
+  EmptyFields,
+  UndefinedError
+}
+
 @Injectable()
 export class UserService {
   private readonly usersUrl;
-
+  private readonly ID_OFFSET: number = 3;
 
   constructor(private http: HttpClient) {
     this.usersUrl = URLRouter.getRoute('users');
@@ -57,9 +63,35 @@ export class UserService {
     });
   }
 
-  public registerUser(id: string) {
-    console.log(`registered user${id} to localstorage`);
-    localStorage.setItem('lastRegistered', id);
+  public registerUser(user: UserInfo) : Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      if (user.password.length == 0 || user.nickname.length == 0 || user.email.length == 0) {
+        reject(RegisterError.EmptyFields);
+      }
+      let newId = 0;
+      this.getAllUsers().subscribe(users => {
+        newId = users.length + this.ID_OFFSET;
+        user.id = newId.toString();
+        this.getAllUsers(user.email).subscribe(users => {
+          if (users.length > 0) {
+            reject(RegisterError.UserAlreadyExists);
+          }
+          try {
+            this.saveUser(user).subscribe(user => {
+              this.getAllUsers(user.email).subscribe(users => {
+                if (users.length == 0) {
+                  reject(RegisterError.UndefinedError);
+                }
+                localStorage.setItem('lastRegistered', user.id);
+                resolve(users[0].id);
+              });
+            });
+          } catch (e) {
+            reject(RegisterError.UndefinedError);
+          }
+        });
+      });
+    });
   }
 
   public logOut() {
@@ -73,15 +105,19 @@ export class UserService {
 
   public getUser(id: string): Observable<UserInfo> {
     const self = this;
-    return self.http.get<UserInfo>(`${self.usersUrl}${id}`);
+    return self.http.get<UserInfo>(`${self.usersUrl}/${id}`);
   }
 
-  public getAllUsers(): Observable<UserInfo[]> {
+  public getAllUsers(email = ""): Observable<UserInfo[]> {
     const self = this;
-    return self.http.get<UserInfo[]>(this.usersUrl);
+    if (email.length != 0) {
+      return self.http.get<UserInfo[]>(this.usersUrl+"?email="+email);
+    } else {
+      return self.http.get<UserInfo[]>(this.usersUrl);
+    }
   }
 
-  public saveUser(user: User): Observable<any> {
+  public saveUser(user: UserInfo): Observable<any> {
     return this.http.post(this.usersUrl, user);
   }
 }

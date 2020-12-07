@@ -3,7 +3,9 @@ export interface UserInfo {
   nickname: string;
   email: string;
   password: string;
-  ownedCoins: Array<{[id: string]: string}>
+  status: string;
+  cash: string;
+  ownedCoins: { [id: string]: string };
 }
 
 export class User {
@@ -11,13 +13,27 @@ export class User {
   public id: string;
   public password: string;
   public email: string;
-  public ownedCoins: Array<{[id: string]: string}>;
+  public status: string;
+  public cash: string;
+  public ownedCoins: { [id: string]: string };
+
+  public static readonly defaultUserInfo: UserInfo = {
+    id: '0',
+    nickname: 'nickname',
+    email: 'email',
+    password: 'password',
+    status: 'status',
+    cash: 'cash',
+    ownedCoins: {}
+  }
 
   constructor(id: string, data: UserInfo) {
     this.id = id;
     this.nickname = data.nickname;
     this.password = data.password;
     this.email = data.email;
+    this.status = data.status;
+    this.cash = data.cash;
     this.ownedCoins = data.ownedCoins;
   }
 
