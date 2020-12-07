@@ -114,7 +114,7 @@ export class ModalService implements OnDestroy{
             ModalInspector.get('newcomer-tooltip-modal').hide();
           }).catch((error) => {
             console.log(error);
-            const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Invalid alias or password`;
+            const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Invalid alias or password`;
             ModalService.getModalElementByClass(modal, '.registerModalError').innerHTML = errorMessage;
           });
         });

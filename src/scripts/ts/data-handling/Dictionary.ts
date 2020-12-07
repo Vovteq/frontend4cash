@@ -47,7 +47,6 @@ export class Dictionary<K, V> extends DataStream<KeyValuePair<K, V>> {
 
   removeByKey(key: K): void {
     this.removeElement(this.content.find(pair => pair.key === key));
-    this.foreach((elem) => {console.log('eee:' + elem.key)})
   }
 
   getValues(): Array<V> {
