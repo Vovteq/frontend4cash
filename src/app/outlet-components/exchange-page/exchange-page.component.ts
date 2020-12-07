@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChildren} from '@angular/core';
 import {animate, group, query, stagger, style, transition, trigger} from "@angular/animations";
+import {ModalService} from "../../services/modal.service";
 
 @Component({
   selector: 'app-exchange-page',
@@ -27,11 +28,20 @@ import {animate, group, query, stagger, style, transition, trigger} from "@angul
     ])
   ]
 })
-export class ExchangePageComponent implements OnInit {
+export class ExchangePageComponent implements OnInit, AfterViewInit {
+  @ViewChildren("option") options;
 
-  constructor() { }
+  constructor(public modalService: ModalService) { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit(): void {
+    this.options.toArray().forEach((option: ElementRef) => {
+      option.nativeElement.addEventListener('click', () => {
+        this.modalService.showModal('exchange-modal')
+      });
+    })
   }
 
 }

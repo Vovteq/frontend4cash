@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
 import {error} from "@angular/compiler/src/util";
+import {CurrencyPrice} from "../../scripts/ts/metadata/Currency";
 
 @Injectable()
 export class CurrencyService {
@@ -14,7 +15,7 @@ export class CurrencyService {
     this.currenciesUrl = URLRouter.getRoute('currency');
   }
 
-  public getCurrency(id: string): Observable<any> {
+  public getCurrency(id: string): Observable<CurrencyPrice> {
     const url = this.currenciesUrl + id + "/pricedata";
     if (isDevMode()) {
       console.log("requesting data on address: " + url);

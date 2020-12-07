@@ -1,7 +1,7 @@
 <section [@show] class="exchange__section">
   <div class="section-header" style="margin-top: 5rem">Exchange</div>
   <div class="options">
-    <div [@showOption] class="exchange-option-wrapper">
+    <div #option [@showOption] class="exchange-option-wrapper">
       <div class="exchange-option-header">
         <p class="option-title">USD <span>➜</span>  BTC</p>
         <p class="option-subtitle">Cash to Bitcoin</p>
@@ -14,7 +14,7 @@
 
     <img src="../../../assets/img/arrow_p.png">
 
-    <div [@showOption] class="exchange-option-wrapper">
+    <div #option [@showOption] class="exchange-option-wrapper">
       <div class="exchange-option-header">
         <p class="option-title">BTC <span>➜</span> ETH</p>
         <p class="option-subtitle">Bitcoin to Ethereum</p>
@@ -27,7 +27,7 @@
 
     <img src="../../../assets/img/arrow_p.png">
 
-    <div [@showOption] class="exchange-option-wrapper">
+    <div #option [@showOption] class="exchange-option-wrapper">
       <div class="exchange-option-header">
         <p class="option-title">ETH <span>➜</span>  USD</p>
         <p class="option-subtitle">Ethereum to Cash</p>
@@ -39,5 +39,13 @@
     </div>
     <img class="recursive-arrow" src="../../../assets/img/arrow_r.png">
 
+    <app-modal
+      [modalTemplateId]="'exchange_cash2crypto'"
+      [id]="'exchange-modal'"
+      [draggable]="true"
+      style="right: 40%; top: 40%;"
+      class="parallax-object" parallax-speed="-0.1"
+    >
+    </app-modal>
   </div>
 </section>

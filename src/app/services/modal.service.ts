@@ -5,12 +5,15 @@ import {UserService} from "./user.service";
 import {PostService} from "./post.service";
 import {Post} from "../../scripts/ts/metadata/Post";
 import {User, UserInfo} from "../../scripts/ts/metadata/User";
+ import {mod} from "ngx-bootstrap/chronos/utils";
+ import {CurrencyService} from "./currency.service";
+ import {Currency, CurrencyPrice} from "../../scripts/ts/metadata/Currency";
 
 @Injectable()
 export class ModalService implements OnDestroy{
   public focusedModal: ModalComponent;
 
-  constructor(private userService: UserService, private postService: PostService) {}
+  constructor(private userService: UserService, private postService: PostService, private currencyService: CurrencyService) {}
 
   // Custom modal templates. Used by modals to match specific template.
   public modals: {[id: string]: string} = {
@@ -97,6 +100,20 @@ export class ModalService implements OnDestroy{
         <label>Message</label>
       </div>
       <button class="writePostButton" style="font-size: 20px">Post</button>
+    `,
+
+    exchange_cash2crypto: `
+      <h2>Exchange</h2>
+      <p style="color:#575757; font-weight: lighter; font-size: 24px;">Exchange cash to cryptocurrency</p>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="exchangeFrom" type="number">
+        <span class="bar"></span>
+        <label>You will give (USD):</label>
+      </div>
+      <p style="font-size: 24px">You will get:</p>
+      <p class="valueField" style="font-size: 30px; color: #14c477">0 BTC</p>
+      <button class="confirmExchangeButton" style="font-size: 20px">Confirm</button>
     `
   };
 
@@ -148,6 +165,22 @@ export class ModalService implements OnDestroy{
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
         });
       })
+    },
+    'exchange_cash2crypto': modal => {
+      const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeFrom');
+      const valueField = ModalService.getModalElementByClass<HTMLElement>(modal, '.valueField');
+      let currentPrice = 1;
+      this.currencyService.getCurrency('bitcoin').subscribe((price: CurrencyPrice) => {
+        currentPrice = parseInt(Currency.fromJson('bitcoin', price).priceStory.last().value);
+      });
+      inputField.addEventListener('input', (event) => {
+        const inputValue = (event.target as HTMLInputElement).value;
+        let sValue = 0;
+        if (inputValue.length > 0) {
+          sValue = parseInt(inputValue);
+        }
+        valueField.innerHTML = ((sValue / currentPrice).toFixed(8)).toString() + " BTC";
+      });
     }
   };
 
