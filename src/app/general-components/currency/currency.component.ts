@@ -22,7 +22,7 @@ export class CurrencyComponent implements OnInit {
   ngOnInit(): void {
     if (this.requestData) {
       this.currencyService.getCurrency(this.currencyId).subscribe(data => {
-        this.data = new Currency(this.currencyId, data);
+        this.data = Currency.fromJson(this.currencyId, data);
         this.header = StringUtils.capitalize(this.data.id);
         this.value = `${this.data.priceStory.last().value} ${this.currencyService.globalCurrency}`;
       });
