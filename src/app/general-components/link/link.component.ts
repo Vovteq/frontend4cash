@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Input, OnInit, ViewChildren, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -23,9 +23,17 @@ export class LinkComponent implements OnInit {
   @Input() url: string;
   @Input() text: string;
 
+  @ViewChildren("linkText") linkTexts;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public changeColor(color: string): void {
+    this.linkTexts.toArray().forEach(l => {
+      l.nativeElement.style.color = color;
+    });
   }
 
 }

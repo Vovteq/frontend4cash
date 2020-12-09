@@ -50,7 +50,21 @@
   <div class="header">
     <h1>About us</h1>
     <p>We at Bits4Cash were wondering, how easy it was to profit using cryptocurrency without having to set up your own mining rigs.
-    So we developed a prototype with fictional currency to see if you can actually come out on top by just trading it.</p>
+      So we developed a <span class="tooltip-container" appShowModal [params]="['mini-tooltip-1', true, true]">prototype<app-modal
+        [@.disabled]
+        [modalTemplateId]="'mini_tooltip'"
+        [id]="'mini-tooltip-1'"
+        [useCustomTemplate]="true"
+        [customTemplateArgs]="[
+      'Prototype state',
+      'This is not a real chance to earn money. All currencies are fictional. ',
+      200
+      ]"
+        style="left: -30%; top: -140px;"
+        class="parallax-object" parallax-speed="-0.1"
+      >
+      </app-modal></span> with fictional currency
+      to see if you can actually come out on top by just trading it.</p>
   </div>
   <div class="row">
     <div class="col about-module">

@@ -43,6 +43,9 @@ import { AccountPrivacyPageComponent } from './outlet-components/account-page/ou
 import {HttpErrorInterceptor} from "./interceptors/http-error.interceptor";
 import { ExchangePageComponent } from './outlet-components/exchange-page/exchange-page.component';
 import { AccountCurrencyComponent } from './outlet-components/account-page/outlets/account-home-page/account-currency/account-currency.component';
+import { AccountPaymentPageComponent } from './outlet-components/account-page/outlets/account-payment-page/account-payment-page.component';
+import { TemporalLinkDirective } from './directives/temporal-link.directive';
+import { ShowModalDirective } from './directives/show-modal.directive';
 
 @NgModule({
   declarations: [
@@ -72,7 +75,10 @@ import { AccountCurrencyComponent } from './outlet-components/account-page/outle
     AccountAttributeComponent,
     AccountPrivacyPageComponent,
     ExchangePageComponent,
-    AccountCurrencyComponent
+    AccountCurrencyComponent,
+    AccountPaymentPageComponent,
+    TemporalLinkDirective,
+    ShowModalDirective
   ],
   imports: [
     BrowserModule,

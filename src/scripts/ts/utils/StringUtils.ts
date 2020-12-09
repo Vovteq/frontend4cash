@@ -10,4 +10,13 @@ export default class StringUtils {
     time += minutes < 10 ? "0" + minutes : minutes;
     return time;
   }
+
+  public static getInitials(nickname: string): string {
+    const spliced = nickname.split(' ');
+    let result = spliced[0][0];
+    if (spliced.length > 1) {
+      result += spliced[1][0];
+    }
+    return result;
+  }
 }

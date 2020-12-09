@@ -6,26 +6,26 @@
       <h2>Profile</h2>
       <div class="account-avatar-wrapper">
         <div class="account-avatar-bg">
-          <div>AB</div>
+          <div>{{getNicknameInitials()}}</div>
         </div>
-        <p>nickname</p>
-        <p style="font-size: 23px; font-weight: lighter">Here goes some status text</p>
+        <p>{{userService.getLocalUser().nickname}}</p>
+        <p style="font-size: 23px; font-weight: lighter">{{getStatus()}}</p>
       </div>
     </div>
     <div class="account-settings">
       <app-account-attribute
         [label]="'Nickname'"
-        [value]="'some nickname'"
+        [value]="user.nickname"
       >
       </app-account-attribute>
       <app-account-attribute
         [label]="'Password'"
-        [value]="'**********'"
+        [value]="getEncryptedPassword()"
       >
       </app-account-attribute>
       <app-account-attribute
         [label]="'E-mail'"
-        [value]="'some@email.com'"
+        [value]="user.email"
       >
       </app-account-attribute>
 

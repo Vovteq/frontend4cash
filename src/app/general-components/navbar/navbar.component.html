@@ -1,7 +1,15 @@
 <div class="navbar-container">
   <div class="row">
-    <div class="col left" style="margin-left: 1rem">
-      <img style="width: 174px; height: 24px" src="../../../assets/img/logo_big.png">
+    <div class="col left" style="margin-left: 1rem;">
+      <p style="margin: 0;
+       font-size: 25px;
+       letter-spacing: 4px;
+       color: #232323;
+       font-weight: normal;
+       text-shadow: 0 0 10px rgba(40,83,198,0.53);
+      ">
+        Bits4cash
+      </p>
     </div>
     <div class="col">
       <app-link [route]="''" [routeLink]="true" [text]="'Home'"></app-link>
@@ -10,6 +18,7 @@
       <app-link *ngIf="userService.isLoggedIn()" [route]="'exchange'" [routeLink]="true" [text]="'Exchange'"></app-link>
       <app-link [route]="'forum'" [routeLink]="true" [text]="'Forum'"></app-link>
       <app-link *ngIf="userService.isLoggedIn()" [route]="'/account/home'" [routeLink]="true" [text]="'Account'"></app-link>
+      <app-link [url]="'.'" [text]="'TEMP_TEXT'" appTemporalLink></app-link>
     </div>
     <div class="col right" style="padding-right: 1rem">
     <span *ngIf="!userService.isLoggedIn()">

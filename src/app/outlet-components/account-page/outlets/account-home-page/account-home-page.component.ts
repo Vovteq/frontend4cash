@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
+import {UserService} from "../../../../services/user.service";
+import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
+import {UserInfo} from "../../../../../scripts/ts/metadata/User";
 
 @Component({
   selector: 'app-account-home-page',
@@ -17,7 +20,23 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class AccountHomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userService: UserService) { }
+
+  public get user(): UserInfo {
+    return this.userService.getLocalUser();
+  }
+
+  getNicknameInitials(): string {
+    return StringUtils.getInitials(this.user.nickname).toUpperCase();
+  }
+
+  getStatus(): string {
+    return this.user.status != null && this.user.status.length > 0 ? this.user.status : "This user has no status";
+  }
+
+  getEncryptedPassword(): string {
+    return "*".repeat(this.user.password.length);
+  }
 
   ngOnInit(): void {
   }

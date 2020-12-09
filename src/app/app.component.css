@@ -103,6 +103,12 @@
   margin-left: 1rem;
 }
 
+.tooltip-container {
+  font-size: larger;
+  font-weight: bolder;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+}
+
 .blue {
   color: #2282c7;
 }

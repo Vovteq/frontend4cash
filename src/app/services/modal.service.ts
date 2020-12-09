@@ -83,6 +83,19 @@ export class ModalService implements OnDestroy{
         <button class="closeTooltipButton">Close</button>
       </div>
     `,
+    // Tooltip template (custom)
+    /* Arguments:
+       0 - header text <string>
+       1 - body text <string>
+       2 - max width <number>
+     */
+    mini_tooltip: `
+      <div class="modal-mini-tooltip">
+        <h2 class="tooltipHeader">Tooltip header</h2>
+        <p class="tooltipText">Tooltip message</p>
+      </div>
+    `,
+
 
     // Write-post-window template (standard)
     write_post: `
@@ -144,6 +157,18 @@ export class ModalService implements OnDestroy{
       ModalService.getModalElementByClass(modal, '.closeTooltipButton')
         .addEventListener('click', () => {modal.hide()});
       ModalService.getModalElementByClass<HTMLElement>(modal, '.modal-tooltip').style.maxWidth = args[3];
+    },
+    'mini_tooltip': (modal, args) => {
+      const wrapper =  (modal.getElement().querySelectorAll('*').item(0) as HTMLElement);
+      wrapper.style.borderRadius = '5px';
+      wrapper.style.backgroundColor = '#2d2d2d';
+      wrapper.style.border = 'none';
+      wrapper.style.color = '#fff';
+      wrapper.style.padding = '0.5rem';
+      wrapper.style.boxShadow = '0 0 15px 0 rgba(0,0,0,0.4)';
+      wrapper.style.minWidth = args[2] + 'px';
+      ModalService.getModalElementByClass(modal, '.tooltipHeader').innerHTML = args[0];
+      ModalService.getModalElementByClass(modal, '.tooltipText').innerHTML = args[1];
     },
     'write_post': modal => {
       ModalService.getModalElementByClass(modal, '.writePostButton').addEventListener('click', () => {
