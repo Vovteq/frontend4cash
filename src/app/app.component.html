@@ -1,9 +1,9 @@
-<div *ngIf="initComplete">
+<div class="main-container" *ngIf="initComplete">
+  <div *ngIf="showLoading" class="loading"></div>
+  <router-outlet></router-outlet>
   <section class="header__section" >
     <app-navbar></app-navbar>
   </section>
-  <div *ngIf="showLoading" class="loading"></div>
-  <router-outlet></router-outlet>
   <app-modal
     [blockRender]="userService.isLoggedIn()"
     [modalTemplateId]="'login'"
@@ -13,5 +13,24 @@
     class="parallax-object" parallax-speed="-0.1"
   >
   </app-modal>
+  <footer>
+    <div class="footer-col" style="color: #fff;">
+      <div class="col" style="border-left: 5px solid #fff; padding-left: 1rem">
+        <div class="row"><h2 style="margin: 0; letter-spacing: 1px">Vovtech. team</h2></div>
+        <div class="row"><p style="font-size: 20px; margin: 0;">2020, special for ITI-0205</p></div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-module" style="padding: 1rem 1rem">
+        <img style="width: 130px; height: 18px;" src="../assets/img/logo_big.png">
+      </div>
+      <div class="footer-module" style="cursor: pointer;">
+        <img style="width: 105px; height: 34px;" src="../assets/img/gitlab-logo.png">
+        <div class="link">
+          <img src="../assets/img/link.png">
+        </div>
+      </div>
+    </div>
+  </footer>
 </div>
 <app-script-bridge></app-script-bridge>

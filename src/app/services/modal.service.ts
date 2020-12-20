@@ -184,7 +184,7 @@ export class ModalService implements OnDestroy{
       ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
         const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
         const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
-        this.userService.logInAlias(alias, pass).then(() => { modal.hide(); }).catch((error) => {
+        this.userService.logInAlias(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
           console.log(error);
           const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Invalid alias or password`;
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
@@ -211,7 +211,6 @@ export class ModalService implements OnDestroy{
 
   public registerModal(id: string, modal: ModalComponent): void {
     ModalInspector.add(id, modal);
-    console.log(`registered ${modal.modalTemplateId} as ${id}`);
   }
 
   public getModal(id: string): ModalComponent {

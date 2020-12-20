@@ -5,6 +5,11 @@
 @import "separate-styles/about";
 @import "utils/scss/colors";
 
+.main-container {
+  position: relative;
+  min-height: 100vh;
+}
+
 .centered {
   align-items: center;
   justify-content: center;
@@ -40,10 +45,33 @@ app-modal {
   padding-bottom: 0.5rem;
   color: $white;
   width: 100%;
-  right: 50%;
   text-align: center;
   font-weight: bold;
   font-size: 45px;
+  position: relative;
+  box-shadow: 0 -5px 8px 0 rgba(#000, 0.2);
+  z-index: 1;
+
+  &:before, &:after {
+    content: '';
+    background: transparent;
+    position: absolute;
+    bottom: -60px;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 -30px 0 0 $alterblue;
+    z-index: -4;
+  }
+
+  &:before {
+    left: 0;
+    border-top-left-radius: 50%;
+  }
+
+  &:after {
+    right: 0;
+    border-top-right-radius: 50%;
+  }
 }
 
 .col {
@@ -61,4 +89,96 @@ app-modal {
   height: 100vh;
   position: absolute;
   backdrop-filter: blur(8px);
+}
+
+footer {
+  padding: 1rem 4.5rem 1rem 2rem;
+  background: $dark;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+  position: absolute;
+  bottom: -100px;
+  width: 100%;
+
+  &:before, &:after {
+    content: '';
+    background: transparent;
+    position: absolute;
+    top: -60px;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 30px 0 0 $dark;
+    z-index: -4;
+  }
+
+  &:before {
+    left: 0;
+    border-bottom-left-radius: 50%;
+  }
+
+  &:after {
+    right: 0;
+    border-bottom-right-radius: 50%;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .footer-module {
+    background: $white;
+    border-radius: 40px;
+    padding: 0.5rem 1rem;
+    font-family: Lato sans-serif;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.4);
+
+    .link {
+      position: absolute;
+      border-radius: 0 40px 40px 0;
+      right: -30%;
+      background: darken($white, 5%);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      z-index: -1;
+
+      img {
+        width: 25px;
+        height: 25px;
+        margin: 0 0.5rem;
+      }
+
+      &:before, &:after {
+        content: '';
+        background: transparent;
+        position: absolute;
+        left: -62px;
+        width: 60px;
+        height: 25px;
+        box-shadow: 25px 0 0 0 darken($white, 5%);
+        z-index: -2;
+      }
+
+      &:before {
+        top: 0;
+        border-top-right-radius: 40px;
+      }
+
+      &:after {
+        bottom: 0;
+        border-bottom-right-radius: 40px;
+      }
+    }
+  }
+
+  .footer-module + .footer-module {
+    margin-left: 1rem;
+  }
 }
