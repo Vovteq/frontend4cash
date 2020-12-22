@@ -7,7 +7,6 @@
   background: $white;
   top: 0;
   box-shadow: 0 0 35px 0 rgba($dark, 0.3);
-
   border-bottom: 1px solid $blue;
   z-index: 1;
 
@@ -74,10 +73,47 @@ a {
   }
 }
 
+.offline-mode {
+  font-size: 18px;
+  color: $white;
+  background: $dark;
+  padding: 0 0.5rem;
+  text-shadow: none;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
+  box-shadow: 0 0 7px 0 rgba(#000, 0.7);
+
+  p {
+    margin: 0;
+  }
+
+  .red-dot {
+    padding: 0.3rem;
+    background: $red;
+    margin: 0 0.5rem 0 0.2rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 0 10px 0 rgba($red, 1);
+  }
+
+  .info {
+    width: 24px;
+    height: 24px;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+}
+
 a + a {
   margin-left: 1rem;
 }
 
 .navbar-icon-question:hover {
   box-shadow: 0 0 15px 0 rgba(#000, 1);
+}
+
+.offline-mode {
+  font-size: 20px;
 }

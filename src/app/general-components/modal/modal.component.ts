@@ -1,9 +1,17 @@
-import {Component, Input, OnInit, ViewEncapsulation, AfterViewInit, ElementRef} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component, ComponentFactoryResolver,
+  ElementRef,
+  Input,
+  OnInit,
+  QueryList, ViewChildren, ViewContainerRef,
+  ViewEncapsulation
+} from '@angular/core';
 import {ModalService} from "../../services/modal.service";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {Dictionary} from "../../../scripts/ts/data-handling/Dictionary";
-import LocalUser from "../../../scripts/ts/utils/LocalUser";
 
 @Component({
   selector: 'app-modal',
@@ -25,7 +33,7 @@ import LocalUser from "../../../scripts/ts/utils/LocalUser";
   styleUrls: ['./modal.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ModalComponent implements OnInit, AfterViewInit {
+export class ModalComponent implements OnInit, AfterViewInit, AfterContentInit {
   @Input() modalTemplateId: string;
   @Input() id: string = "modal";
   @Input() useCustomTemplate: boolean;
@@ -51,7 +59,7 @@ export class ModalComponent implements OnInit, AfterViewInit {
     return this._shown;
   }
 
-  constructor(public modalService: ModalService, private el: ElementRef) { }
+  constructor(public modalService: ModalService, private el: ElementRef, private resolver: ComponentFactoryResolver) { }
 
   ngOnInit(): void {
     this.onSelect.add(() => { this._selected = !this._selected });
@@ -75,6 +83,9 @@ export class ModalComponent implements OnInit, AfterViewInit {
     if (!this.blockRender) {
       this._shown = true;
     }
+  }
+
+  ngAfterContentInit(): void {
   }
 
   hide(): void {

@@ -7,7 +7,7 @@
 
 .main-container {
   position: relative;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
 }
 
 .centered {
@@ -83,7 +83,7 @@ app-modal {
   margin-right: 0;
 }
 
-.loading {
+.loading-element {
   background: rgba(255,255,255, 0.4);
   width: 100vw;
   height: 100vh;

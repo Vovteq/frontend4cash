@@ -2,7 +2,8 @@ import {Dictionary} from "../data-handling/Dictionary";
 import {isDevMode} from "@angular/core";
 
 export default class URLRouter {
-  private static baseUrl = "http://localhost:8069/"
+  public static readonly baseUrl = "http://localhost:8069/"
+  public static readonly connectionUrl = URLRouter.baseUrl + "api/users/";
 
   private static routes: {[id: string]: string} = {
     currency: 'api/coins/',

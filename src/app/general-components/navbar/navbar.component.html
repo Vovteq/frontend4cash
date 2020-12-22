@@ -1,15 +1,38 @@
 <div class="navbar-container">
   <div class="row">
     <div class="col left" style="margin-left: 1rem;">
-      <p style="margin: 0;
+      <div style="
+       margin: 0;
        font-size: 25px;
+       display: flex;
        letter-spacing: 4px;
        color: #232323;
        font-weight: normal;
        text-shadow: 0 0 10px rgba(40,83,198,0.53);
       ">
         Bits4cash
-      </p>
+        <div *ngIf="!connectionService.connected" class="offline-mode" [@noConnection]>
+          <span class="red-dot"></span>
+          <p>Offline mode</p>
+          <div style="position: relative; padding: 0.25rem 0; display: flex; align-items: center" appShowModal [params]="['not-responding-tooltip', true, false]">
+            <img src="../../../assets/img/info-button.png" class="info">
+            <app-modal
+              [@.disabled]
+              [modalTemplateId]="'mini_tooltip'"
+              [id]="'not-responding-tooltip'"
+              [useCustomTemplate]="true"
+              [customTemplateArgs]="[
+              'No connection',
+              'Server is not available for some time. Please, try again later.',
+              300
+              ]"
+              style="bottom: -160px; left: -120px; transition: none !important; margin-top: 15px; z-index: 2"
+            >
+
+            </app-modal>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col">
       <app-link [route]="''" [routeLink]="true" [text]="'Home'"></app-link>
@@ -18,7 +41,6 @@
       <app-link *ngIf="userService.isLoggedIn()" [route]="'exchange'" [routeLink]="true" [text]="'Exchange'"></app-link>
       <app-link [route]="'forum'" [routeLink]="true" [text]="'Forum'"></app-link>
       <app-link *ngIf="userService.isLoggedIn()" [route]="'/account/home'" [routeLink]="true" [text]="'Account'"></app-link>
-      <app-link [url]="'.'" [text]="'TEMP_TEXT'" appTemporalLink></app-link>
     </div>
     <div class="col right" style="padding-right: 1rem">
     <span *ngIf="!userService.isLoggedIn()">

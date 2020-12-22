@@ -7,6 +7,7 @@ import {ChartComponent} from "ng-apexcharts";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 import {ChartContainerComponent} from "../../general-components/chart-container/chart-container.component";
 import {animate, group, query, stagger, style, transition, trigger} from "@angular/animations";
+import {ConnectionService} from "../../services/connection.service";
 
 @Component({
   selector: 'app-monitoring-page',
@@ -40,6 +41,16 @@ import {animate, group, query, stagger, style, transition, trigger} from "@angul
       transition(':leave', [
         animate('500ms cubic-bezier(0.600, -0.280, 0.735, 0.045)', style({ opacity: 0, transform: 'scale(0.9)' }))
       ]),
+    ]),
+    trigger('noConnection', [
+      transition(':leave', [
+        style({ opacity: 1, transform: 'translateX(0)' }),
+        animate('700ms cubic-bezier(0.680, -0.550, 0.460, 0.995)', style({ opacity: '0', transform: 'translateX(40px)' })),
+      ]),
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateX(40px)' }),
+        animate('700ms cubic-bezier(0.680, -0.550, 0.460, 0.995)', style({ opacity: '1', transform: 'translateX(0)' })),
+      ])
     ])
   ]
 })
@@ -65,7 +76,7 @@ export class MonitoringPageComponent implements OnInit{
     });
   }
 
-  constructor(private currencyService: CurrencyService, public modalService: ModalService) { }
+  constructor(private currencyService: CurrencyService, public modalService: ModalService, public connectionService: ConnectionService) { }
 
   showCurrencyChart(): void {
     if (this.currencyChart === undefined) return;

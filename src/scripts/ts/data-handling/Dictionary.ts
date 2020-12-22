@@ -39,9 +39,9 @@ export class Dictionary<K, V> extends DataStream<KeyValuePair<K, V>> {
 
   remove(item: number | KeyValuePair<K, V>): void {
     if (item instanceof KeyValuePair) {
-      delete this.content.find(elem => elem === item)[0];
+      this.content = this.content.filter(elem => elem !== item);
     } else {
-      delete this.content[item];
+      this.content = this.content.filter(elem => elem !== this.content[item]);
     }
   }
 

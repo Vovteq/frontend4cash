@@ -1,6 +1,9 @@
 import {Component, isDevMode, OnInit, ViewEncapsulation} from '@angular/core';
 import {UserService} from "./services/user.service";
 import LocalUser from "../scripts/ts/utils/LocalUser";
+import {timer} from "rxjs";
+import Console from "../scripts/ts/utils/Console";
+import {ConnectionService} from "./services/connection.service";
 
 
 @Component({
@@ -10,11 +13,12 @@ import LocalUser from "../scripts/ts/utils/LocalUser";
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'frontend4cash';
   public showLoading: boolean = false;
   public initComplete: boolean = false;
 
-  constructor(public userService: UserService) {
+  private timeout = timer(2000);
+
+  constructor(public userService: UserService, private connectionService: ConnectionService) {
   }
 
   public get loggedIn(): boolean {
@@ -34,6 +38,13 @@ export class AppComponent implements OnInit {
     });
     const lastId = localStorage.getItem('lastRegistered');
     this.userService.logIn(lastId);
+    this.timeout.subscribe(() => {
+      if (!self.initComplete) {
+        Console.printIfDev('Init complete with timeout');
+        self.initComplete = true;
+        self.connectionService.forceDisconnect();
+      }
+    });
   }
 
   renderTip(): boolean {

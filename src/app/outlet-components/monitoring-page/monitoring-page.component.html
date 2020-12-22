@@ -1,4 +1,4 @@
-<div [@show] class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0">
+<div [@show] class="col" style="display: flex; justify-content: center; flex-direction: column; padding: 0;">
   <div class="section-header" style="margin-top: 5rem">Monitoring</div>
   <p>Observe most popular currencies in runtime test</p>
   <div class="charts-container">
@@ -79,7 +79,9 @@
       >
       </app-chart-container>
     </div>
-  </div>
+    <div class="no-connection" [@noConnection] *ngIf="!connectionService.connected">
 
+    </div>
+  </div>
 </div>
 

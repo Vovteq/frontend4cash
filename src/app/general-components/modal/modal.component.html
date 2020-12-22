@@ -1,4 +1,4 @@
-<div *ngIf="shown" [@showHide] (@showHide.done)="animEnd()" [ngDraggable]="draggable" class="modal-wrapper" (click)="handleOnClick()">
+<div [@showHide] *ngIf="shown"  (@showHide.done)="animEnd()" [ngDraggable]="draggable" class="modal-wrapper" (click)="handleOnClick()">
   <div [ngClass]="'modal-html-content'" [innerHTML]="getInnerHtml() | sanitizeHtml"></div>
   <div *ngIf="!useCustomTemplate" class="separator"></div>
   <div *ngIf="!useCustomTemplate" class="modal-window-menu">
