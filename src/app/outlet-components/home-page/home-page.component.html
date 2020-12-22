@@ -4,7 +4,7 @@
     <h1>Welcome to <span>Bits4Cash</span></h1>
     <p>Spend 10 racks on a new blockchain</p>
     <div class="row centered">
-      <app-context-button *ngIf="!userService.isLoggedIn()"
+      <app-context-button *ngIf="!userService.isLoggedIn() && connectionService.connected"
                           [context]="modalService.showModal"
                           [args]="['register-modal']"
                           [text]="'Create account'"

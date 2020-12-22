@@ -43,10 +43,10 @@
       <app-link *ngIf="userService.isLoggedIn()" [route]="'/account/home'" [routeLink]="true" [text]="'Account'"></app-link>
     </div>
     <div class="col right" style="padding-right: 1rem">
-    <span *ngIf="!userService.isLoggedIn()">
+    <span *ngIf="!userService.isLoggedIn() && connectionService.connected">
       You are not logged in
     </span>
-      <app-context-button *ngIf="!userService.isLoggedIn()"
+      <app-context-button *ngIf="!userService.isLoggedIn() && connectionService.connected"
                           [context]="modalService.showModal"
                           [args]="['login-modal']"
                           [text]="'Log in'"

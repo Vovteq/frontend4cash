@@ -5,6 +5,7 @@ import * as AOS from 'aos';
 import DOMParser from "../../../scripts/ts/utils/DOMParser";
 import PageCache from "../../../scripts/ts/utils/PageCache";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {ConnectionService} from "../../services/connection.service";
 
 declare var particlesJS: any;
 
@@ -26,7 +27,7 @@ declare var particlesJS: any;
 export class HomePageComponent implements OnInit {
   cache: PageCache;
 
-  constructor(public userService: UserService, public modalService: ModalService) { }
+  constructor(public userService: UserService, public modalService: ModalService, public connectionService: ConnectionService) { }
 
   ngOnInit(): void {
     particlesJS.load('particles-js', 'assets/config/particles.json');
