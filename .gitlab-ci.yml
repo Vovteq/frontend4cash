@@ -53,5 +53,5 @@ deploy:
     - cd ..
     - pwd
     - cat letsencrypt/options-ssl-nginx.conf
-  script: docker container run -d --name $APP_NAME --net=$NETWORK_NAME --net-alias=$APP_NAME -v letsencrypt:/etc/letsencrypt -v ~/logs4front:/var/log/nginx/ -p 80:80 -p 430:430 $IMAGE_NAME
+  script: docker container run -d --name $APP_NAME --net=$NETWORK_NAME --net-alias=$APP_NAME -v $(readlink -f letsencrypt):/etc/letsencrypt -v ~/logs4front:/var/log/nginx/ -p 80:80 -p 430:430 $IMAGE_NAME
 # i am a comment for test
