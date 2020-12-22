@@ -11,7 +11,7 @@ import Console from "../../scripts/ts/utils/Console";
 export class ConnectionService {
 
   private _connected: boolean = true;
-  private source = interval(3000);
+  private source = interval(6000);
 
   public get connected(): boolean {
     return this._connected;
@@ -19,10 +19,12 @@ export class ConnectionService {
 
   constructor(private http: HttpClient) {
     this.source.subscribe(() => {
-      Console.printIfDev("Server ping...")
+      Console.printIfDev("Server ping...");
+      Console.printIfDev(URLRouter.connectionUrl);
       this.http.get(URLRouter.connectionUrl, {observe: 'response'})
         .pipe(first(), catchError(err => of(err)))
         .subscribe(response => {
+          Console.printIfDev(`Status: ${response}`);
           //@ts-ignore
           this._connected = response.status === 200;
           Console.printIfDev("Server ping success:" + this.connected);

@@ -5,7 +5,7 @@
   <div class="currency-body">
     {{value}}
   </div>
-  <div class="no-connection" *ngIf="!connectionService.connected" [@showNoConnection]>
+  <div class="no-connection" *ngIf="!connected" [@showNoConnection]>
     <img src="../../../assets/img/ethernet.png">
   </div>
 </div>

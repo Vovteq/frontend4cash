@@ -28,10 +28,11 @@ export class CurrencyComponent implements OnInit {
 
   @Input() requestData: boolean;
   @Input() currencyId: string;
+  @Input() connected: boolean;
 
   private data: Currency;
 
-  constructor(private currencyService: CurrencyService, public connectionService: ConnectionService, private el: ElementRef) { }
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
     if (this.requestData) {

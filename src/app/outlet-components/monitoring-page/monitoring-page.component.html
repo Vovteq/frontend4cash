@@ -5,6 +5,7 @@
     <app-chart-container
       [requestData]="true"
       [id]="'bitcoin'"
+      [connected]="connectionService.connected"
       [chart]="{
       type: 'line',
       toolbar: {
@@ -16,6 +17,7 @@
     <app-chart-container
       [requestData]="true"
       [id]="'ethereum'"
+      [connected]="connectionService.connected"
       [chart]="{
       type: 'line',
       toolbar: {
@@ -32,21 +34,25 @@
         <app-currency
           [requestData]="true"
           [currencyId]="'chainlink'"
+          [connected]="connectionService.connected"
         >
         </app-currency>
         <app-currency
           [requestData]="true"
           [currencyId]="'polkadot'"
+          [connected]="connectionService.connected"
         >
         </app-currency>
         <app-currency
           [requestData]="true"
           [currencyId]="'litecoin'"
+          [connected]="connectionService.connected"
         >
         </app-currency>
         <app-currency
           [requestData]="true"
           [currencyId]="'tether'"
+          [connected]="connectionService.connected"
         >
         </app-currency>
       </div>
@@ -70,11 +76,12 @@
       <app-chart-container #shownCurrencyChart
         [requestData]="false"
         [id]="'bitcoin'"
+        [connected]="connectionService.connected"
         [chart]="{
-      type: 'line',
-      toolbar: {
-        show: false
-      }
+        type: 'line',
+        toolbar: {
+          show: false
+        }
     }"
       >
       </app-chart-container>

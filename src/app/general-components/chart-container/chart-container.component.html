@@ -1,23 +1,23 @@
 <div class="chart-wrapper">
-  <div class="chart-header" *ngIf="connectionService.connected">
+  <div class="chart-header" *ngIf="connected">
     {{ getName() }}
   </div>
-  <div class="chart-container" *ngIf="connectionService.connected">
+  <div class="chart-container" *ngIf="connected">
     <apx-chart
       [series]="series"
       [chart]="chart"
       [xaxis]="xaxis">
     </apx-chart>
   </div>
-  <div class="chart-stats" *ngIf="connectionService.connected">
+  <div class="chart-stats" *ngIf="connected">
     <p>Current price: <span>{{lastPrice}}</span></p>
     <p style="font-size: 20px">Last update: {{lastUpdate}}</p>
   </div>
-  <div class="no-connection" *ngIf="!connectionService.connected" [@showNoConnection]>
+  <div class="no-connection" *ngIf="!connected" [@showNoConnection]>
     <img src="../../../assets/img/sad.png" alt="">
     <p>No connection</p>
   </div>
-  <div [@hideLoading] class="loading" *ngIf="connectionService.connected && (!dataLoaded || !timerPassed)">
+  <div [@hideLoading] class="loading" *ngIf="connected && (!dataLoaded || !timerPassed)">
     <div class="loading-element">
       <div></div>
       <div></div>

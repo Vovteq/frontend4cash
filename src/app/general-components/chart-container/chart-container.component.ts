@@ -39,6 +39,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   @Input() chart;
   @Input() id: string;
   @Input() requestData: boolean;
+  @Input() connected: boolean;
 
   public data: Currency;
 
@@ -46,7 +47,7 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   private _lastUpdate: string = "now";
   private loadingTimer = timer(2000);
 
-  constructor(private currencyService: CurrencyService, public connectionService: ConnectionService) { }
+  constructor(private currencyService: CurrencyService) { }
 
   get lastPrice(): string {
     return this._lastPrice.toString() + " " + this.currencyService.globalCurrency;
