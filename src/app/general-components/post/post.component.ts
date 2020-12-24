@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PostService} from "../../services/post.service";
 import {User, UserInfo} from "../../../scripts/ts/metadata/User";
-import {Post} from "../../../scripts/ts/metadata/Post";
+import {Post, PostInfo} from "../../../scripts/ts/metadata/Post";
 import {PostMenuComponent} from "./post-menu/post-menu.component";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
 
@@ -19,6 +19,7 @@ export class PostComponent implements OnInit {
 
   @Input() requestData: boolean;
   @Input() postId: string;
+  @Input() prebuiltData: PostInfo;
 
   private data: Post;
   @ViewChild(PostMenuComponent) menu: PostMenuComponent;
@@ -51,7 +52,11 @@ export class PostComponent implements OnInit {
         this.populateWithInfo();
       });
     } else {
-      this.setDefault();
+      if (this.prebuiltData !== null) {
+        this.data = new Post(this.id, this.prebuiltData);
+      } else {
+        this.setDefault();
+      }
       this.populateWithInfo();
     }
 
@@ -61,7 +66,7 @@ export class PostComponent implements OnInit {
   private populateWithInfo(): void {
     this._id = this.data.id;
     this._user = this.data.user;
-    this._message = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet at doloremque dolores eveniet neque non odio perspiciatis rerum, tempora tenetur.';
+    this._message = this.data.message;
     this._title = `#${this.id}`
   }
 
