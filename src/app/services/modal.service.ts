@@ -137,13 +137,12 @@ export class ModalService implements OnDestroy{
           const nickname = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-nickname');
           const email = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
           const password = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
-          const info: UserInfo = { id: '0', nickname: nickname.value, password: password.value, email: email.value, ownedCoins: {}, cash: "0", status: "" };
-          this.userService.registerUser(info).then((id) => {
-            this.userService.logIn(id);
-            modal.hide();
-            ModalInspector.get('newcomer-tooltip-modal').hide();
+          this.userService.register(email.value, nickname.value, password.value).then(() => {
+            this.userService.logIn(email.value, password.value).then(() => {
+              modal.hide();
+              ModalInspector.get('newcomer-tooltip-modal').hide();
+            });
           }).catch((error) => {
-            console.log(error);
             const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Invalid alias or password`;
             ModalService.getModalElementByClass(modal, '.registerModalError').innerHTML = errorMessage;
           });
@@ -184,7 +183,7 @@ export class ModalService implements OnDestroy{
       ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
         const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
         const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
-        this.userService.logInAlias(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
+        this.userService.logIn(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
           console.log(error);
           const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Invalid alias or password`;
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;

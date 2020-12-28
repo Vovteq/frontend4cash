@@ -9,16 +9,14 @@ export default class LocalUser {
 
   private static _user: UserInfo;
 
-  public static logIn(userId: string, service: UserService): boolean {
-    if (userId === null) {
+  public static logIn(user: UserInfo): boolean {
+    if (user=== null) {
       this.onLogTry.invoke([false]);
       return false;
     }
-    service.getUser(userId).subscribe(user => {
-      LocalUser._user = user;
-      LocalUser.onLogIn.invoke([LocalUser._user]);
-      LocalUser.onLogTry.invoke([true]);
-    });
+    LocalUser._user = user;
+    LocalUser.onLogIn.invoke([LocalUser._user]);
+    LocalUser.onLogTry.invoke([true]);
     return true;
   }
 

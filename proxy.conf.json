@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://193.40.156.55/api",
+    "target": "https://bits4cash.tk/api",
     "secure": true,
     "changeOrigin": true,
     "pathRewrite": {
