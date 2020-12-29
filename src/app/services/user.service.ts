@@ -60,8 +60,8 @@ export class UserService {
               console.log(user);
               resolve();
             }, error => {
+              console.log("PIDARAS");
               reject(LoginError.UndefinedError)
-              console.log()
             });
           } else {
             console.log(`Error during login POST, response below...`);
