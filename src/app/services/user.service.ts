@@ -75,7 +75,7 @@ export class UserService {
 
   public register(email: string, nickname: string, password: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
-      this.http.post(this.usersUrl + "register", {username: nickname, email: email, password: password}).subscribe((response: any) => {
+      this.http.post(this.usersUrl + "register", {observe: "response", username: nickname, email: email, password: password}).subscribe((response: any) => {
         if (response.status === 201) {
           resolve();
         } else {
