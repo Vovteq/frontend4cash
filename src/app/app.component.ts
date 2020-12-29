@@ -39,7 +39,12 @@ export class AppComponent implements OnInit {
     const lastEmail = localStorage.getItem('lastLoggedInEmail');
     const lastPassword = localStorage.getItem('lastLoggedInPassword');
     const token = localStorage.getItem('token');
-    this.userService.logIn(lastEmail, lastPassword);
+
+    if (lastEmail === null || lastEmail === undefined || token === null) {
+      self.initComplete = true;
+    } else {
+      this.userService.logIn(lastEmail, lastPassword);
+    }
     this.timeout.subscribe(() => {
       if (!self.initComplete) {
         Console.printIfDev('Init complete with timeout');

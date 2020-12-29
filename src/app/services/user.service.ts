@@ -2,7 +2,7 @@ import {Injectable, isDevMode} from '@angular/core';
 import {User, UserInfo} from "../../scripts/ts/metadata/User";
 import LocalUser from "../../scripts/ts/utils/LocalUser";
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
 import Console from "../../scripts/ts/utils/Console";
 import {Local} from "protractor/built/driverProviders";
@@ -59,8 +59,13 @@ export class UserService {
               LocalUser.logIn(user);
               console.log(user);
               resolve();
-            }, error => { reject(LoginError.UndefinedError) });
+            }, error => {
+              reject(LoginError.UndefinedError)
+              console.log()
+            });
           } else {
+            console.log(`Error during login POST, response below...`);
+            console.log(response);
             reject(LoginError.UndefinedError);
           }
         });
@@ -101,6 +106,10 @@ export class UserService {
 
   public getUser(id: string): Observable<UserInfo> {
     const self = this;
-    return self.http.get<UserInfo>(`${self.usersUrl}${id}`);
+    return self.http.get<UserInfo>(`${self.usersUrl}${id}`, {
+      headers: new HttpHeaders({
+        "Authorization": "Token " + localStorage.getItem("token")
+      })
+    });
   }
 }
