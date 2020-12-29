@@ -60,7 +60,8 @@ export class UserService {
               console.log(user);
               resolve();
             }, error => {
-              console.log("PIDARAS");
+              console.log("Auf");
+              console.log(error);
               reject(LoginError.UndefinedError)
             });
           } else {
