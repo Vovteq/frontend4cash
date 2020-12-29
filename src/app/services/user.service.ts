@@ -111,7 +111,7 @@ export class UserService {
     const self = this;
     return self.http.get<UserInfo>(`${self.usersUrl}${id}`, {
       headers: new HttpHeaders({
-        "Authorization": `Token token="${localStorage.getItem("token")}"`
+        "Authorization": `Bearer ${localStorage.getItem("token")}`
       })
     });
   }
