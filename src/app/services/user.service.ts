@@ -49,10 +49,11 @@ export class UserService {
       }
       if (!isDevMode()) {
         console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
-        this.http.post(this.usersUrl + "login", {email: email, password: password}).subscribe(response => {
+        this.http.post(this.usersUrl + "login", {email: email, password: password}).subscribe((response : any) => {
           console.log(`HELLO! MY RESPONSE IS ${response}`);
           console.log(`HELLO! MY RESPONSE STATUS ON LOGIN IS ${response.status}`);
-          if (response.status >= 200 && response.status < 500) {
+            
+          if (response.token != null) {
             localStorage.setItem("token", response.token);
             localStorage.setItem("lastLoggedInEmail", email);
             localStorage.setItem("lastLoggedInPassword", password);
