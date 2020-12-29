@@ -4,9 +4,6 @@ import LocalUser from "../../scripts/ts/utils/LocalUser";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
-import Console from "../../scripts/ts/utils/Console";
-import {Local} from "protractor/built/driverProviders";
-import {catchError} from "rxjs/operators";
 
 export enum LoginError {
   NoSuchUser,
@@ -69,7 +66,6 @@ export class UserService {
           reject(LoginError.UndefinedError);
         }
       });
-
     }));
   }
 

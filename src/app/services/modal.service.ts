@@ -53,7 +53,7 @@ export class ModalService implements OnDestroy{
       <div class="modal-input-wrapper">
         <input size="40" class="login-nickname">
         <span class="bar"></span>
-        <label>Nickname or email</label>
+        <label>E-mail</label>
       </div>
       <div class="modal-input-wrapper">
         <input size="40" type="password" class="login-password">
@@ -141,7 +141,6 @@ export class ModalService implements OnDestroy{
             this.userService.logIn(email.value, password.value).then(() => {
               modal.hide();
               ModalInspector.get('newcomer-tooltip-modal').hide();
-              ModalInspector.get('login-modal').show();
             });
           }).catch((error) => {
             const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Something went wrong. Please, check entered data.`;
