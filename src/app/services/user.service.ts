@@ -77,8 +77,10 @@ export class UserService {
     return new Promise<void>(((resolve, reject) => {
       this.http.post(this.usersUrl + "register", {username: nickname, email: email, password: password}).subscribe((response: any) => {
         if (response != null && response.success === true) {
+          console.log("Register success");
           resolve();
         } else {
+          console.log(response);
           reject();
         }
       });

@@ -141,9 +141,10 @@ export class ModalService implements OnDestroy{
             this.userService.logIn(email.value, password.value).then(() => {
               modal.hide();
               ModalInspector.get('newcomer-tooltip-modal').hide();
+              ModalInspector.get('login-modal').show();
             });
           }).catch((error) => {
-            const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Invalid alias or password`;
+            const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Something went wrong. Please, check entered data.`;
             ModalService.getModalElementByClass(modal, '.registerModalError').innerHTML = errorMessage;
           });
         });
@@ -185,7 +186,7 @@ export class ModalService implements OnDestroy{
         const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
         this.userService.logIn(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
           console.log(error);
-          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Invalid alias or password`;
+          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong. Please, check entered e-mail and password.`;
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
         });
       })
