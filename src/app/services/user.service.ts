@@ -52,7 +52,8 @@ export class UserService {
         this.http.post(this.usersUrl + "login", {email: email, password: password}).subscribe((response : any) => {
           console.log(`HELLO! MY RESPONSE IS ${response}`);
           console.log(`HELLO! MY RESPONSE STATUS ON LOGIN IS ${response.status}`);
-            
+          // respons eto object i u nego net filda status kotorqi tq hotel 4ekat
+          // tak login success no nixyja ne proisxodit...  
           if (response.token != null) {
             localStorage.setItem("token", response.token);
             localStorage.setItem("lastLoggedInEmail", email);
