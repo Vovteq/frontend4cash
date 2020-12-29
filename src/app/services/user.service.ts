@@ -50,7 +50,7 @@ export class UserService {
       if (!isDevMode()) {
         console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
         this.http.post(this.usersUrl + "login", {observe: "response", email: email, password: password}).subscribe((response : any) => {
-          if (response.token != null) {
+          if (response !== null && response.token != null) {
             localStorage.setItem("token", response.token);
             localStorage.setItem("lastLoggedInEmail", email);
             localStorage.setItem("lastLoggedInPassword", password);
@@ -62,7 +62,7 @@ export class UserService {
               console.log(user);
               resolve();
             }, error => {
-              console.log("Auf");
+              console.log("Error during user data GET:");
               console.log(error);
               reject(LoginError.UndefinedError)
             });
@@ -111,7 +111,7 @@ export class UserService {
     const self = this;
     return self.http.get<UserInfo>(`${self.usersUrl}${id}`, {
       headers: new HttpHeaders({
-        "Authorization": "Token " + localStorage.getItem("token")
+        "Authorization": `Token token="${localStorage.getItem("token")}"`
       })
     });
   }
