@@ -47,7 +47,7 @@ export class UserService {
       }
       console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
       this.http.post(this.usersUrl + "login", {observe: "response", email: email, password: password}).subscribe((response : any) => {
-        if (response !== null && response.token != null) {
+        if (response !== null && response.success === true && response.token != null) {
           localStorage.setItem("token", response.token);
           localStorage.setItem("lastLoggedInEmail", email);
           localStorage.setItem("lastLoggedInPassword", password);
@@ -75,9 +75,8 @@ export class UserService {
 
   public register(email: string, nickname: string, password: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
-      this.http.post(this.usersUrl + "register", {observe: "response", username: nickname, email: email, password: password}).subscribe((response: any) => {
-        console.log(`Status: ${response.status}`);
-        if (response.status === 201) {
+      this.http.post(this.usersUrl + "register", {username: nickname, email: email, password: password}).subscribe((response: any) => {
+        if (response.success === true) {
           resolve();
         } else {
           reject();
