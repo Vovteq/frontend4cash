@@ -41,6 +41,7 @@ export class UserService {
     return LocalUser.loggedIn();
   }
 
+
   public logIn(email: string, password: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
       if (email === null || password === null) {
@@ -48,7 +49,7 @@ export class UserService {
       }
       if (!isDevMode()) {
         console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
-        this.http.post(this.usersUrl + "login", {email: email, password: password}).subscribe((response: any) => {
+        this.http.post(this.usersUrl + "login", {email: email, password: password}).subscribe(response => {
           console.log(`HELLO! MY RESPONSE IS ${response}`);
           console.log(`HELLO! MY RESPONSE STATUS ON LOGIN IS ${response.status}`);
           if (response.status >= 200 && response.status < 500) {
