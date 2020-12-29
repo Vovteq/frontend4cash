@@ -2,6 +2,7 @@ import {User, UserInfo} from "../metadata/User";
 import {Observable} from "rxjs";
 import {UserService} from "../../../app/services/user.service";
 import {Delegate} from "../delegates/Delegate";
+import {Local} from "protractor/built/driverProviders";
 
 export default class LocalUser {
   public static onLogIn: Delegate<[UserInfo]> = new Delegate<[UserInfo]>();
@@ -21,18 +22,19 @@ export default class LocalUser {
   }
 
   public static loggedIn(): boolean {
-    return this._user !== undefined;
+    return LocalUser._user !== undefined;
   }
 
   public static get user(): UserInfo {
-    return this._user;
+    console.log(LocalUser._user);
+    return LocalUser._user;
   }
 
   public static logOut() {
-    this._user = undefined;
+    LocalUser._user = undefined;
   }
 
   public static forceLogIn(user: UserInfo) {
-    this._user = user;
+    LocalUser._user = user;
   }
 }

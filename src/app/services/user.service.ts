@@ -31,10 +31,8 @@ export interface LoginResponse {
 export class UserService {
   private readonly usersUrl;
 
-  private fictional: UserInfo = { nickname: "meme", email: "kek@kek.ee", password: "123", status: "My super status", cash: "0", ownedCoins: {}, id: "0"};
-
   constructor(private http: HttpClient) {
-    this.usersUrl = URLRouter.getRoute('users');
+    this.usersUrl = URLRouter.publicApiUrl + "api/users/";
   }
 
   public isLoggedIn(): boolean {
@@ -47,52 +45,43 @@ export class UserService {
       if (email === null || password === null) {
         reject(LoginError.EmptyFields);
       }
-      if (!isDevMode()) {
-        console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
-        this.http.post(this.usersUrl + "login", {observe: "response", email: email, password: password}).subscribe((response : any) => {
-          if (response !== null && response.token != null) {
-            localStorage.setItem("token", response.token);
-            localStorage.setItem("lastLoggedInEmail", email);
-            localStorage.setItem("lastLoggedInPassword", password);
-            console.log(`Login success: id: [${response.id}], token: [${response.token}]`);
-            console.log(`Status: ${response.status}`);
+      console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
+      this.http.post(this.usersUrl + "login", {observe: "response", email: email, password: password}).subscribe((response : any) => {
+        if (response !== null && response.token != null) {
+          localStorage.setItem("token", response.token);
+          localStorage.setItem("lastLoggedInEmail", email);
+          localStorage.setItem("lastLoggedInPassword", password);
+          console.log(`Login success: id: [${response.id}], token: [${response.token}]`);
+          console.log(`Status: ${response.status}`);
 
-            this.getUser(response.id).subscribe((user) => {
-              LocalUser.logIn(user);
-              console.log(user);
-              resolve();
-            }, error => {
-              console.log("Error during user data GET:");
-              console.log(error);
-              reject(LoginError.UndefinedError)
-            });
-          } else {
-            console.log(`Error during login POST, response below...`);
-            console.log(response);
-            reject(LoginError.UndefinedError);
-          }
-        });
-      } else {
-        LocalUser.logIn(this.fictional);
-        resolve();
-      }
+          this.getUser(response.id).subscribe((user) => {
+            LocalUser.logIn(user);
+            console.log(user);
+            resolve();
+          }, error => {
+            console.log("Error during user data GET:");
+            console.log(error);
+            reject(LoginError.UndefinedError)
+          });
+        } else {
+          console.log(`Error during login POST, response below...`);
+          console.log(response);
+          reject(LoginError.UndefinedError);
+        }
+      });
+
     }));
   }
 
   public register(email: string, nickname: string, password: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
-      if (!isDevMode()) {
-        this.http.post(this.usersUrl + "register", {username: nickname, email: email, password: password}).subscribe((response: any) => {
-          if (response.status === 201) {
-            resolve();
-          } else {
-            reject();
-          }
-        });
-      } else {
-        LocalUser.logIn(this.fictional);
-        resolve();
-      }
+      this.http.post(this.usersUrl + "register", {username: nickname, email: email, password: password}).subscribe((response: any) => {
+        if (response.status === 201) {
+          resolve();
+        } else {
+          reject();
+        }
+      });
     }));
   }
 
