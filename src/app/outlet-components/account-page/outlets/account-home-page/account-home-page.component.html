@@ -8,14 +8,14 @@
         <div class="account-avatar-bg">
           <div>{{getNicknameInitials()}}</div>
         </div>
-        <p>{{userService.getLocalUser().nickname}}</p>
+        <p>{{userService.getLocalUser().username}}</p>
         <p style="font-size: 23px; font-weight: lighter">{{getStatus()}}</p>
       </div>
     </div>
     <div class="account-settings">
       <app-account-attribute
         [label]="'Nickname'"
-        [value]="user.nickname"
+        [value]="user.username"
       >
       </app-account-attribute>
       <app-account-attribute

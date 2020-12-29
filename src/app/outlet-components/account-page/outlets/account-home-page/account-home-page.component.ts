@@ -27,7 +27,7 @@ export class AccountHomePageComponent implements OnInit {
   }
 
   getNicknameInitials(): string {
-    return StringUtils.getInitials(this.user.nickname).toUpperCase();
+    return StringUtils.getInitials(this.user.username).toUpperCase();
   }
 
   getStatus(): string {

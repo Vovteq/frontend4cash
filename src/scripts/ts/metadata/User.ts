@@ -1,6 +1,6 @@
 export interface UserInfo {
   id: string;
-  nickname: string;
+  username: string;
   email: string;
   password: string;
   status: string;
@@ -19,7 +19,7 @@ export class User {
 
   public static readonly defaultUserInfo: UserInfo = {
     id: '0',
-    nickname: 'nickname',
+    username: 'nickname',
     email: 'email',
     password: 'password',
     status: 'status',
@@ -29,7 +29,7 @@ export class User {
 
   constructor(id: string, data: UserInfo) {
     this.id = id;
-    this.nickname = data.nickname;
+    this.nickname = data.username;
     this.password = data.password;
     this.email = data.email;
     this.status = data.status;

@@ -33,7 +33,7 @@ export class ForumPageComponent implements OnInit {
   constructor(public userService: UserService, public modalService: ModalService) { }
 
   ngOnInit(): void {
-    const testUser: UserInfo = {id: '0', ownedCoins: {}, cash: '0', status: '', nickname: 'Auf', password: '', email: ''}
+    const testUser: UserInfo = {id: '0', ownedCoins: {}, cash: '0', status: '', username: 'Auf', password: '', email: ''}
 
     this._posts = [
       { user: testUser, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'},

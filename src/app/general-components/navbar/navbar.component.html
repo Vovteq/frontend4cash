@@ -53,7 +53,7 @@
       >
       </app-context-button>
       <span *ngIf="userService.isLoggedIn()">
-      Welcome, {{userService.getLocalUser().nickname}}
+      Welcome, {{userService.getLocalUser().username}}
     </span>
       <app-context-button *ngIf="userService.isLoggedIn()"
                           [text]="'Logout'"
