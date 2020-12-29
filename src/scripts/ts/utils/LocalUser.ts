@@ -26,7 +26,6 @@ export default class LocalUser {
   }
 
   public static get user(): UserInfo {
-    console.log(LocalUser._user);
     return LocalUser._user;
   }
 
