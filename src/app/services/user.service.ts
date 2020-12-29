@@ -49,16 +49,13 @@ export class UserService {
       }
       if (!isDevMode()) {
         console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
-        this.http.post(this.usersUrl + "login", {email: email, password: password}).subscribe((response : any) => {
-          console.log(`HELLO! MY RESPONSE IS ${response}`);
-          console.log(`HELLO! MY RESPONSE STATUS ON LOGIN IS ${response.status}`);
-          // respons eto object i u nego net filda status kotorqi tq hotel 4ekat
-          // tak login success no nixyja ne proisxodit...  
+        this.http.post(this.usersUrl + "login", {observe: "response", email: email, password: password}).subscribe((response : any) => {
           if (response.token != null) {
             localStorage.setItem("token", response.token);
             localStorage.setItem("lastLoggedInEmail", email);
             localStorage.setItem("lastLoggedInPassword", password);
             console.log(`Login success: id: [${response.id}], token: [${response.token}]`);
+            console.log(`Status: ${response.status}`);
 
             this.getUser(response.id).subscribe((user) => {
               LocalUser.logIn(user);
