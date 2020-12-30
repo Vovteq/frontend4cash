@@ -37,7 +37,7 @@
     >
 
     </app-account-currency>
-    <div class="no-currency" *ngIf="ownedCoins.length === 0" style="display: flex; flex-direction: column; align-items: center">
+    <div class="no-currency" *ngIf="ownedCoins !== undefined && ownedCoins.length === 0" style="display: flex; flex-direction: column; align-items: center">
       <p>You have no crypto-currency in your wallet right now.</p>
       <p>You can exchange/buy it on exchange page.</p>
       <app-link [routeLink]="true" [route]="'../../exchange'" [text]="'Go to exchange page'"></app-link>
