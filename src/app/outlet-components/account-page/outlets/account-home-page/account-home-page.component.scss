@@ -63,6 +63,29 @@
       }
     }
 
+    .change-wrapper {
+      border-radius: 50%;
+      border: 1px solid $white;
+      padding: 0.5rem;
+      height: fit-content;
+      width: fit-content;
+      transition: 200ms all;
+      margin-left: 0.5rem;
+      position: relative;
+      color: transparent;
+      text-shadow: 0 0 0 $white;
+      cursor: pointer;
+      font-size: 15px;
+
+
+      &:hover {
+        background: $white;
+        font-size: 20px;
+        text-shadow: 0 0 0 $alterblue, 0 0 5px $alterblue;
+        box-shadow: 0 0 10px 0 rgba($white, 0.6);
+      }
+    }
+
     p {
       font-size: 25px;
       color: $white;

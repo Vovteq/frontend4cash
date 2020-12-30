@@ -5,6 +5,7 @@ import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
 import {UserInfo} from "../../../../../scripts/ts/metadata/User";
 import LocalUser from "../../../../../scripts/ts/utils/LocalUser";
 import {defaultLongDateFormat} from "ngx-bootstrap/chronos/locale/locale.class";
+import {ModalService} from "../../../../services/modal.service";
 
 @Component({
   selector: 'app-account-home-page',
@@ -25,7 +26,7 @@ export class AccountHomePageComponent implements OnInit {
   public initComplete = false;
   public user: UserInfo;
 
-  constructor(public userService: UserService) { }
+  constructor(public userService: UserService, private modalService: ModalService) { }
 
   getNicknameInitials(): string {
     return StringUtils.getInitials(this.user.username).toUpperCase();
@@ -45,6 +46,10 @@ export class AccountHomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = LocalUser.user;
+    document.querySelector('.change-wrapper').addEventListener('click', () => {
+      this.modalService.showModal('change-attr-modal');
+      localStorage.setItem('changeAttribute', 'status');
+    });
     if (localStorage.getItem('changeAttribute') === undefined) {
       localStorage.setItem('changeAttribute', 'username');
     }
