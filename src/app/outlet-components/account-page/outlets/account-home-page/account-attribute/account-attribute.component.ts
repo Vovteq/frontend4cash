@@ -1,9 +1,10 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-account-attribute',
   templateUrl: './account-attribute.component.html',
-  styleUrls: ['./account-attribute.component.scss']
+  styleUrls: ['./account-attribute.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AccountAttributeComponent implements OnInit {
   @Input() public label: string;
