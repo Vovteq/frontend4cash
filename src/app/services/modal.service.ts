@@ -240,12 +240,20 @@ export class ModalService implements OnDestroy{
       confirm.addEventListener('click', () => {
         const inputNum = parseInt(inputField.value);
         if (inputField.value.length > 0 && inputNum > 0) {
-
-          this.userService.addCash(inputNum).then(() => {
+          if (isDevMode()) {
             args[0](inputNum);
             LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + inputNum).toString();
-          }).catch(() => { console.log("ZagruZka babla (Cash, $, bucks) ne udalas (((((((") });
-          modal.hide();
+            modal.hide();
+          } else {
+            this.userService.addCash(inputNum).then(() => {
+              args[0](inputNum);
+              LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + inputNum).toString();
+              modal.hide();
+            }).catch(() => {
+              console.log("ZagruZka babla (Cash, $, bucks) ne udalas (((((((");
+              modal.hide();
+            });
+          }
         }
       });
     }

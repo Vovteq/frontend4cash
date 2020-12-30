@@ -5,6 +5,8 @@ import StringUtils from "../../../scripts/ts/utils/StringUtils";
 import {ConnectionService} from "../../services/connection.service";
 import {timer} from "rxjs";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {Property} from "csstype";
+import Float = Property.Float;
 
 @Component({
   selector: 'app-chart-container',
@@ -32,6 +34,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 export class ChartContainerComponent implements OnInit, AfterViewInit {
   public series = [{name: 'Price', data: [1, 2, 3]}];
   public xaxis: Object = {categories: [1, 2, 3]};
+  public yaxis: Object = {}
 
   public dataLoaded: boolean;
   public timerPassed: boolean;
@@ -74,9 +77,12 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
   }
 
   public render() {
-    this.series = [{name: 'Price', data: this.data.priceStory.getValues().map(entry => entry as unknown as number)}];
+    this.series = [{name: 'Price', data: this.data.priceStory.getValues().map(entry => parseFloat(entry))}];
+    this.yaxis = {
+      show: false
+    }
     this.xaxis = {
-      categories: this.data.priceStory.getKeys().map(entry => entry as unknown as number),
+      categories: this.data.priceStory.getKeys().map(entry => entry),
       tickAmount: 10
     };
     this.updateValues();

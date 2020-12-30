@@ -15,18 +15,13 @@ export default class Tweener {
   }
 
   public tweenValue(start: number, end: number, duration: number): void {
-    // assumes integer values for start and end
 
     const range = end - start;
-    // no timer shorter than 50ms (not really visible any way)
     const minTimer = 50;
-    // calc step time to show all interediate values
     let stepTime = Math.abs(Math.floor(duration / range));
 
-    // never go below minTimer
     stepTime = Math.max(stepTime, minTimer);
 
-    // get current time and calculate desired end time
     const startTime = new Date().getTime();
     const endTime = startTime + duration;
     let timer;

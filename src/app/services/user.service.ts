@@ -96,7 +96,11 @@ export class UserService {
 
   public addCash(amount: number): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
-      this.http.put(this.usersUrl + LocalUser.user.id + `/bablo?amount=${amount.toString()}`, {}).subscribe(() => {
+      this.http.put(this.usersUrl + LocalUser.user.id + `/bablo?amount=${amount.toString()}`, {}, {
+        headers: new HttpHeaders({
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        })
+      }).subscribe(() => {
         resolve();
       }, error => reject());
     }));
