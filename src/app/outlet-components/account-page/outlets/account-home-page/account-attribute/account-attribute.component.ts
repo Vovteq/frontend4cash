@@ -16,7 +16,7 @@ export class AccountAttributeComponent implements OnInit {
     console.log("Label: " + this.label);
     console.log("Val: " + this.value);
 
-    (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').innerHTML = this.label;
+    (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').innerHTML = this.label + '<button>Change</button>';
     (this.el.nativeElement as HTMLElement).querySelector('.attribute-value').innerHTML = this.value;
   }
 
