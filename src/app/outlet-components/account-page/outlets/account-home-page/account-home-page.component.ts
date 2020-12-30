@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, isDevMode, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {UserService} from "../../../../services/user.service";
 import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
@@ -48,7 +48,11 @@ export class AccountHomePageComponent implements OnInit {
       console.log("Key: " + key);
       console.log("Value: ");
       console.log(value);
-      self.ownedCoins.push(key);
+      if (!isDevMode()) {
+        self.ownedCoins.push((value as any)[0].toString());
+      } else {
+        self.ownedCoins.push(key);
+      }
     }
     console.log("Owned: " + this.ownedCoins);
     this.initComplete = true;
