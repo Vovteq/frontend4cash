@@ -83,6 +83,7 @@ export class MonitoringPageComponent implements OnInit{
     this.currencyChart.data = this.shownCurrency;
     this.currencyChart.render();
     this.error = '';
+    this.currencyChart.forceShow();
   }
 
   closeCurrencyChart(): void {

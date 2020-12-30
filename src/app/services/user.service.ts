@@ -94,6 +94,14 @@ export class UserService {
     return LocalUser.user;
   }
 
+  public addCash(amount: number): Promise<void> {
+    return new Promise<void>(((resolve, reject) => {
+      this.http.put(this.usersUrl + LocalUser.user.id + `/bablo?amount=${amount.toString()}`, {}).subscribe(() => {
+        resolve();
+      }, error => reject());
+    }));
+  }
+
   public getUser(id: string): Observable<UserInfo> {
     const self = this;
     return self.http.get<UserInfo>(`${self.usersUrl}${id}`, {

@@ -74,7 +74,7 @@
     <p [@errorAnimation] style="color: #ef4b43" *ngIf="error !== undefined && error.length > 0" [innerHTML]="error"></p>
     <div *ngIf="renderCurrencyChart" [@currencyChartAnimation] class="result-chart">
       <app-chart-container #shownCurrencyChart
-        [requestData]="true"
+        [requestData]="false"
         [id]="'bitcoin'"
         [connected]="connectionService.connected"
         [chart]="{

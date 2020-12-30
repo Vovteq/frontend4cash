@@ -116,8 +116,11 @@ $option-size: 320px;
   .recursive-arrow {
     margin: 0;
     position: absolute;
-    top: 0;
-    left: 0;
+    width: fit-content;
+    height: fit-content;
+    top: -8%;
+    transform: translateY(0, -50%);
+    left: -1%;
     z-index: -1;
   }
 }

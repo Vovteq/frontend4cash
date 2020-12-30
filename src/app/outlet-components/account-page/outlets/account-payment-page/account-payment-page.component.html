@@ -1,1 +1,44 @@
-<p>account-payment-page works!</p>
+<div class="col" style="position: relative">
+  <header [@showHeader]>
+    <h2>Payment</h2>
+  </header>
+
+  <div [@showContent]>
+    <div class="current-balance">
+      <h3>Your current balance</h3>
+      <div class="balance">
+        <p id="balance">{{currentCash}}$</p>
+      </div>
+      <p>To top up your balance, please, <br> choose one of the payment methods below.</p>
+    </div>
+
+    <div class="payment-wrapper">
+      <h3>Payment methods</h3>
+      <div class="payment-methods">
+        <div class="payment-method" (click)="modalService.showModal('payment-modal')">
+          <img src="../../../../../assets/img/swedbank.png">
+        </div>
+        <div class="payment-method" (click)="modalService.showModal('payment-modal')">
+          <img src="../../../../../assets/img/seb.png">
+        </div>
+        <div class="payment-method" (click)="modalService.showModal('payment-modal')">
+          <img src="../../../../../assets/img/creditcard.png">
+        </div>
+        <div class="payment-method" (click)="modalService.showModal('payment-modal')">
+          <img src="../../../../../assets/img/paypal.png">
+        </div>
+      </div>
+    </div>
+
+    <app-modal
+      [modalTemplateId]="'payment'"
+      [id]="'payment-modal'"
+      [draggable]="true"
+      [useCustomTemplate]="true"
+      [customTemplateArgs]="[addCash]"
+      style="right: 30%; top: 50%; transform: translate(30%, -50%)"
+      class="parallax-object" parallax-speed="-0.1"
+    >
+    </app-modal>
+  </div>
+</div>

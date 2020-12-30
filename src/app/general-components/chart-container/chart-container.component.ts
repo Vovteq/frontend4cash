@@ -82,6 +82,10 @@ export class ChartContainerComponent implements OnInit, AfterViewInit {
     this.updateValues();
   }
 
+  public forceShow(): void {
+    this.dataLoaded = true;
+  }
+
   private updateValues() {
     this._lastPrice = this.data ? this.data.priceStory.last().value as unknown as number : 0;
     this._lastUpdate = this.data ? this.data.priceStory.last().key : "now";

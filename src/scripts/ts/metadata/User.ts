@@ -5,6 +5,7 @@ export interface UserInfo {
   password: string;
   status: string;
   cash: string;
+  role: string;
   ownedCoins: { [id: string]: string };
 }
 
@@ -15,15 +16,17 @@ export class User {
   public email: string;
   public status: string;
   public cash: string;
+  public role: string;
   public ownedCoins: { [id: string]: string };
 
   public static readonly defaultUserInfo: UserInfo = {
     id: '0',
-    username: 'nickname',
-    email: 'email',
-    password: 'password',
-    status: 'status',
-    cash: 'cash',
+    username: 'Auferok',
+    email: 'auf@auf.com',
+    password: '12345lol',
+    status: 'Some cool status',
+    cash: '100',
+    role: "USER",
     ownedCoins: {}
   }
 
@@ -34,6 +37,7 @@ export class User {
     this.email = data.email;
     this.status = data.status;
     this.cash = data.cash;
+    this.role = data.role;
     this.ownedCoins = data.ownedCoins;
   }
 

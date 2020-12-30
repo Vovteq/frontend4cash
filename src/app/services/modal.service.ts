@@ -8,6 +8,7 @@ import {User, UserInfo} from "../../scripts/ts/metadata/User";
  import {mod} from "ngx-bootstrap/chronos/utils";
  import {CurrencyService} from "./currency.service";
  import {Currency, CurrencyPrice} from "../../scripts/ts/metadata/Currency";
+ import LocalUser from "../../scripts/ts/utils/LocalUser";
 
 @Injectable()
 export class ModalService implements OnDestroy{
@@ -127,6 +128,18 @@ export class ModalService implements OnDestroy{
       <p style="font-size: 24px">You will get:</p>
       <p class="valueField" style="font-size: 30px; color: #14c477">0 BTC</p>
       <button class="confirmExchangeButton" style="font-size: 20px">Confirm</button>
+    `,
+
+    payment: `
+      <h2>Payment</h2>
+      <p style="color:#575757; font-weight: lighter; font-size: 24px;">Top up your account balance</p>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="paymentAmount" type="number">
+        <span class="bar"></span>
+        <label>You will pay (USD)</label>
+      </div>
+      <button class="confirmPayment" style="font-size: 20px">Confirm</button>
     `
   };
 
@@ -193,7 +206,9 @@ export class ModalService implements OnDestroy{
     'exchange_cash2crypto': modal => {
       const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeFrom');
       const valueField = ModalService.getModalElementByClass<HTMLElement>(modal, '.valueField');
+      const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmExchangeButton');
       let currentPrice = 1;
+      let finalPrice = 0;
       this.currencyService.getCurrency('bitcoin').subscribe((price: CurrencyPrice) => {
         currentPrice = parseInt(Currency.fromJson('bitcoin', price).priceStory.last().value);
       });
@@ -203,7 +218,35 @@ export class ModalService implements OnDestroy{
         if (inputValue.length > 0) {
           sValue = parseInt(inputValue);
         }
-        valueField.innerHTML = ((sValue / currentPrice).toFixed(8)).toString() + " BTC";
+        finalPrice = (sValue / currentPrice);
+        valueField.innerHTML = finalPrice.toFixed(8) + " BTC";
+      });
+      confirm.addEventListener('click', () => {
+        const price = parseFloat(inputField.value);
+        if (parseFloat(LocalUser.user.cash) >= price && price > 0) {
+          if (LocalUser.user.ownedCoins['bitcoin'] !== undefined) {
+            LocalUser.user.ownedCoins['bitcoin'] = (parseFloat(LocalUser.user.ownedCoins['bitcoin']) + price).toString();
+          } else {
+            LocalUser.user.ownedCoins['bitcoin'] = price.toString();
+          }
+          LocalUser.user.cash = (parseFloat(LocalUser.user.cash) - price).toString();
+        }
+      });
+    },
+    'payment': (modal, args) => {
+      const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.paymentAmount');
+      const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmPayment');
+
+      confirm.addEventListener('click', () => {
+        const inputNum = parseInt(inputField.value);
+        if (inputField.value.length > 0 && inputNum > 0) {
+
+          this.userService.addCash(inputNum).then(() => {
+            args[0](inputNum);
+            LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + inputNum).toString();
+          }).catch(() => { console.log("ZagruZka babla (Cash, $, bucks) ne udalas (((((((") });
+          modal.hide();
+        }
       });
     }
   };

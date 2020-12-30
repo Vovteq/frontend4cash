@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {UserService} from "../../../app/services/user.service";
 import {Delegate} from "../delegates/Delegate";
 import {Local} from "protractor/built/driverProviders";
+import {isDevMode} from "@angular/core";
 
 export default class LocalUser {
   public static onLogIn: Delegate<[UserInfo]> = new Delegate<[UserInfo]>();
@@ -22,11 +23,11 @@ export default class LocalUser {
   }
 
   public static loggedIn(): boolean {
-    return LocalUser._user !== undefined;
+    return this.user !== undefined;
   }
 
   public static get user(): UserInfo {
-    return LocalUser._user;
+    return isDevMode() ? User.defaultUserInfo : LocalUser._user;
   }
 
   public static logOut() {

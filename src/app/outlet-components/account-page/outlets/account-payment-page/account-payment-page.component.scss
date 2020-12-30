@@ -1,0 +1,92 @@
+@import "../../../../utils/scss/colors";
+
+header {
+  background: $alterblue;
+  text-align: center;
+  color: $white;
+  padding: 4rem;
+  box-shadow: 0 0 15px 0 rgba($alterblue, 0.7);
+
+  h2 {
+    font-size: 40px;
+  }
+}
+
+h3 {
+  margin: 2rem 0;
+  letter-spacing: 5px;
+  color: $dark;
+}
+
+.current-balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .balance {
+    color: $white;
+    background: $alterblue;
+    text-align: center;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    box-shadow: 0 0 15px 0 rgba($alterblue, 0.4);
+
+    p {
+      color: $white;
+      margin: 0;
+      font-size: 35px;
+      letter-spacing: 4px;
+      text-shadow: 0 0 10px rgba($white, 0.4);
+      transition: 200ms all;
+
+      &.changed {
+        font-size: 50px;
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    margin: 1rem;
+    font-size: 23px;
+    color: $dark;
+  }
+}
+
+.payment-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+
+  .payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    justify-content: center;
+    transform: translateX(-1rem);
+
+    .payment-method {
+      border-radius: 30px;
+      box-shadow: 0 0 10px 0 rgba(#000, 0.3);
+      min-width: 300px;
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 1rem;
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+      cursor: pointer;
+
+      img {
+        max-width: 250px;
+        max-height: 150px;
+      }
+    }
+  }
+}

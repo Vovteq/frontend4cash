@@ -3,7 +3,7 @@ import {UserService} from "../../services/user.service";
 import {ModalService} from "../../services/modal.service";
 import {animate, group, style, transition, trigger} from "@angular/animations";
 import {PostInfo} from "../../../scripts/ts/metadata/Post";
-import {UserInfo} from "../../../scripts/ts/metadata/User";
+import {User, UserInfo} from "../../../scripts/ts/metadata/User";
 
 @Component({
   selector: 'app-forum-page',
@@ -33,7 +33,7 @@ export class ForumPageComponent implements OnInit {
   constructor(public userService: UserService, public modalService: ModalService) { }
 
   ngOnInit(): void {
-    const testUser: UserInfo = {id: '0', ownedCoins: {}, cash: '0', status: '', username: 'Auf', password: '', email: ''}
+    const testUser: UserInfo = User.defaultUserInfo;
 
     this._posts = [
       { user: testUser, message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'},
