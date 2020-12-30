@@ -21,7 +21,9 @@ export class AccountCurrencyComponent implements OnInit {
 
   public get value(): string {
     if (this.currencyInfo !== undefined) {
-      return this.currencyInfo.amount;
+      return parseFloat(this.currencyInfo.amount) < 100000 ?
+        StringUtils.roundStrDecimal(this.currencyInfo.amount, 10)
+        : StringUtils.roundStrDecimal(this.currencyInfo.amount, 2);
     }
     return "Not found";
   }
