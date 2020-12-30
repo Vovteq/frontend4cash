@@ -44,7 +44,7 @@ export class AccountHomePageComponent implements OnInit {
     const self = this;
     Object.keys(this.user.ownedCoins).forEach((key) => {
       console.log("Key: " + key);
-      self.ownedCoins.push(key);
+      self.ownedCoins.push(key.toString());
     });
     console.log("Owned: " + this.ownedCoins);
     this.initComplete = true;
