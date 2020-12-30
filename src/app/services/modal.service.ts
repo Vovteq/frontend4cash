@@ -171,6 +171,36 @@ export class ModalService implements OnDestroy{
       <button class="confirmPayment" style="font-size: 20px">Confirm</button>
       <div class="separator"></div>
       <button class="close" style="font-size: 20px; opacity: 1; padding: 0.5rem 1rem; border-radius: 10px">Close</button>
+    `,
+
+    change_attr: `
+      <h2 class="header">Change attribute</h2>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="newAttr" type="text">
+        <span class="bar"></span>
+        <label class="label"></label>
+      </div>
+      <button class="confirmChange" style="font-size: 20px">Confirm</button>
+      <div class="separator"></div>
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element" style="position: absolute; left: 37%; top: 37%; transform: translate(-37%; -37%); width: fit-content; height: fit-content;">
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+        </div>
+      </div>
+      <p class="error" style="font-size: 20px; color: #cd2c38"></p>
+      <button class="close" style="font-size: 20px; opacity: 1; padding: 0.5rem 1rem; border-radius: 10px">Close</button>
     `
   };
 
@@ -354,8 +384,55 @@ export class ModalService implements OnDestroy{
       close.addEventListener('click', () => {
         modal.hide();
       });
+    },
+    'change_attr': (modal, args) =>  {
+      const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.newAttr');
+      const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmChange');
+      const close = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.close');
+      const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+      const error = ModalService.getModalElementByClass<HTMLElement>(modal, '.error');
+      const label = ModalService.getModalElementByClass<HTMLElement>(modal, '.label');
+      const header = ModalService.getModalElementByClass<HTMLElement>(modal, '.header');
+
+      const attribute: string = args[0];
+      label.innerHTML = `New ${attribute}`
+      header.innerHTML = `Change ${attribute}`
+
+      confirm.addEventListener('click', () => {
+        const input = inputField.value;
+        if (input.length === 0) {
+          error.innerHTML = "Input is empty."
+          return;
+        }
+        if (isDevMode()) {
+          loading.style.display = 'block';
+          error.innerHTML = "";
+          setTimeout(() => {
+            if (attribute === 'username') {
+              LocalUser.user.username = inputField.value;
+            } else if(attribute === 'e-mail') {
+              LocalUser.user.email = inputField.value;
+            } else {
+              LocalUser.user.status = inputField.value;
+            }
+            modal.hide();
+          }, 1000);
+        } else {
+          loading.style.display = 'block';
+          error.innerHTML = "";
+          this.userService.changeAttribute(inputField.value, attribute).then(() => {
+            location.reload();
+          }).catch(() => {
+            error.innerHTML = "Something went wrong."
+          });
+        }
+      });
+
+      close.addEventListener('click', () => {
+        modal.hide();
+      });
     }
-  };
+  }
 
   public registerModal(id: string, modal: ModalComponent): void {
     ModalInspector.add(id, modal);

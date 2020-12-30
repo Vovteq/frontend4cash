@@ -111,6 +111,20 @@ export class UserService {
     });
   }
 
+  public changeAttribute(newValue: string, attribute: string): Promise<void> {
+    return new Promise<void>(((resolve, reject) => {
+      this.http.put(`${this.usersUrl}${LocalUser.user.id}/${attribute}?${attribute}=${newValue}`, {},
+        {
+          headers: new HttpHeaders({
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          })
+        }
+      ).subscribe(() => {
+        resolve();
+      }, error => {reject();});
+    }));
+  }
+
   public getUser(id: string): Observable<UserInfo> {
     const self = this;
     return self.http.get<UserInfo>(`${self.usersUrl}${id}`, {

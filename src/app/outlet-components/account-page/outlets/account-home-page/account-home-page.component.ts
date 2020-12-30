@@ -31,6 +31,10 @@ export class AccountHomePageComponent implements OnInit {
     return StringUtils.getInitials(this.user.username).toUpperCase();
   }
 
+  public get changeType(): string {
+    return localStorage.getItem('changeAttribute');
+  }
+
   getStatus(): string {
     return this.user.status != null && this.user.status.length > 0 ? this.user.status : "This user has no status";
   }
@@ -41,30 +45,21 @@ export class AccountHomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = LocalUser.user;
+    if (localStorage.getItem('changeAttribute') === undefined) {
+      localStorage.setItem('changeAttribute', 'username');
+    }
     const self = this;
-    console.log("USER: ");
-    console.log(this.user);
     if (!isDevMode()) {
       for (let elem of (this.user.ownedCoins as unknown as Array<any>)) {
-        console.log("ELEM: ");
-        console.log(elem);
         for (let [key, value] of Object.entries(elem)) {
-          console.log("Key: ");
-          console.log(key);
-          console.log("Value: ");
-          console.log(value);
           self.ownedCoins.push({coin: key.toString(), amount: value.toString()})
         }
       }
     } else {
       for (const [key, value] of Object.entries(this.user.ownedCoins)) {
-        console.log("Key: " + key);
-        console.log("Value: ");
-        console.log(value);
         self.ownedCoins.push({coin: key, amount: value});
       }
     }
-    console.log("Owned: " + this.ownedCoins);
     this.initComplete = true;
   }
 

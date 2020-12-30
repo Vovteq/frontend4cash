@@ -3,7 +3,7 @@
   <div class="connector-right"></div>
   <div class="attribute-name">
     {{label}}
-    <button>Change</button>
+    <button *ngIf="editable">Change</button>
   </div>
   <div class="attribute-value">{{value}}</div>
 </div>

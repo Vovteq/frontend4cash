@@ -16,16 +16,21 @@
       <app-account-attribute
         [label]="'Nickname'"
         [value]="user.username"
+        [editable]="true"
+        [attribute]="'username'"
       >
       </app-account-attribute>
       <app-account-attribute
         [label]="'Password'"
         [value]="getEncryptedPassword()"
+        [editable]="false"
       >
       </app-account-attribute>
       <app-account-attribute
         [label]="'E-mail'"
         [value]="user.email"
+        [editable]="true"
+        [attribute]="'e-mail'"
       >
       </app-account-attribute>
 
@@ -43,4 +48,15 @@
       <app-link [routeLink]="true" [route]="'../../exchange'" [text]="'Go to exchange page'"></app-link>
     </div>
   </div>
+
+  <app-modal
+    [modalTemplateId]="'change_attr'"
+    [id]="'change-attr-modal'"
+    [useCustomTemplate]="true"
+    [customTemplateArgs]="[changeType]"
+    [draggable]="true"
+    style="left: 40%; top: 40%"
+  >
+
+  </app-modal>
 </div>
