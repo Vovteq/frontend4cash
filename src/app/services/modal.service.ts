@@ -164,7 +164,7 @@ export class ModalService implements OnDestroy{
       <p style="color:#575757; font-weight: lighter; font-size: 24px;">Top up your account balance</p>
       <div class="separator"></div>
       <div class="modal-input-wrapper" style="margin-bottom: 1rem">
-        <input style="font-size: 20px" class="paymentAmount" type="number">
+        <input style="font-size: 20px" class="paymentAmount" type="number" step="1" min="0">
         <span class="bar"></span>
         <label>You will pay (USD)</label>
       </div>
@@ -362,7 +362,7 @@ export class ModalService implements OnDestroy{
       const close = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.close');
 
       confirm.addEventListener('click', () => {
-        const inputNum = parseFloat(inputField.value);
+        const inputNum = parseInt(inputField.value);
         if (inputField.value.length > 0 && inputNum > 0) {
           if (isDevMode()) {
             args[0](inputNum);
