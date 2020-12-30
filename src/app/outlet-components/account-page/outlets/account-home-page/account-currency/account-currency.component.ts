@@ -22,7 +22,7 @@ export class AccountCurrencyComponent implements OnInit {
   public get value(): string {
     const currency = LocalUser.user.ownedCoins[this.currencyName.toLowerCase()];
     if (currency !== undefined) {
-      console.log(currency);
+      console.log("Currency: " + currency);
       return currency.replace('.', ',').substring(0, 10);
     }
     return "Not found";
