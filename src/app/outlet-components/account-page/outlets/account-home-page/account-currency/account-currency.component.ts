@@ -20,10 +20,11 @@ export class AccountCurrencyComponent implements OnInit {
   @Input() currencyName: string;
 
   public get value(): string {
-    const currency = LocalUser.user.ownedCoins[this.currencyName.toLowerCase()];
+    const currency = LocalUser.user.ownedCoins[this.currencyName.toLowerCase()].toString();
     if (currency !== undefined) {
-      console.log("Currency: " + currency);
-      return currency.replace('.', ',').substring(0, 10);
+      console.log("Currency: ");
+      console.log(currency);
+      return currency.toString().replace('.', ',').substring(0, 10);
     }
     return "Not found";
   }
