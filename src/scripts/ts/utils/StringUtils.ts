@@ -24,6 +24,16 @@ export default class StringUtils {
     return value.charAt(0) + this.extractMiddle(value).charAt(0) + value.charAt(value.length - 1);
   }
 
+  public static roundStrDecimal(val: string, afterComa: number = 2): string {
+    const spliced = val.split('.');
+    let result = ""
+    result += spliced[0];
+    if (spliced.length > 1) {
+      result += "." + spliced[1].substring(0, afterComa);
+    }
+    return result;
+  }
+
   public static extractMiddle(str: string): string {
     let position;
     let length;

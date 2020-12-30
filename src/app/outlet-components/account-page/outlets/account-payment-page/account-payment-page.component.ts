@@ -6,6 +6,7 @@ import LocalUser from "../../../../../scripts/ts/utils/LocalUser";
 import {animate, style, transition, trigger} from "@angular/animations";
 import Tweener from "../../../../../scripts/ts/utils/Tweener";
 import {CountUpDirective} from "ngx-countup";
+import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
 
 @Component({
   selector: 'app-account-payment-page',
@@ -36,9 +37,9 @@ export class AccountPaymentPageComponent implements OnInit {
 
   public get currentCash(): string {
     if (AccountPaymentPageComponent.cashTweener !== undefined) {
-      return AccountPaymentPageComponent.cashTweener.processedValue.toString();
+      return StringUtils.roundStrDecimal(AccountPaymentPageComponent.cashTweener.processedValue.toString());
     }
-    return LocalUser.user.cash.toString();
+    return StringUtils.roundStrDecimal(LocalUser.user.cash.toString());
   }
 
   ngOnInit(): void {
@@ -56,6 +57,10 @@ export class AccountPaymentPageComponent implements OnInit {
     AccountPaymentPageComponent.cashTweener.onTweenDone.add(() => {
       balanceElem.classList.remove("changed");
     });
+    setTimeout(() => {
+      AccountPaymentPageComponent.cashTweener = undefined;
+      balanceElem.classList.remove("changed");
+    }, 501)
     AccountPaymentPageComponent.cashTweener.tweenValue(parseFloat(LocalUser.user.cash), parseFloat(LocalUser.user.cash) + amount, 500);
   }
 

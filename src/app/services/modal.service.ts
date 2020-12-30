@@ -332,7 +332,7 @@ export class ModalService implements OnDestroy{
       const close = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.close');
 
       confirm.addEventListener('click', () => {
-        const inputNum = parseInt(inputField.value);
+        const inputNum = parseFloat(inputField.value);
         if (inputField.value.length > 0 && inputNum > 0) {
           if (isDevMode()) {
             args[0](inputNum);
