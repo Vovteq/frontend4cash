@@ -4,6 +4,7 @@ import {UserService} from "../../../../services/user.service";
 import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
 import {UserInfo} from "../../../../../scripts/ts/metadata/User";
 import LocalUser from "../../../../../scripts/ts/utils/LocalUser";
+import {defaultLongDateFormat} from "ngx-bootstrap/chronos/locale/locale.class";
 
 @Component({
   selector: 'app-account-home-page',
@@ -26,7 +27,7 @@ export class AccountHomePageComponent implements OnInit {
   constructor(public userService: UserService) { }
 
   public get user(): UserInfo {
-    return this.userService.getLocalUser();
+    return LocalUser.user;
   }
 
   getNicknameInitials(): string {
