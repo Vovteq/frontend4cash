@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-account-attribute',
@@ -10,11 +10,14 @@ export class AccountAttributeComponent implements OnInit {
   @Input() editable: boolean;
   @Input() public value: any;
 
-  constructor() { }
+  constructor(private el: ElementRef) { }
 
   ngOnInit(): void {
     console.log("Label: " + this.label);
     console.log("Val: " + this.value);
+
+    (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').innerHTML = this.label;
+    (this.el.nativeElement as HTMLElement).querySelector('.attribute-value').innerHTML = this.value;
   }
 
 }
