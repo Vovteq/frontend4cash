@@ -19,6 +19,7 @@ export default class LocalUser {
     LocalUser._user = user;
     LocalUser.onLogIn.invoke([LocalUser._user]);
     LocalUser.onLogTry.invoke([true]);
+    console.log(LocalUser._user);
     return true;
   }
 
