@@ -27,6 +27,7 @@ export class AccountHomePageComponent implements OnInit {
   constructor(public userService: UserService) { }
 
   public get user(): UserInfo {
+    console.log(LocalUser.user);
     return LocalUser.user;
   }
 
