@@ -140,6 +140,8 @@ export class ModalService implements OnDestroy{
         <label>You will pay (USD)</label>
       </div>
       <button class="confirmPayment" style="font-size: 20px">Confirm</button>
+      <div class="separator"></div>
+      <button class="close" style="font-size: 20px; opacity: 1; padding: 0.5rem 1rem; border-radius: 10px">Close</button>
     `
   };
 
@@ -236,6 +238,7 @@ export class ModalService implements OnDestroy{
     'payment': (modal, args) => {
       const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.paymentAmount');
       const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmPayment');
+      const close = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.close');
 
       confirm.addEventListener('click', () => {
         const inputNum = parseInt(inputField.value);
@@ -255,6 +258,10 @@ export class ModalService implements OnDestroy{
             });
           }
         }
+      });
+
+      close.addEventListener('click', () => {
+        modal.hide();
       });
     }
   };
