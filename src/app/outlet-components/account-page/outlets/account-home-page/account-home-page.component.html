@@ -33,7 +33,7 @@
   </div>
   <p style="font-size: 40px; font-weight: lighter;">Your wallet</p>
   <div style="margin-bottom: 2rem" class="account-currencies" *ngIf="initComplete">
-    <app-account-currency *ngFor="let key of ownedCoins" [currencyName]="key"
+    <app-account-currency *ngFor="let key of ownedCoins" [currencyInfo]="key"
     >
 
     </app-account-currency>

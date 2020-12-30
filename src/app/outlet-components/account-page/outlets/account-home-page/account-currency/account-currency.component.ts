@@ -17,24 +17,21 @@ import StringUtils from "../../../../../../scripts/ts/utils/StringUtils";
   ]
 })
 export class AccountCurrencyComponent implements OnInit {
-  @Input() currencyName: string;
+  @Input() currencyInfo: {coin: string, amount: string};
 
   public get value(): string {
-    const currency = LocalUser.user.ownedCoins[this.currencyName.toLowerCase()].toString();
-    if (currency !== undefined) {
-      console.log("Currency: ");
-      console.log(currency);
-      return currency.toString().replace('.', ',').substring(0, 10);
+    if (this.currencyInfo !== undefined) {
+      return this.currencyInfo.amount;
     }
     return "Not found";
   }
 
   public get initials(): string {
-    return StringUtils.getThreeInitials(this.currencyName).toUpperCase();
+    return StringUtils.getThreeInitials(this.currencyInfo.coin).toUpperCase();
   }
 
   public get currName() {
-    return StringUtils.capitalize(this.currencyName);
+    return StringUtils.capitalize(this.currencyInfo.coin);
   }
 
   constructor() { }
