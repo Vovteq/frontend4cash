@@ -6,9 +6,9 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./account-attribute.component.scss']
 })
 export class AccountAttributeComponent implements OnInit {
-  @Input() label: string;
+  @Input() public label: string;
   @Input() editable: boolean;
-  @Input() value: any;
+  @Input() public value: any;
 
   constructor() { }
 
