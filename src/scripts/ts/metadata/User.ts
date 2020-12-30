@@ -1,18 +1,16 @@
 export interface UserInfo {
-  id: string;
+  id: number;
   username: string;
   email: string;
-  password: string;
   status: string;
   cash: string;
   role: string;
-  ownedCoins: { [id: string]: string };
+  ownedCoins: { [coinId: string]: string };
 }
 
 export class User {
   public nickname: string;
-  public id: string;
-  public password: string;
+  public id: number;
   public email: string;
   public status: string;
   public cash: string;
@@ -20,20 +18,18 @@ export class User {
   public ownedCoins: { [id: string]: string };
 
   public static readonly defaultUserInfo: UserInfo = {
-    id: '0',
+    id: 0,
     username: 'Auferok',
     email: 'auf@auf.com',
-    password: '12345lol',
     status: 'Some cool status',
     cash: '100',
     role: "USER",
     ownedCoins: {'bitcoin':'0.1255'}
   }
 
-  constructor(id: string, data: UserInfo) {
+  constructor(id: number, data: UserInfo) {
     this.id = id;
     this.nickname = data.username;
-    this.password = data.password;
     this.email = data.email;
     this.status = data.status;
     this.cash = data.cash;

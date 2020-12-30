@@ -107,7 +107,7 @@ export class UserService {
   }
 
   public updateUserData() {
-    this.getUser(LocalUser.user.id).subscribe((user) => {
+    this.getUser(LocalUser.user.id.toString()).subscribe((user) => {
       LocalUser.setUser(user);
     });
   }

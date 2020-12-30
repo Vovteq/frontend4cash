@@ -38,7 +38,7 @@ export class AccountHomePageComponent implements OnInit {
   }
 
   getEncryptedPassword(): string {
-    return "*".repeat(this.user.password.length);
+    return "*".repeat(10);
   }
 
   ngOnInit(): void {
