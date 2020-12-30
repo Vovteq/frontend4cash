@@ -23,13 +23,9 @@ import {defaultLongDateFormat} from "ngx-bootstrap/chronos/locale/locale.class";
 export class AccountHomePageComponent implements OnInit {
   public ownedCoins: Array<string> = [];
   public initComplete = false;
+  public user: UserInfo;
 
   constructor(public userService: UserService) { }
-
-  public get user(): UserInfo {
-    console.log(LocalUser.user);
-    return LocalUser.user;
-  }
 
   getNicknameInitials(): string {
     return StringUtils.getInitials(this.user.username).toUpperCase();
@@ -44,9 +40,11 @@ export class AccountHomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user = LocalUser.user;
+    const self = this;
     Object.keys(LocalUser.user.ownedCoins).forEach((key) => {
-      this.ownedCoins.push(key);
-    })
+      self.ownedCoins.push(key);
+    });
     console.log(this.ownedCoins);
     this.initComplete = true;
   }

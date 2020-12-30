@@ -13,6 +13,8 @@ export class AccountAttributeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("Label: " + this.label);
+    console.log("Val: " + this.value);
   }
 
 }
