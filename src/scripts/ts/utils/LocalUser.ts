@@ -34,7 +34,7 @@ export default class LocalUser {
     LocalUser._user = undefined;
   }
 
-  public static forceLogIn(user: UserInfo) {
+  public static setUser(user: UserInfo) {
     LocalUser._user = user;
   }
 }

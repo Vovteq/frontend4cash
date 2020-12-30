@@ -1,5 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
+import LocalUser from "../../../../../../scripts/ts/utils/LocalUser";
+import StringUtils from "../../../../../../scripts/ts/utils/StringUtils";
 
 @Component({
   selector: 'app-account-currency',
@@ -15,11 +17,23 @@ import {animate, style, transition, trigger} from "@angular/animations";
   ]
 })
 export class AccountCurrencyComponent implements OnInit {
-  @Input() currencyId;
+  @Input() currencyName: string;
+
+  public get value(): string {
+    return LocalUser.user.ownedCoins[this.currencyName.toLowerCase()].replace('.', ',').substring(0, 10);
+  }
+
+  public get initials(): string {
+    return StringUtils.getThreeInitials(this.currencyName).toUpperCase();
+  }
+
+  public get currName() {
+    return StringUtils.capitalize(this.currencyName);
+  }
 
   constructor() { }
 
   ngOnInit(): void {
-  }
 
+  }
 }

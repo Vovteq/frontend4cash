@@ -1,9 +1,10 @@
 import {Injectable, isDevMode} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
 import {error} from "@angular/compiler/src/util";
 import {CurrencyPrice} from "../../scripts/ts/metadata/Currency";
+import LocalUser from "../../scripts/ts/utils/LocalUser";
 
 @Injectable()
 export class CurrencyService {
@@ -28,6 +29,21 @@ export class CurrencyService {
     }
 
     return obs;
+  }
+
+  public addCurrency(amount: number, currency: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.http.put(this.currenciesUrl + `${currency}/buy?amount=${amount}&userId=${LocalUser.user.id}`, {},
+        {
+          headers: new HttpHeaders({
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
+          })
+        }
+      ).subscribe(() => {
+        resolve();
+      }, error1 => { reject(); });
+    });
+
   }
 
   public getAllCurrencies(): Observable<any> {

@@ -123,3 +123,10 @@ p {
     }
   }
 }
+
+.no-currency {
+  p {
+    font-size: 19px;
+    color: $dark;
+  }
+}

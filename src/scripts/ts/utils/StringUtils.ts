@@ -19,4 +19,23 @@ export default class StringUtils {
     }
     return result;
   }
+
+  public static getThreeInitials(value: string): string {
+    return value.charAt(0) + this.extractMiddle(value).charAt(0) + value.charAt(value.length - 1);
+  }
+
+  public static extractMiddle(str: string): string {
+    let position;
+    let length;
+
+    if(str.length % 2 == 1) {
+      position = str.length / 2;
+      length = 1;
+    } else {
+      position = str.length / 2 - 1;
+      length = 2;
+    }
+
+    return str.substring(position, position + length)
+  }
 }

@@ -15,7 +15,6 @@ export default class Tweener {
   }
 
   public tweenValue(start: number, end: number, duration: number): void {
-
     const range = end - start;
     const minTimer = 50;
     let stepTime = Math.abs(Math.floor(duration / range));

@@ -106,6 +106,12 @@ export class UserService {
     }));
   }
 
+  public updateUserData() {
+    this.getUser(LocalUser.user.id).subscribe((user) => {
+      LocalUser.setUser(user);
+    });
+  }
+
   public getUser(id: string): Observable<UserInfo> {
     const self = this;
     return self.http.get<UserInfo>(`${self.usersUrl}${id}`, {

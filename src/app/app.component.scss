@@ -4,6 +4,7 @@
 @import "separate-styles/forum";
 @import "separate-styles/about";
 @import "utils/scss/colors";
+@import "utils/scss/loading";
 
 .main-container {
   position: relative;
@@ -92,7 +93,7 @@ app-modal {
 }
 
 footer {
-  padding: 1rem 4.5rem 1rem 2rem;
+  padding: 1.25rem 4.5rem 0.7rem 2rem;
   background: $dark;
   display: flex;
   align-items: center;

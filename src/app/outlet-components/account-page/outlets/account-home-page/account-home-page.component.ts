@@ -3,6 +3,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
 import {UserService} from "../../../../services/user.service";
 import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
 import {UserInfo} from "../../../../../scripts/ts/metadata/User";
+import LocalUser from "../../../../../scripts/ts/utils/LocalUser";
 
 @Component({
   selector: 'app-account-home-page',
@@ -19,6 +20,8 @@ import {UserInfo} from "../../../../../scripts/ts/metadata/User";
   ]
 })
 export class AccountHomePageComponent implements OnInit {
+  public ownedCoins: Array<string> = [];
+  public initComplete = false;
 
   constructor(public userService: UserService) { }
 
@@ -39,6 +42,10 @@ export class AccountHomePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    Object.keys(LocalUser.user.ownedCoins).forEach((key) => {
+      this.ownedCoins.push(key);
+    })
+    this.initComplete = true;
   }
 
 }

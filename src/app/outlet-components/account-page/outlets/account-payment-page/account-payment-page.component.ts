@@ -5,6 +5,7 @@ import {UserInfo} from "../../../../../scripts/ts/metadata/User";
 import LocalUser from "../../../../../scripts/ts/utils/LocalUser";
 import {animate, style, transition, trigger} from "@angular/animations";
 import Tweener from "../../../../../scripts/ts/utils/Tweener";
+import {CountUpDirective} from "ngx-countup";
 
 @Component({
   selector: 'app-account-payment-page',

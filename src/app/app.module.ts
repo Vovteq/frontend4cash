@@ -46,6 +46,7 @@ import { AccountCurrencyComponent } from './outlet-components/account-page/outle
 import { AccountPaymentPageComponent } from './outlet-components/account-page/outlets/account-payment-page/account-payment-page.component';
 import { TemporalLinkDirective } from './directives/temporal-link.directive';
 import { ShowModalDirective } from './directives/show-modal.directive';
+import {CountUpModule} from "ngx-countup";
 
 @NgModule({
   declarations: [
@@ -80,18 +81,19 @@ import { ShowModalDirective } from './directives/show-modal.directive';
     TemporalLinkDirective,
     ShowModalDirective
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    NgApexchartsModule,
-    BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),
-    ModalModule.forChild(),
-    BrowserAnimationsModule,
-    FontAwesomeModule,
-    AngularDraggableModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        NgApexchartsModule,
+        BsDropdownModule.forRoot(),
+        TooltipModule.forRoot(),
+        ModalModule.forChild(),
+        BrowserAnimationsModule,
+        FontAwesomeModule,
+        AngularDraggableModule,
+        CountUpModule
+    ],
   providers: [
     CurrencyService,
     ScriptService,

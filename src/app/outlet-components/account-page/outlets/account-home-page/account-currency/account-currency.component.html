@@ -1,14 +1,14 @@
 <div [@showHide] class="currency-wrapper">
   <div class="currency-header">
     <div class="currency-icon">
-      <h2>BTC</h2>
+      <h2>{{initials}}</h2>
     </div>
-    <p>Bitcoin</p>
+    <p>{{currName}}</p>
   </div>
   <div class="separator"></div>
   <div class="currency-content">
     <p>Balance</p>
-    <p class="balance">100,00</p>
-    <app-context-button [text]="'Buy'"></app-context-button>
+    <p class="balance">{{value}}</p>
+    <app-context-button [text]="'Sell'"></app-context-button>
   </div>
 </div>

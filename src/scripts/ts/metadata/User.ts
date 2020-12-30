@@ -27,7 +27,7 @@ export class User {
     status: 'Some cool status',
     cash: '100',
     role: "USER",
-    ownedCoins: {}
+    ownedCoins: {'bitcoin':'0.1255'}
   }
 
   constructor(id: string, data: UserInfo) {
