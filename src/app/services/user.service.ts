@@ -36,7 +36,6 @@ export class UserService {
     return LocalUser.loggedIn();
   }
 
-
   public logIn(email: string, password: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
       if (email === null || password === null) {

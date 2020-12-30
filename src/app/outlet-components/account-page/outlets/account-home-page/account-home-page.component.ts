@@ -42,10 +42,10 @@ export class AccountHomePageComponent implements OnInit {
   ngOnInit(): void {
     this.user = LocalUser.user;
     const self = this;
-    Object.keys(this.user.ownedCoins).forEach((key) => {
+    for (const [key, value] of Object.entries(this.user.ownedCoins)) {
       console.log("Key: " + key);
       self.ownedCoins.push(key.toString());
-    });
+    }
     console.log("Owned: " + this.ownedCoins);
     this.initComplete = true;
   }
