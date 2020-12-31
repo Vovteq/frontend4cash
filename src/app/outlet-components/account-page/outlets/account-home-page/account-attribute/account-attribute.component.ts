@@ -21,6 +21,10 @@ export class AccountAttributeComponent implements OnInit {
       this.editable ? this.label + '<button>Change</button>' : this.label;
     if (this.editable) {
       (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').querySelector('button').addEventListener('click', () => {
+        if (this.label === 'Password') {
+          this.modalService.showModal('password-tooltip-modal');
+          return;
+        }
         this.modalService.showModal('change-attr-modal');
         localStorage.setItem('changeAttribute', this.attribute);
       });

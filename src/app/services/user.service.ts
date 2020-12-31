@@ -120,7 +120,7 @@ export class UserService {
           })
         }
       ).subscribe(() => {
-        if (attribute === 'e-mail') {
+        if (attribute === 'email') {
           localStorage.setItem('lastLoggedInEmail', newValue);
         }
         resolve();

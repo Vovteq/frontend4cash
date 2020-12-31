@@ -23,14 +23,14 @@
       <app-account-attribute
         [label]="'Password'"
         [value]="getEncryptedPassword()"
-        [editable]="false"
+        [editable]="true"
       >
       </app-account-attribute>
       <app-account-attribute
         [label]="'E-mail'"
         [value]="user.email"
         [editable]="true"
-        [attribute]="'e-mail'"
+        [attribute]="'email'"
       >
       </app-account-attribute>
 
@@ -58,5 +58,20 @@
     style="left: 40%; top: 40%"
   >
 
+  </app-modal>
+
+  <app-modal
+    [modalTemplateId]="'tooltip'"
+    [id]="'password-tooltip-modal'"
+    [useCustomTemplate]="true"
+    [customTemplateArgs]="[
+      'Work in progress',
+      'Password changing is not implemented yet.',
+      'Got it',
+      '400px'
+      ]"
+    style="left: 10%; top: 20%;"
+    class="parallax-object" parallax-speed="-0.1"
+  >
   </app-modal>
 </div>
