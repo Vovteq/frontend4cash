@@ -206,6 +206,48 @@ export class ModalService implements OnDestroy{
       <button class="confirmExchangeButton" style="font-size: 20px">Confirm</button>
     `,
 
+    exchange_crypto2cash: `
+      <h2>Exchange</h2>
+      <p style="color:#575757; font-weight: lighter; font-size: 24px;">Exchange cryptocurrency to cash</p>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="exchangeFrom" type="number">
+        <span class="bar"></span>
+        <label class="giveLabel">You will give:</label>
+      </div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="cryptoName" type="text">
+        <span class="bar"></span>
+        <label>Currency name</label>
+      </div>
+      <p style="font-size: 24px">You will get:</p>
+      <p class="valueField" style="font-size: 30px; color: #14c477">0</p>
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element" style="position: absolute; left: 40%; top: 40%; transform: translate(-40%; -40%); width: fit-content; height: fit-content;">
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+        </div>
+      </div>
+
+      <div class="success" style="display: none; flex-direction: column; align-items: center; justify-content: center; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(8px)">
+        <p style="text-shadow: 0 0 20px rgba(82,207,54,0.4); color: #52cf36;font-size: 70px; border-radius: 50%; border: 2px solid #52cf36; padding: 0 1.5rem">✓</p>
+        <p style="text-shadow: 0 0 10px rgba(82,207,54,0.4); color: #52cf36; font-size: 55px">Success</p>
+      </div>
+
+      <p class="error" style="font-size: 20px; color: #cd2c38"></p>
+      <button class="confirmExchangeButton" style="font-size: 20px">Confirm</button>
+    `,
+
     payment: `
       <h2>Payment</h2>
       <p style="color:#575757; font-weight: lighter; font-size: 24px;">Top up your account balance</p>
@@ -442,6 +484,11 @@ export class ModalService implements OnDestroy{
       fromCurrencyField.addEventListener('change', (event) => {
         loading.style.display = 'block';
         this.currencyService.getCurrency(fromCurrencyField.value.toLowerCase()).subscribe((price: CurrencyPrice) => {
+          if (LocalUser.user.ownedCoins[fromCurrencyField.value] === undefined) {
+            error.innerHTML = "You dont have such currency."
+            loading.style.display = 'none';
+            return;
+          }
           fromPrice = parseFloat(Currency.fromJson('bitcoin', price).priceStory.last().value);
           error.innerHTML = "";
           loading.style.display = 'none';
@@ -585,6 +632,101 @@ export class ModalService implements OnDestroy{
 
       close.addEventListener('click', () => {
         modal.hide();
+      });
+    },
+
+    'exchange_crypto2cash': modal => {
+      const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeFrom');
+      const valueField = ModalService.getModalElementByClass<HTMLElement>(modal, '.valueField');
+      const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmExchangeButton');
+      const crypto = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.cryptoName');
+      const error = ModalService.getModalElementByClass<HTMLElement>(modal, '.error');
+      const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+      const success = ModalService.getModalElementByClass<HTMLElement>(modal, '.success');
+
+      let currentPrice = undefined;
+      let finalPrice = 0;
+
+      function updatePrice() {
+        if (currentPrice === undefined) {
+          return;
+        }
+        const inputValue = parseFloat(inputField.value);
+
+        if (inputValue <= 0) {
+          error.innerHTML = "You must give more than 0 currency";
+          return;
+        }
+
+        finalPrice = (inputValue * currentPrice);
+        error.innerHTML = "";
+        valueField.innerHTML = finalPrice.toFixed(8) + `$`;
+      }
+
+      crypto.addEventListener('change', (event) => {
+        loading.style.display = 'block';
+        this.currencyService.getCurrency(crypto.value.toLowerCase()).subscribe((price: CurrencyPrice) => {
+          if (LocalUser.user.ownedCoins[crypto.value] === undefined) {
+            error.innerHTML = "You dont have such currency."
+            loading.style.display = 'none';
+            return;
+          }
+          currentPrice = parseFloat(Currency.fromJson('bitcoin', price).priceStory.last().value);
+          error.innerHTML = "";
+          loading.style.display = 'none';
+          updatePrice();
+        }, error1 => { currentPrice = undefined; valueField.innerHTML = "0"; error.innerHTML = "Wrong currency name."; loading.style.display = 'none';  });
+      })
+
+      inputField.addEventListener('input', (event) => {
+        if (currentPrice === undefined) {
+          finalPrice = 0;
+          valueField.innerHTML = "0";
+          return;
+        }
+        updatePrice();
+      });
+      confirm.addEventListener('click', () => {
+        if (currentPrice === undefined || finalPrice <= 0) {
+          error.innerHTML = "Wrong field data."
+          return;
+        }
+
+        if (parseFloat(LocalUser.user.ownedCoins[crypto.value]) >= parseFloat(inputField.value)) {
+          if (isDevMode()) {
+            LocalUser.user.ownedCoins[crypto.value] = (parseFloat(LocalUser.user.ownedCoins[crypto.value]) - parseFloat(inputField.value)).toString();
+            LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + finalPrice).toString();
+            if(parseFloat(LocalUser.user.ownedCoins[crypto.value]) === 0) {
+              delete LocalUser.user.ownedCoins[crypto.value];
+            }
+
+            error.innerHTML = "";
+            loading.style.display = 'block';
+            setTimeout(() => {
+              loading.style.display = 'none';
+              success.style.display = 'flex';
+            }, 2000);
+            setTimeout(() => {
+              modal.hide();
+            }, 4000);
+          } else {
+            loading.style.display = 'block';
+            this.currencyService.changeCurrency(parseFloat(inputField.value), crypto.value.toLowerCase(), "sell").then(() => {
+              error.innerHTML = "";
+              success.style.display = 'flex';
+              loading.style.display = 'none';
+              this.userService.updateUserData();
+              setTimeout(() => {
+                modal.hide();
+              }, 2000);
+            }).catch(() => {
+              error.innerHTML = "Something went wrong, please, try again.";
+              loading.style.display = 'none';
+            });
+          }
+        } else {
+          error.innerHTML = "You have not enough crypto."
+        }
       });
     }
   }

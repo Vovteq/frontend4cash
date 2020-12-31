@@ -43,6 +43,8 @@ export class ExchangePageComponent implements OnInit, AfterViewInit {
           this.modalService.showModal('exchange-modal')
         else if (option.nativeElement.id === 'crypto2crypto') {
           this.modalService.showModal('exchange-crypto-modal')
+        } else {
+          this.modalService.showModal('exchange-cash-modal')
         }
       });
     })
