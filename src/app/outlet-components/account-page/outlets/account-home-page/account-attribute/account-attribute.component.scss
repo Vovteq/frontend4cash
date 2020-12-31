@@ -50,7 +50,8 @@
   }
 
   .attribute-value {
-    color: $dark;
+    color: $white;
+    text-shadow: 0 0 10px rgba($white, 0.8);
   }
 
   .connector-left::before, .connector-right::before {
