@@ -1,7 +1,7 @@
 <section [@show] class="exchange__section">
   <div class="section-header" style="margin-top: 5rem">Exchange</div>
   <div class="options">
-    <div #option [@showOption] class="exchange-option-wrapper">
+    <div #option id="cash2crypto" [@showOption] class="exchange-option-wrapper">
       <div class="exchange-option-header">
         <p class="option-title">USD <span>➜</span>  BTC</p>
         <p class="option-subtitle">Cash to Bitcoin</p>
@@ -14,7 +14,7 @@
 
     <img src="../../../assets/img/arrow_p.png">
 
-    <div #option [@showOption] class="exchange-option-wrapper">
+    <div #option id="crypto2crypto" [@showOption] class="exchange-option-wrapper">
       <div class="exchange-option-header">
         <p class="option-title">BTC <span>➜</span> ETH</p>
         <p class="option-subtitle">Bitcoin to Ethereum</p>
@@ -47,6 +47,16 @@
       style="right: 40%; top: 10%;"
       class="parallax-object" parallax-speed="-0.1"
     >
+    </app-modal>
+
+    <app-modal
+      [modalTemplateId]="'exchange_crypto2crypto'"
+      [id]="'exchange-crypto-modal'"
+      [draggable]="true"
+      style="right: 40%; top: 10%;"
+      class="parallax-object" parallax-speed="-0.1"
+    >
+
     </app-modal>
 
 

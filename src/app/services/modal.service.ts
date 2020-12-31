@@ -159,6 +159,53 @@ export class ModalService implements OnDestroy{
       <button class="confirmExchangeButton" style="font-size: 20px">Confirm</button>
     `,
 
+    exchange_crypto2crypto: `
+      <h2>Exchange</h2>
+      <p style="color:#575757; font-weight: lighter; font-size: 24px;">Exchange crypto to crypto</p>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="exchangeAmount" type="number">
+        <span class="bar"></span>
+        <label class="giveLabel">You will give:</label>
+      </div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="exchangeFrom" type="text">
+        <span class="bar"></span>
+        <label>Currency name (you give):</label>
+      </div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="exchangeTo" type="text">
+        <span class="bar"></span>
+        <label>Currency name (you receive):</label>
+      </div>
+      <p style="font-size: 24px">You will get:</p>
+      <p class="valueField" style="font-size: 30px; color: #14c477">0</p>
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element" style="position: absolute; left: 40%; top: 40%; transform: translate(-40%; -40%); width: fit-content; height: fit-content;">
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+        </div>
+      </div>
+
+      <div class="success" style="display: none; flex-direction: column; align-items: center; justify-content: center; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(8px)">
+        <p style="text-shadow: 0 0 20px rgba(82,207,54,0.4); color: #52cf36;font-size: 70px; border-radius: 50%; border: 2px solid #52cf36; padding: 0 1.5rem">✓</p>
+        <p style="text-shadow: 0 0 10px rgba(82,207,54,0.4); color: #52cf36; font-size: 55px">Success</p>
+      </div>
+
+      <p class="error" style="font-size: 20px; color: #cd2c38"></p>
+      <button class="confirmExchangeButton" style="font-size: 20px">Confirm</button>
+    `,
+
     payment: `
       <h2>Payment</h2>
       <p style="color:#575757; font-weight: lighter; font-size: 24px;">Top up your account balance</p>
@@ -201,7 +248,8 @@ export class ModalService implements OnDestroy{
       </div>
       <p class="error" style="font-size: 20px; color: #cd2c38"></p>
       <button class="close" style="font-size: 20px; opacity: 1; padding: 0.5rem 1rem; border-radius: 10px">Close</button>
-    `
+    `,
+
   };
 
   public contexts: {[id: string]: (modal: ModalComponent, ...args: any[]) => void} = {
@@ -338,7 +386,7 @@ export class ModalService implements OnDestroy{
             }, 4000);
           } else {
             loading.style.display = 'block';
-            this.currencyService.addCurrency(finalPrice, crypto.value.toLowerCase()).then(() => {
+            this.currencyService.changeCurrency(finalPrice, crypto.value.toLowerCase(), "buy").then(() => {
               error.innerHTML = "";
               success.style.display = 'flex';
               loading.style.display = 'none';
@@ -349,13 +397,119 @@ export class ModalService implements OnDestroy{
             }).catch(() => {
               error.innerHTML = "Something went wrong, please, try again.";
               loading.style.display = 'none';
-            })
+            });
           }
         } else {
           error.innerHTML = "You have not enough money."
         }
       });
     },
+
+    'exchange_crypto2crypto': modal => {
+      const amountField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeAmount');
+      const fromCurrencyField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeFrom');
+      const toCurrencyField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeTo');
+      const giveLabel = ModalService.getModalElementByClass<HTMLElement>(modal, '.giveLabel');
+      const valueField = ModalService.getModalElementByClass<HTMLElement>(modal, '.valueField');
+      const error = ModalService.getModalElementByClass<HTMLElement>(modal, '.error');
+      const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+      const success = ModalService.getModalElementByClass<HTMLElement>(modal, '.success');
+      const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmExchangeButton');
+
+      let finalPrice = 0;
+      let fromPrice: number = undefined;
+      let toPrice: number = undefined;
+
+      function updatePrice() {
+        if (fromPrice === undefined || toPrice === undefined) {
+          return;
+        }
+        const amountValue = parseFloat(amountField.value);
+        if (isNaN(amountValue)) {
+          return;
+        }
+
+        const fromEffectivePrice = fromPrice * amountValue;
+        if (amountValue <= 0) {
+          error.innerHTML = "You should give more than 0 currency.";
+          return;
+        }
+        finalPrice = (fromEffectivePrice / toPrice)
+        error.innerHTML = "";
+        valueField.innerHTML = finalPrice.toFixed(8) + ` ${StringUtils.capitalize(toCurrencyField.value)}s`;
+      }
+
+      fromCurrencyField.addEventListener('change', (event) => {
+        loading.style.display = 'block';
+        this.currencyService.getCurrency(fromCurrencyField.value.toLowerCase()).subscribe((price: CurrencyPrice) => {
+          fromPrice = parseFloat(Currency.fromJson('bitcoin', price).priceStory.last().value);
+          error.innerHTML = "";
+          loading.style.display = 'none';
+          giveLabel.innerHTML = `You will give (${StringUtils.getThreeInitials(fromCurrencyField.value)}):`;
+          updatePrice();
+        }, error1 => { fromPrice = undefined; valueField.innerHTML = "0"; error.innerHTML = "Wrong currency name."; loading.style.display = 'none';  });
+      });
+
+      toCurrencyField.addEventListener('change', (event) => {
+        loading.style.display = 'block';
+        this.currencyService.getCurrency(toCurrencyField.value.toLowerCase()).subscribe((price: CurrencyPrice) => {
+          toPrice = parseFloat(Currency.fromJson('bitcoin', price).priceStory.last().value);
+          error.innerHTML = "";
+          loading.style.display = 'none';
+          updatePrice();
+        }, error1 => { toPrice = undefined; valueField.innerHTML = "0"; error.innerHTML = "Wrong currency name."; loading.style.display = 'none';  });
+      });
+
+      amountField.addEventListener('input', (event) => {
+        updatePrice();
+      });
+
+      confirm.addEventListener('click', () => {
+        if (finalPrice === 0) {
+          error.innerHTML = "All fields are required.";
+          return;
+        }
+
+        if (isDevMode()) {
+          if (LocalUser.user.ownedCoins[toCurrencyField.value] !== undefined) {
+            LocalUser.user.ownedCoins[toCurrencyField.value] = (parseFloat(LocalUser.user.ownedCoins[toCurrencyField.value]) + finalPrice).toString();
+          } else {
+            LocalUser.user.ownedCoins[toCurrencyField.value] = finalPrice.toString();
+          }
+
+          LocalUser.user.ownedCoins[fromCurrencyField.value] = (parseFloat(LocalUser.user.ownedCoins[fromCurrencyField.value]) - parseFloat(amountField.value)).toString();
+
+          error.innerHTML = "";
+          loading.style.display = 'block';
+          setTimeout(() => {
+            loading.style.display = 'none';
+            success.style.display = 'flex';
+          }, 2000);
+          setTimeout(() => {
+            modal.hide();
+          }, 4000);
+        } else {
+          loading.style.display = 'block';
+          error.innerHTML = "";
+          this.currencyService.changeCurrency(parseFloat(amountField.value), fromCurrencyField.value.toLowerCase(), "sell").then(() => {
+            this.currencyService.changeCurrency(finalPrice, toCurrencyField.value.toLowerCase(), "buy").then(() => {
+              success.style.display = 'flex';
+              loading.style.display = 'none';
+              this.userService.updateUserData();
+              setTimeout(() => {
+                modal.hide();
+              }, 2000);
+            }).catch(() => {
+              error.innerHTML = "Something went wrong, please, try again.";
+              loading.style.display = 'none';});
+          }).catch(() => {
+            error.innerHTML = "Something went wrong, please, try again.";
+            loading.style.display = 'none';
+          });
+        }
+      })
+    },
+
     'payment': (modal, args) => {
       const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.paymentAmount');
       const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmPayment');

@@ -39,7 +39,11 @@ export class ExchangePageComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.options.toArray().forEach((option: ElementRef) => {
       option.nativeElement.addEventListener('click', () => {
-        this.modalService.showModal('exchange-modal')
+        if (option.nativeElement.id === 'cash2crypto')
+          this.modalService.showModal('exchange-modal')
+        else if (option.nativeElement.id === 'crypto2crypto') {
+          this.modalService.showModal('exchange-crypto-modal')
+        }
       });
     })
   }

@@ -31,9 +31,9 @@ export class CurrencyService {
     return obs;
   }
 
-  public addCurrency(amount: number, currency: string): Promise<void> {
+  public changeCurrency(amount: number, currency: string, method: "buy" | "sell"): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.http.put(this.currenciesUrl + `${currency}/buy?amount=${amount}&userId=${LocalUser.user.id}`, {},
+      this.http.put(this.currenciesUrl + `${currency}/${method}?amount=${amount}&userId=${LocalUser.user.id}`, {},
         {
           headers: new HttpHeaders({
             "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -43,7 +43,6 @@ export class CurrencyService {
         resolve();
       }, error1 => { reject(); });
     });
-
   }
 
   public getAllCurrencies(): Observable<any> {
