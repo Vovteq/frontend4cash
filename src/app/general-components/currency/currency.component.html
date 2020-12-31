@@ -8,4 +8,7 @@
   <div class="no-connection" *ngIf="!connected" [@showNoConnection]>
     <img src="../../../assets/img/ethernet.png">
   </div>
+  <div class="loading" *ngIf="!dataLoaded">
+    <div class="loading-element-2"><div></div><div></div><div></div><div></div></div>
+  </div>
 </div>

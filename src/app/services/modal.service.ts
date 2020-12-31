@@ -292,6 +292,28 @@ export class ModalService implements OnDestroy{
       <button class="close" style="font-size: 20px; opacity: 1; padding: 0.5rem 1rem; border-radius: 10px">Close</button>
     `,
 
+    sell_crypto: `
+      <h2>Sell crypto</h2>
+      <p style="color:#575757; font-weight: lighter; font-size: 24px;">Exchange cryptocurrency to cash</p>
+      <div class="separator"></div>
+      <div class="modal-input-wrapper" style="margin-bottom: 1rem">
+        <input style="font-size: 20px" class="amount" type="number" step="1" min="0">
+        <span class="bar"></span>
+        <label class="giveLabel">You will give:</label>
+      </div>
+      <button class="confirm" style="font-size: 20px">Confirm</button>
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element-2" style="position: absolute; left: 40%; top: 40%; transform: translate(-40%; -40%); width: fit-content; height: fit-content;">
+          <div style="box-shadow: none; background: #4287f5"></div>
+          <div style="box-shadow: none; background: #4287f5"></div>
+          <div style="box-shadow: none; background: #4287f5"></div>
+          <div style="box-shadow: none; background: #4287f5"></div>
+        </div>
+      </div>
+      <p style="font-size: 24px; margin-top: 1rem">You will get:</p>
+      <p class="valueField" style="font-size: 30px; color: #14c477">0</p>
+      <p class="error" style="font-size: 20px; color: #cd2c38"></p>
+    `
   };
 
   public contexts: {[id: string]: (modal: ModalComponent, ...args: any[]) => void} = {
@@ -446,7 +468,6 @@ export class ModalService implements OnDestroy{
         }
       });
     },
-
     'exchange_crypto2crypto': modal => {
       const amountField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeAmount');
       const fromCurrencyField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeFrom');
@@ -556,7 +577,6 @@ export class ModalService implements OnDestroy{
         }
       })
     },
-
     'payment': (modal, args) => {
       const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.paymentAmount');
       const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirmPayment');
@@ -634,7 +654,6 @@ export class ModalService implements OnDestroy{
         modal.hide();
       });
     },
-
     'exchange_crypto2cash': modal => {
       const inputField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.exchangeFrom');
       const valueField = ModalService.getModalElementByClass<HTMLElement>(modal, '.valueField');
@@ -719,6 +738,84 @@ export class ModalService implements OnDestroy{
               setTimeout(() => {
                 modal.hide();
               }, 2000);
+            }).catch(() => {
+              error.innerHTML = "Something went wrong, please, try again.";
+              loading.style.display = 'none';
+            });
+          }
+        } else {
+          error.innerHTML = "You have not enough crypto."
+        }
+      });
+    },
+    'sell_crypto': modal => {
+      const amountField = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.amount');
+      const confirm = ModalService.getModalElementByClass<HTMLButtonElement>(modal, '.confirm');
+      const error = ModalService.getModalElementByClass<HTMLElement>(modal, '.error');
+      const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+      const valueField = ModalService.getModalElementByClass<HTMLElement>(modal, '.valueField');
+      const giveLabel = ModalService.getModalElementByClass<HTMLElement>(modal, '.giveLabel');
+
+      let currentPrice = undefined;
+      let finalPrice = 0;
+      const crypto = localStorage.getItem('sellCrypto');
+      giveLabel.innerHTML = `You will give (${StringUtils.getThreeInitials(crypto).toUpperCase()}):`;
+
+      function updatePrice() {
+        const inputValue = parseFloat(amountField.value);
+
+
+        if (inputValue <= 0 || isNaN(inputValue)) {
+          error.innerHTML = "You must give more than 0 currency";
+          return;
+        }
+
+        finalPrice = (inputValue * currentPrice);
+        error.innerHTML = "";
+        valueField.innerHTML = finalPrice.toFixed(8) + `$`;
+      }
+
+      amountField.addEventListener('change', (event) => {
+        if (currentPrice === undefined) {
+          loading.style.display = 'block';
+          this.currencyService.getCurrency(crypto).subscribe((currency) => {
+            loading.style.display = 'none';
+            currentPrice = parseFloat(Currency.fromJson('bitcoin', currency).priceStory.last().value);
+            updatePrice();
+          }, error1 => {
+            loading.style.display = 'none';
+            error.innerHTML = "Something went wrong.";
+          });
+        }
+      });
+      amountField.addEventListener('input', () => {
+        if (currentPrice !== undefined) {
+          updatePrice();
+        }
+      });
+      confirm.addEventListener('click', () => {
+        if (currentPrice === undefined || finalPrice <= 0) {
+          error.innerHTML = "Wrong field data."
+          return;
+        }
+
+        if (parseFloat(LocalUser.user.ownedCoins[crypto]) >= parseFloat(amountField.value)) {
+          if (isDevMode()) {
+            LocalUser.user.ownedCoins[crypto] = (parseFloat(LocalUser.user.ownedCoins[crypto]) - parseFloat(amountField.value)).toString();
+            LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + finalPrice).toString();
+            if (parseFloat(LocalUser.user.ownedCoins[crypto]) === 0) {
+              delete LocalUser.user.ownedCoins[crypto];
+            }
+
+            error.innerHTML = "";
+            loading.style.display = 'block';
+            setTimeout(() => {
+              modal.hide();
+            }, 2000);
+          } else {
+            loading.style.display = 'block';
+            this.currencyService.changeCurrency(parseFloat(amountField.value), crypto.toLowerCase(), "sell").then(() => {
+              location.reload();
             }).catch(() => {
               error.innerHTML = "Something went wrong, please, try again.";
               loading.style.display = 'none';

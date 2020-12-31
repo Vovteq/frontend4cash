@@ -30,13 +30,22 @@ export class CurrencyComponent implements OnInit {
   @Input() currencyId: string;
   @Input() connected: boolean;
 
+  public dataLoaded: boolean;
   private data: Currency;
 
   constructor(private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      if (!this.dataLoaded) {
+        this.connected = false;
+        this.dataLoaded = true;
+      }
+    }, 10000)
     if (this.requestData) {
       this.currencyService.getCurrency(this.currencyId).subscribe(data => {
+        this.connected = true;
+        this.dataLoaded = true;
         this.data = Currency.fromJson(this.currencyId, data);
         this.header = StringUtils.capitalize(this.data.id);
         this.value = `${this.data.priceStory.last().value} ${this.currencyService.globalCurrency}`;
