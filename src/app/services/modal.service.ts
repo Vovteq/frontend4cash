@@ -10,6 +10,7 @@ import {User, UserInfo} from "../../scripts/ts/metadata/User";
  import {Currency, CurrencyPrice} from "../../scripts/ts/metadata/Currency";
  import LocalUser from "../../scripts/ts/utils/LocalUser";
  import StringUtils from "../../scripts/ts/utils/StringUtils";
+ import {Local} from "protractor/built/driverProviders";
 
 @Injectable()
 export class ModalService implements OnDestroy{
@@ -433,9 +434,9 @@ export class ModalService implements OnDestroy{
         if (parseFloat(LocalUser.user.cash) >= price) {
           if (isDevMode()) {
             if (LocalUser.user.ownedCoins[crypto.value] !== undefined) {
-              LocalUser.user.ownedCoins[crypto.value] = (parseFloat(LocalUser.user.ownedCoins[crypto.value]) + finalPrice).toString();
+              LocalUser.user.ownedCoins[crypto.value.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[crypto.value.toLowerCase()]) + finalPrice).toString();
             } else {
-              LocalUser.user.ownedCoins[crypto.value] = finalPrice.toString();
+              LocalUser.user.ownedCoins[crypto.value.toLowerCase()] = finalPrice.toString();
             }
 
             LocalUser.user.cash = (parseFloat(LocalUser.user.cash) - price).toString();
@@ -540,12 +541,12 @@ export class ModalService implements OnDestroy{
 
         if (isDevMode()) {
           if (LocalUser.user.ownedCoins[toCurrencyField.value] !== undefined) {
-            LocalUser.user.ownedCoins[toCurrencyField.value] = (parseFloat(LocalUser.user.ownedCoins[toCurrencyField.value]) + finalPrice).toString();
+            LocalUser.user.ownedCoins[toCurrencyField.value.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[toCurrencyField.value.toLowerCase()]) + finalPrice).toString();
           } else {
-            LocalUser.user.ownedCoins[toCurrencyField.value] = finalPrice.toString();
+            LocalUser.user.ownedCoins[toCurrencyField.value.toLowerCase()] = finalPrice.toString();
           }
 
-          LocalUser.user.ownedCoins[fromCurrencyField.value] = (parseFloat(LocalUser.user.ownedCoins[fromCurrencyField.value]) - parseFloat(amountField.value)).toString();
+          LocalUser.user.ownedCoins[fromCurrencyField.value.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[fromCurrencyField.value.toLowerCase()]) - parseFloat(amountField.value)).toString();
 
           error.innerHTML = "";
           loading.style.display = 'block';
@@ -799,12 +800,12 @@ export class ModalService implements OnDestroy{
           return;
         }
 
-        if (parseFloat(LocalUser.user.ownedCoins[crypto]) >= parseFloat(amountField.value)) {
+        if (parseFloat(LocalUser.user.ownedCoins[crypto.toLowerCase()]) >= parseFloat(amountField.value)) {
           if (isDevMode()) {
-            LocalUser.user.ownedCoins[crypto] = (parseFloat(LocalUser.user.ownedCoins[crypto]) - parseFloat(amountField.value)).toString();
+            LocalUser.user.ownedCoins[crypto.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[crypto.toLowerCase()]) - parseFloat(amountField.value)).toString();
             LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + finalPrice).toString();
-            if (parseFloat(LocalUser.user.ownedCoins[crypto]) === 0) {
-              delete LocalUser.user.ownedCoins[crypto];
+            if (parseFloat(LocalUser.user.ownedCoins[crypto.toLowerCase()]) === 0) {
+              delete LocalUser.user.ownedCoins[crypto.toLowerCase()];
             }
 
             error.innerHTML = "";
@@ -822,6 +823,9 @@ export class ModalService implements OnDestroy{
             });
           }
         } else {
+          console.log(LocalUser.user.ownedCoins);
+          console.log(parseFloat(LocalUser.user.ownedCoins[crypto]));
+          console.log(parseFloat(amountField.value));
           error.innerHTML = "You have not enough crypto."
         }
       });
