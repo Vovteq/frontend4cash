@@ -433,10 +433,10 @@ export class ModalService implements OnDestroy{
         const price = parseInt(inputField.value);
         if (parseFloat(LocalUser.user.cash) >= price) {
           if (isDevMode()) {
-            if (LocalUser.user.ownedCoins[crypto.value] !== undefined) {
-              LocalUser.user.ownedCoins[crypto.value.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[crypto.value.toLowerCase()]) + finalPrice).toString();
+            if (this.getOwnedCurrencyAmount(crypto.value) !== undefined) {
+              this.addOwnedCurrencyAmount(crypto.value, finalPrice);
             } else {
-              LocalUser.user.ownedCoins[crypto.value.toLowerCase()] = finalPrice.toString();
+              this.setOwnedCurrencyAmount(crypto.value, finalPrice);
             }
 
             LocalUser.user.cash = (parseFloat(LocalUser.user.cash) - price).toString();
@@ -506,7 +506,7 @@ export class ModalService implements OnDestroy{
       fromCurrencyField.addEventListener('change', (event) => {
         loading.style.display = 'block';
         this.currencyService.getCurrency(fromCurrencyField.value.toLowerCase()).subscribe((price: CurrencyPrice) => {
-          if (LocalUser.user.ownedCoins[fromCurrencyField.value] === undefined) {
+          if (this.getOwnedCurrencyAmount(fromCurrencyField.value) === undefined) {
             error.innerHTML = "You dont have such currency."
             loading.style.display = 'none';
             return;
@@ -540,13 +540,12 @@ export class ModalService implements OnDestroy{
         }
 
         if (isDevMode()) {
-          if (LocalUser.user.ownedCoins[toCurrencyField.value] !== undefined) {
-            LocalUser.user.ownedCoins[toCurrencyField.value.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[toCurrencyField.value.toLowerCase()]) + finalPrice).toString();
+          if (this.getOwnedCurrencyAmount(toCurrencyField.value) !== undefined) {
+            this.addOwnedCurrencyAmount(toCurrencyField.value, finalPrice);
           } else {
-            LocalUser.user.ownedCoins[toCurrencyField.value.toLowerCase()] = finalPrice.toString();
+            this.setOwnedCurrencyAmount(toCurrencyField.value, finalPrice);
           }
-
-          LocalUser.user.ownedCoins[fromCurrencyField.value.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[fromCurrencyField.value.toLowerCase()]) - parseFloat(amountField.value)).toString();
+          this.addOwnedCurrencyAmount(fromCurrencyField.value, -parseFloat(amountField.value));
 
           error.innerHTML = "";
           loading.style.display = 'block';
@@ -686,7 +685,7 @@ export class ModalService implements OnDestroy{
       crypto.addEventListener('change', (event) => {
         loading.style.display = 'block';
         this.currencyService.getCurrency(crypto.value.toLowerCase()).subscribe((price: CurrencyPrice) => {
-          if (LocalUser.user.ownedCoins[crypto.value] === undefined) {
+          if (this.getOwnedCurrencyAmount(crypto.value) === undefined) {
             error.innerHTML = "You dont have such currency."
             loading.style.display = 'none';
             return;
@@ -712,13 +711,10 @@ export class ModalService implements OnDestroy{
           return;
         }
 
-        if (parseFloat(LocalUser.user.ownedCoins[crypto.value]) >= parseFloat(inputField.value)) {
+        if (this.getOwnedCurrencyAmount(crypto.value) >= parseFloat(inputField.value)) {
           if (isDevMode()) {
-            LocalUser.user.ownedCoins[crypto.value] = (parseFloat(LocalUser.user.ownedCoins[crypto.value]) - parseFloat(inputField.value)).toString();
+            this.addOwnedCurrencyAmount(crypto.value, -parseFloat(inputField.value));
             LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + finalPrice).toString();
-            if(parseFloat(LocalUser.user.ownedCoins[crypto.value]) === 0) {
-              delete LocalUser.user.ownedCoins[crypto.value];
-            }
 
             error.innerHTML = "";
             loading.style.display = 'block';
@@ -800,13 +796,10 @@ export class ModalService implements OnDestroy{
           return;
         }
 
-        if (parseFloat(LocalUser.user.ownedCoins[crypto.toLowerCase()]) >= parseFloat(amountField.value)) {
+        if (this.getOwnedCurrencyAmount(crypto) >= parseFloat(amountField.value)) {
           if (isDevMode()) {
-            LocalUser.user.ownedCoins[crypto.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[crypto.toLowerCase()]) - parseFloat(amountField.value)).toString();
+            this.addOwnedCurrencyAmount(crypto, -parseFloat(amountField.value));
             LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + finalPrice).toString();
-            if (parseFloat(LocalUser.user.ownedCoins[crypto.toLowerCase()]) === 0) {
-              delete LocalUser.user.ownedCoins[crypto.toLowerCase()];
-            }
 
             error.innerHTML = "";
             loading.style.display = 'block';
@@ -857,6 +850,77 @@ export class ModalService implements OnDestroy{
 
   public focus(modal: ModalComponent): void {
     this.focusedModal = modal;
+  }
+
+  private getOwnedCurrencyAmount(name: string): number {
+    if (isDevMode()) {
+      console.log("GET");
+      if (LocalUser.user.ownedCoins[name.toLowerCase()] === undefined) {
+        return undefined;
+      }
+      return parseFloat(LocalUser.user.ownedCoins[name.toLowerCase()]);
+    } else {
+      for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
+        for (const [key, value] of Object.entries(elem)) {
+          if (key.toLowerCase() === name.toLowerCase()) {
+            return parseFloat(value as string);
+          }
+        }
+      }
+      return undefined;
+    }
+  }
+
+  private addOwnedCurrencyAmount(name: string, amount: number): void {
+    if (isDevMode()) {
+      console.log("ADD");
+      console.log(LocalUser.user.ownedCoins[name.toLowerCase()]);
+      LocalUser.user.ownedCoins[name.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[name.toLowerCase()]) + amount).toString();
+    } else {
+      for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
+        for (const [key, value] of Object.entries(elem)) {
+          if (key.toLowerCase() === name.toLowerCase()) {
+            elem[key] = (parseFloat(elem[key]) + amount).toString();
+            return;
+          }
+        }
+      }
+    }
+  }
+
+  private setOwnedCurrencyAmount(name: string, amount: number): void {
+    if (isDevMode()) {
+      LocalUser.user.ownedCoins[name.toLowerCase()] = amount.toString();
+      console.log(LocalUser.user.ownedCoins);
+    } else {
+      let contains = false;
+      for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
+        if (contains) {
+          break;
+        }
+        for (const [key, value] of Object.entries(elem)) {
+          if (key === name) {
+            contains = true;
+            break;
+          }
+        }
+      }
+      if (contains) {
+        for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
+          for (let [key, value] of Object.entries(elem)) {
+            if (key === name) {
+              value = amount.toString();
+              break;
+            }
+          }
+        }
+      } else {
+        const str = amount.toString();
+        (LocalUser.user.ownedCoins as unknown as Array<any>).push({name, str});
+      }
+    }
+    console.log(name);
+    console.log(amount);
   }
 
   ngOnDestroy(): void {
