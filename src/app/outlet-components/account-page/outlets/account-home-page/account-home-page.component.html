@@ -37,17 +37,20 @@
     </div>
   </div>
   <p style="font-size: 40px; font-weight: lighter;">Your wallet</p>
-  <div style="margin-bottom: 2rem" class="account-currencies" *ngIf="initComplete">
-    <app-account-currency *ngFor="let key of ownedCoins" [currencyInfo]="key"
-    >
+  <div class="account-currencies-wrapper">
+    <div style="margin-bottom: 2rem" class="account-currencies" *ngIf="initComplete">
+      <app-account-currency *ngFor="let key of ownedCoins" [currencyInfo]="key"
+      >
 
-    </app-account-currency>
-    <div class="no-currency" *ngIf="ownedCoins !== undefined && ownedCoins.length === 0" style="display: flex; flex-direction: column; align-items: center">
-      <p>You have no crypto-currency in your wallet right now.</p>
-      <p>You can exchange/buy it on exchange page.</p>
-      <app-link [routeLink]="true" [route]="'../../exchange'" [text]="'Go to exchange page'"></app-link>
+      </app-account-currency>
+      <div class="no-currency" *ngIf="ownedCoins !== undefined && ownedCoins.length === 0" style="display: flex; flex-direction: column; align-items: center">
+        <p>You have no crypto-currency in your wallet right now.</p>
+        <p>You can exchange/buy it on exchange page.</p>
+        <app-link [routeLink]="true" [route]="'../../exchange'" [text]="'Go to exchange page'"></app-link>
+      </div>
     </div>
   </div>
+
 
   <app-modal
     [modalTemplateId]="'change_attr'"

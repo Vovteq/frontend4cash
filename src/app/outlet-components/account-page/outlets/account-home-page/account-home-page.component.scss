@@ -103,11 +103,28 @@ p {
   text-align: center;
 }
 
-.account-currencies {
+.account-currencies-wrapper {
   display: flex;
-  align-items: center;
+  width: 100%;
   justify-content: center;
+  align-items: center;
+
+  .account-currencies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1100px;
+
+    app-account-currency {
+      margin-bottom: 1.5%;
+      margin-left: 0;
+      flex: 0 10%;
+    }
+  }
 }
+
+
 
 .add-currency {
   width: 100px;

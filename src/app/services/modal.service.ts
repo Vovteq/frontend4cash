@@ -302,7 +302,6 @@ export class ModalService implements OnDestroy{
         <span class="bar"></span>
         <label class="giveLabel">You will give:</label>
       </div>
-      <button class="confirm" style="font-size: 20px">Confirm</button>
       <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
         <div class="loading-element-2" style="position: absolute; left: 40%; top: 40%; transform: translate(-40%; -40%); width: fit-content; height: fit-content;">
           <div style="box-shadow: none; background: #4287f5"></div>
@@ -314,6 +313,7 @@ export class ModalService implements OnDestroy{
       <p style="font-size: 24px; margin-top: 1rem">You will get:</p>
       <p class="valueField" style="font-size: 30px; color: #14c477">0</p>
       <p class="error" style="font-size: 20px; color: #cd2c38"></p>
+      <button class="confirm" style="font-size: 20px">Confirm</button>
     `
   };
 
