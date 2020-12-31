@@ -120,6 +120,9 @@ export class UserService {
           })
         }
       ).subscribe(() => {
+        if (attribute === 'e-mail') {
+          localStorage.setItem('lastLoggedInEmail', newValue);
+        }
         resolve();
       }, error => {reject();});
     }));

@@ -424,6 +424,7 @@ export class ModalService implements OnDestroy{
             location.reload();
           }).catch(() => {
             error.innerHTML = "Something went wrong."
+            loading.style.display = 'none';
           });
         }
       });
