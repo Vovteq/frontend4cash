@@ -396,8 +396,11 @@ export class ModalService implements OnDestroy{
         error.innerHTML = '';
 
         this.postService.savePost(postHeader.value, postText.value).subscribe(() => {
-          loading.style.display = 'block';
+          loading.style.display = 'none';
           success.style.display = 'flex';
+          setTimeout(() => {
+            modal.hide();
+          }, 2000);
         }, error1 => {
           error.innerHTML = "Something went wrong.";
           loading.style.display = 'none';
