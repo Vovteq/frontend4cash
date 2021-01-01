@@ -1,16 +1,12 @@
- import {Injectable, isDevMode, OnDestroy} from '@angular/core';
+import {Injectable, isDevMode, OnDestroy} from '@angular/core';
 import {ModalComponent} from "../general-components/modal/modal.component";
 import ModalInspector from "../../scripts/ts/utils/ModalInspector";
 import {UserService} from "./user.service";
 import {PostService} from "./post.service";
-import {Post} from "../../scripts/ts/metadata/Post";
-import {User, UserInfo} from "../../scripts/ts/metadata/User";
- import {mod} from "ngx-bootstrap/chronos/utils";
- import {CurrencyService} from "./currency.service";
- import {Currency, CurrencyPrice} from "../../scripts/ts/metadata/Currency";
- import LocalUser from "../../scripts/ts/utils/LocalUser";
- import StringUtils from "../../scripts/ts/utils/StringUtils";
- import {Local} from "protractor/built/driverProviders";
+import {CurrencyService} from "./currency.service";
+import {Currency, CurrencyPrice} from "../../scripts/ts/metadata/Currency";
+import LocalUser from "../../scripts/ts/utils/LocalUser";
+import StringUtils from "../../scripts/ts/utils/StringUtils";
 
 @Injectable()
 export class ModalService implements OnDestroy{
@@ -46,6 +42,22 @@ export class ModalService implements OnDestroy{
       <div class="row centered">
         <button class="registerModalButton">Create account</button>
       </div>
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element" style="position: absolute; left: 37%; top: 37%; transform: translate(-37%; -37%); width: fit-content; height: fit-content;">
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+        </div>
+      </div>
     `,
 
     // Login template (standard)
@@ -68,6 +80,22 @@ export class ModalService implements OnDestroy{
       </p>
       <div class="row centered">
         <button class="loginModalButton">Log in</button>
+      </div>
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element" style="position: absolute; left: 37%; top: 37%; transform: translate(-37%; -37%); width: fit-content; height: fit-content;">
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+        </div>
       </div>
     `,
 
@@ -342,17 +370,22 @@ export class ModalService implements OnDestroy{
 
   public contexts: {[id: string]: (modal: ModalComponent, ...args: any[]) => void} = {
     'register': modal => {
+      const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+
       ModalService.getModalElementByClass(modal, '.registerModalButton')
         .addEventListener('click', () => {
           const nickname = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-nickname');
           const email = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-email');
           const password = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.register-password');
+          loading.style.display = 'block';
           this.userService.register(email.value, nickname.value, password.value).then(() => {
             this.userService.logIn(email.value, password.value).then(() => {
               modal.hide();
               ModalInspector.get('newcomer-tooltip-modal').hide();
+
             });
           }).catch((error) => {
+            loading.style.display = 'none';
             const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Something went wrong. Please, check entered data.`;
             ModalService.getModalElementByClass(modal, '.registerModalError').innerHTML = errorMessage;
           });
@@ -408,11 +441,14 @@ export class ModalService implements OnDestroy{
       })
     },
     'login': modal => {
+      const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+      const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
+      const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
+
+      loading.style.display = 'block';
       ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
-        const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
-        const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
         this.userService.logIn(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
-          console.log(error);
+          loading.style.display = 'none';
           const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong. Please, check entered e-mail and password.`;
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
         });
