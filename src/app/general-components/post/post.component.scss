@@ -1,15 +1,14 @@
 @import "../../utils/scss/colors";
 
 .post-wrapper {
-  min-width: 300px;
-  max-width: 600px;
+  width: 1200px;
   box-shadow: 0 0 17px 0 rgba(0,0,0,0.15);
-  border: 1px solid $blue;
+  border: 1px solid $alterblue;
   border-radius: 10px;
   text-align: left;
 
   .post-header {
-    background: $blue;
+    background: $alterblue;
     color: $white;
     font-size: 25px;
     border-top-left-radius: 9px;
@@ -27,13 +26,13 @@
     .separator {
       height: 80px;
       width: 1px;
-      background: $blue;
+      background: $alterblue;
       margin: 0 1rem;
     }
   }
 
   .post-message {
-    min-width: 85%;
+    min-width: 92%;
 
     .post-message-fading {
       background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2805497198879552) 100%);
@@ -54,7 +53,7 @@
       width: 50px;
       height: 50px;
       border-radius: 25px;
-      background: $blue;
+      background: $alterblue;
       color: $white;
       text-align: center;
       line-height: 50px;

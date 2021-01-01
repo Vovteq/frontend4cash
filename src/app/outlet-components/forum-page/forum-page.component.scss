@@ -1,42 +1,96 @@
 @import "../../utils/scss/colors";
+@import "../../utils/scss/loading";
 
 .forum__section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+
+  .separator {
+    width: 60%;
+    height: 1px;
+    background: $dark;
+    margin: 1rem 0;
+  }
+
+  .loading {
+    backdrop-filter: blur(7px);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    .loading-element {
+      top: 36%;
+      left: 48%;
+
+      p {
+        font-size: 25px;
+        color: $alterblue;
+        letter-spacing: 4px;
+        transform: translate(-10px, 100px);
+      }
+    }
+  }
 }
 
 .posts-container {
-  background: $dark;
-  border-radius: 40px;
   padding: 2rem 4rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-direction: column;
   width: 80%;
   position: relative;
   z-index: 0;
-  box-shadow: 0 0 20px 0 rgba(#000, 0.3);
+  align-items: center;
+  min-height: 810px;
 
-  &:before {
-    content: '';
+  $borders-size: 30px;
+
+  .no-posts {
     position: absolute;
-    background: $white;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    left: 50%;
-    width: 95%;
-    height: 98%;
-    z-index: 1;
-    border-radius: 40px;
-    box-shadow: inset 0 0 35px 0 rgba($alterblue, 0.6);
+
+    p {
+      font-size: 30px;
+      color: $dark;
+      letter-spacing: 5px;
+    }
+  }
+
+  button {
+    &#postNextPage, &#postPrevPage {
+      position: absolute;
+      background: transparent;
+      width: $borders-size;
+      height: $borders-size;
+      top: 50%;
+      transform: translate(0, -50%);
+      border-top: $borders-size solid transparent;
+      border-bottom: $borders-size solid transparent;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  #postNextPage {
+    border-left: $borders-size solid $alterblue;
+    border-right: none;
+    right: 0;
+  }
+
+  #postPrevPage {
+    border-right: $borders-size solid $alterblue;
+    border-left: none;
+    left: 0;
   }
 
   app-post {
-    flex: 0 42.5%;
-    margin-bottom: 1%;
-    z-index: 2;
-    margin-top: 0.65rem;
+    margin-bottom: 1rem;
   }
 
   .dynamic, .cam, .deco {

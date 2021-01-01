@@ -1,25 +1,54 @@
-import {Component, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {PostService} from "../../services/post.service";
 import {User, UserInfo} from "../../../scripts/ts/metadata/User";
 import {Post, PostInfo} from "../../../scripts/ts/metadata/Post";
 import {PostMenuComponent} from "./post-menu/post-menu.component";
 import {Delegate} from "../../../scripts/ts/delegates/Delegate";
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
+  animations: [
+    trigger('post', [
+      transition(':enter', [
+        style({opacity: 0, transform: 'translateX(100px)'}),
+        animate('300ms ease-out', style({opacity: 1, transform: 'translateX(0)'}))
+      ]),
+      transition(':leave', [
+        style({opacity: 1, transform: 'translateX(0)'}),
+        animate('300ms cubic-bezier(0.175, 0.885, 0.320, 1.275)', style({opacity: 0, transform: 'translateX(-100px)'}))
+      ])
+    ]),
+    trigger('newPost', [
+      state('appearRight', style({opacity: 0, transform: 'translateX(200px)'})),
+      state('appearLeft', style({opacity: 0, transform: 'translateX(-200px)'})),
+      state('active', style({opacity: 1, transform: 'translateX(0)'})),
+      state('disappearLeft', style({opacity: 0, transform: 'translateX(-200px)'})),
+      state('disappearRight', style({opacity: 0, transform: 'translateX(200px)'})),
+      transition('active => *', animate('300ms ease-out')),
+      transition('* => active', animate('300ms ease-out')),
+      transition('void => *', animate('0ms'))
+    ])
+  ],
   encapsulation: ViewEncapsulation.None
 })
 export class PostComponent implements OnInit {
   public _title: string;
-  public _user: UserInfo;
+  public _userName: string;
   public _message: string;
-  public _id: string;
+  public _id: number;
+  public render: boolean = false;
 
   @Input() requestData: boolean;
   @Input() postId: string;
   @Input() prebuiltData: PostInfo;
+
+  public fadeRight: boolean;
+  public appearRight: boolean;
+
+  private initializing: boolean = true;
 
   private data: Post;
   @ViewChild(PostMenuComponent) menu: PostMenuComponent;
@@ -31,8 +60,14 @@ export class PostComponent implements OnInit {
     return this._title || 'Title not found';
   }
 
-  get user(): UserInfo {
-    return this._user || User.defaultUserInfo;
+  public get currentState(): string {
+    if (this.initializing) {
+      return this.appearRight ? 'appearRight' : 'appearLeft';
+    }
+    if (this.render) {
+      return 'active';
+    }
+    return this.fadeRight ? 'disappearRight' : 'disappearLeft';
   }
 
   get message(): string {
@@ -40,12 +75,15 @@ export class PostComponent implements OnInit {
   }
 
   get id(): string {
-    return this._id || 'Id not found';
+    return '0';
   }
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, public el: ElementRef) { }
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.initializing = false;
+    }, 1);
     if(this.requestData) {
       this.postService.getPost(this.postId).subscribe(data => {
         this.data = data;
@@ -53,7 +91,7 @@ export class PostComponent implements OnInit {
       });
     } else {
       if (this.prebuiltData !== null) {
-        this.data = new Post(this.id, this.prebuiltData);
+        this.data = new Post(parseInt(this.id), this.prebuiltData);
       } else {
         this.setDefault();
       }
@@ -65,12 +103,12 @@ export class PostComponent implements OnInit {
 
   private populateWithInfo(): void {
     this._id = this.data.id;
-    this._user = this.data.user;
+    this._userName = this.data.user;
     this._message = this.data.message;
-    this._title = `#${this.id}`
+    this._title = this.data.title;
   }
 
   setDefault(): void {
-    this.data = new Post('-1', { message: 'Post message', user: User.defaultUserInfo})
+    this.data = new Post(-1, { content: 'Post message', authorName: User.defaultUserInfo.username, title: 'defaultTitle', id: 0})
   }
 }

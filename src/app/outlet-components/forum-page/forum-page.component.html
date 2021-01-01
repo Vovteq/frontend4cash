@@ -8,25 +8,47 @@
   >
   </app-modal>
   <div class="posts-container">
-    <app-post *ngFor="let post of posts; index as i"
-      [requestData]="false"
-      [postId]="i.toString()"
-      [prebuiltData]="post"
-    ></app-post>
-    <div class="cam">
-      <div></div>
-      <div></div>
+    <div appPostsContainer></div>
+    <button id="postPrevPage"></button>
+    <button id="postNextPage"></button>
+
+    <div *ngIf="posts.length === 0" class="no-posts">
+      <p>There is no posts currently. <br> Be the first one and share your ideas!</p>
+      <app-context-button *ngIf="userService.isLoggedIn()"
+                          [text]="'Write post'"
+                          [context]="modalService.showModal"
+                          [args]="['write-pos-modal']"
+      >
+      </app-context-button>
     </div>
-    <div class="dynamic"></div>
-    <div class="deco"></div>
   </div>
 
-  <div class="row centered">
+  <div *ngIf="posts.length > 0" class="separator"></div>
+
+  <div *ngIf="posts.length > 0" class="row centered">
     <app-context-button *ngIf="userService.isLoggedIn()"
                         [text]="'Write post'"
                         [context]="modalService.showModal"
                         [args]="['write-pos-modal']"
     >
     </app-context-button>
+  </div>
+
+  <div *ngIf="dataLoading" [@loading] class="loading">
+    <div class="loading-element" style="position: absolute; width: fit-content; height: fit-content;">
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <p>Loading</p>
+    </div>
   </div>
 </section>

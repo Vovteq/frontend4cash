@@ -47,6 +47,7 @@ import { AccountPaymentPageComponent } from './outlet-components/account-page/ou
 import { TemporalLinkDirective } from './directives/temporal-link.directive';
 import { ShowModalDirective } from './directives/show-modal.directive';
 import {CountUpModule} from "ngx-countup";
+import { PostsContainerDirective } from './directives/posts-container.directive';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import {CountUpModule} from "ngx-countup";
     AccountCurrencyComponent,
     AccountPaymentPageComponent,
     TemporalLinkDirective,
-    ShowModalDirective
+    ShowModalDirective,
+    PostsContainerDirective
   ],
     imports: [
         BrowserModule,

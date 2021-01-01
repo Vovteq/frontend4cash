@@ -1,22 +1,22 @@
 import {UserInfo} from "./User";
 
 export interface PostInfo {
-  message: string;
-  user: UserInfo;
+  content: string;
+  authorName: string;
+  title: string;
+  id: number;
 }
 
 export class Post {
-  public id: string;
+  public id: number;
   public message: string;
-  public user: UserInfo;
+  public user: string;
+  public title: string;
 
-  constructor(id: string, data: PostInfo) {
-    this.id = id;
-    this.message = data.message;
-    this.user = data.user;
-  }
-
-  public static fromJson(id: string, json: any): Post {
-    return new Post(id, json);
+  constructor(id: number, data: PostInfo) {
+    this.id = data.id;
+    this.message = data.content;
+    this.user = data.authorName;
+    this.title = data.title;
   }
 }

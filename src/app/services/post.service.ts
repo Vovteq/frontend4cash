@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Post} from "../../scripts/ts/metadata/Post";
+import {Post, PostInfo} from "../../scripts/ts/metadata/Post";
 import {UserService} from "./user.service";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
 
@@ -17,6 +17,10 @@ export class PostService {
     const url = this.postsUrl + id;
     console.log("requesting post on address: " + url);
     return this.http.get<any>(url);
+  }
+
+  public getNPosts(amount: number): Observable<PostInfo[]> {
+    return this.http.get<PostInfo[]>(`${this.postsUrl}?amount=${amount}`);
   }
 
   public getAllPosts(): Observable<any> {

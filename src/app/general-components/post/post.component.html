@@ -1,4 +1,4 @@
-<div class="post-wrapper" (mouseenter)="onHover.invoke([true])" (mouseleave)="onHover.invoke([false])">
+<div [@newPost]="currentState" class="post-wrapper" (mouseenter)="onHover.invoke([true])" (mouseleave)="onHover.invoke([false])">
   <div class="post-header">
     {{title}}
   </div>
@@ -9,9 +9,9 @@
     <span class="separator"></span>
     <div class="post-user">
       <div class="post-user-image">
-        {{user.username.charAt(0).toUpperCase()}}
+        {{_userName.charAt(0).toUpperCase()}}
       </div>
-      <p>{{user.username}}</p>
+      <p>{{_userName}}</p>
     </div>
   </div>
   <app-post-menu></app-post-menu>
