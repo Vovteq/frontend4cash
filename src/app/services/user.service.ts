@@ -42,6 +42,8 @@ export class UserService {
       if (email === null || password === null) {
         reject(LoginError.EmptyFields);
       }
+      console.log(StringUtils.stripTags(email));
+      console.log(password);
       this.http.post(this.usersUrl + "login", {email: StringUtils.stripTags(email), password: password}).subscribe((response : any) => {
         if (response !== null && response.success === true && response.token != null) {
           localStorage.setItem("token", response.token);
@@ -57,7 +59,7 @@ export class UserService {
         } else {
           reject(LoginError.UndefinedError);
         }
-      });
+      }, error => {reject(LoginError.UndefinedError)});
     }));
   }
 
