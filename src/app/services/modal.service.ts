@@ -399,7 +399,7 @@ export class ModalService implements OnDestroy{
           loading.style.display = 'none';
           success.style.display = 'flex';
           setTimeout(() => {
-            modal.hide();
+            location.reload();
           }, 2000);
         }, error1 => {
           error.innerHTML = "Something went wrong.";
