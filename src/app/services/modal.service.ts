@@ -445,8 +445,8 @@ export class ModalService implements OnDestroy{
       const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
       const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
 
-      loading.style.display = 'block';
       ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
+        loading.style.display = 'block';
         this.userService.logIn(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
           loading.style.display = 'none';
           const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong. Please, check entered e-mail and password.`;
