@@ -2,6 +2,7 @@ import {Component, ElementRef, Input, OnInit, ViewEncapsulation} from '@angular/
 import {animate, style, transition, trigger} from "@angular/animations";
 import StringUtils from "../../../../../../scripts/ts/utils/StringUtils";
 import {ModalService} from "../../../../../services/modal.service";
+import LocalUser from "../../../../../../scripts/ts/utils/LocalUser";
 
 @Component({
   selector: 'app-account-currency',
@@ -23,12 +24,9 @@ export class AccountCurrencyComponent implements OnInit {
   constructor(private el: ElementRef, private modalService: ModalService) { }
 
   public get value(): string {
-    if (this.currencyInfo !== undefined) {
-      return parseFloat(this.currencyInfo.amount) < 100000 ?
-        StringUtils.roundStrDecimal(this.currencyInfo.amount, 10)
-        : StringUtils.roundStrDecimal(this.currencyInfo.amount, 2);
-    }
-    return "Not found";
+    return LocalUser.getOwnedCurrencyAmount(this.currencyInfo.coin) < 100000 ?
+      StringUtils.roundStrDecimal(LocalUser.getOwnedCurrencyAmount(this.currencyInfo.coin).toString(), 10)
+      : StringUtils.roundStrDecimal(LocalUser.getOwnedCurrencyAmount(this.currencyInfo.coin).toString(), 2);
   }
 
   public get initials(): string {

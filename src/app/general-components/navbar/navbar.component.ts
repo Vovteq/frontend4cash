@@ -11,11 +11,11 @@ import {animate, style, transition, trigger} from "@angular/animations";
   animations: [
     trigger('noConnection', [
       transition(':leave', [
-        style({ opacity: 1, position: 'absolute', transform: 'translateX(0)' }),
+        style({ opacity: 1, transform: 'translateX(0)' }),
         animate('700ms cubic-bezier(0.680, -0.550, 0.460, 0.995)', style({ opacity: '0', transform: 'translateX(40px)' })),
       ]),
       transition(':enter', [
-        style({ opacity: 0, position: 'absolute', transform: 'translateX(40px)' }),
+        style({ opacity: 0, transform: 'translateX(40px)' }),
         animate('700ms cubic-bezier(0.680, -0.550, 0.460, 0.995)', style({ opacity: '1', transform: 'translateX(0)' })),
       ])
     ])

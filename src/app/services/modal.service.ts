@@ -853,74 +853,15 @@ export class ModalService implements OnDestroy{
   }
 
   private getOwnedCurrencyAmount(name: string): number {
-    if (isDevMode()) {
-      console.log("GET");
-      if (LocalUser.user.ownedCoins[name.toLowerCase()] === undefined) {
-        return undefined;
-      }
-      return parseFloat(LocalUser.user.ownedCoins[name.toLowerCase()]);
-    } else {
-      for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
-        for (const [key, value] of Object.entries(elem)) {
-          if (key.toLowerCase() === name.toLowerCase()) {
-            return parseFloat(value as string);
-          }
-        }
-      }
-      return undefined;
-    }
+    return LocalUser.getOwnedCurrencyAmount(name);
   }
 
   private addOwnedCurrencyAmount(name: string, amount: number): void {
-    if (isDevMode()) {
-      console.log("ADD");
-      console.log(LocalUser.user.ownedCoins[name.toLowerCase()]);
-      LocalUser.user.ownedCoins[name.toLowerCase()] = (parseFloat(LocalUser.user.ownedCoins[name.toLowerCase()]) + amount).toString();
-    } else {
-      for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
-        for (const [key, value] of Object.entries(elem)) {
-          if (key.toLowerCase() === name.toLowerCase()) {
-            elem[key] = (parseFloat(elem[key]) + amount).toString();
-            return;
-          }
-        }
-      }
-    }
+    LocalUser.addOwnedCurrencyAmount(name, amount);
   }
 
   private setOwnedCurrencyAmount(name: string, amount: number): void {
-    if (isDevMode()) {
-      LocalUser.user.ownedCoins[name.toLowerCase()] = amount.toString();
-      console.log(LocalUser.user.ownedCoins);
-    } else {
-      let contains = false;
-      for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
-        if (contains) {
-          break;
-        }
-        for (const [key, value] of Object.entries(elem)) {
-          if (key === name) {
-            contains = true;
-            break;
-          }
-        }
-      }
-      if (contains) {
-        for (let elem of LocalUser.user.ownedCoins as unknown as Array<any>) {
-          for (let [key, value] of Object.entries(elem)) {
-            if (key === name) {
-              value = amount.toString();
-              break;
-            }
-          }
-        }
-      } else {
-        const str = amount.toString();
-        (LocalUser.user.ownedCoins as unknown as Array<any>).push({name, str});
-      }
-    }
-    console.log(name);
-    console.log(amount);
+    LocalUser.setOwnedCurrencyAmount(name, amount);
   }
 
   ngOnDestroy(): void {
