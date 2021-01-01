@@ -39,6 +39,10 @@ export default class LocalUser {
     LocalUser._user = user;
   }
 
+  public static isAdmin() {
+    return LocalUser._user.role === 'ADMIN';
+  }
+
   public static getOwnedCurrencyAmount(name: string): number {
     if (isDevMode()) {
       console.log("GET");

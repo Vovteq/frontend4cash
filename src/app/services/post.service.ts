@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Post, PostInfo} from "../../scripts/ts/metadata/Post";
 import {UserService} from "./user.service";
@@ -24,6 +24,11 @@ export class PostService {
   }
 
   public savePost(title: string, content: string): Observable<void> {
-    return this.http.post<any>(this.postsUrl, {title: title, content: content, authorEmail: LocalUser.user.email});
+    return this.http.post<any>(this.postsUrl, {title: title, content: content, authorEmail: LocalUser.user.email},
+      {
+        headers: new HttpHeaders({
+          "Authorization": `Bearer ${localStorage.getItem("token")}`
+        })
+      });
   }
 }
