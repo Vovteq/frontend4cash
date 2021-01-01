@@ -116,6 +116,29 @@ export class ModalService implements OnDestroy{
         <label>Message</label>
       </div>
       <button class="writePostButton" style="font-size: 20px">Post</button>
+
+      <div class="loading" style="display: none; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(4px)">
+        <div class="loading-element" style="position: absolute; left: 40%; top: 40%; transform: translate(-40%; -40%); width: fit-content; height: fit-content;">
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+          <div style="background: #4287f5"></div>
+        </div>
+      </div>
+
+      <div class="success" style="display: none; flex-direction: column; align-items: center; justify-content: center; position: absolute; width: 110%; height: 102%; backdrop-filter: blur(8px)">
+        <p style="text-shadow: 0 0 20px rgba(82,207,54,0.4); color: #52cf36;font-size: 70px; border-radius: 50%; border: 2px solid #52cf36; padding: 0 1.5rem">✓</p>
+        <p style="text-shadow: 0 0 10px rgba(82,207,54,0.4); color: #52cf36; font-size: 55px">Success</p>
+      </div>
+      <p class="error" style="font-size: 20px; color: #cd2c38; margin-top: 1rem"></p>
     `,
 
     exchange_cash2crypto: `
@@ -360,10 +383,25 @@ export class ModalService implements OnDestroy{
       ModalService.getModalElementByClass(modal, '.writePostButton').addEventListener('click', () => {
         const postHeader = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.postHeader');
         const postText = ModalService.getModalElementByClass<HTMLTextAreaElement>(modal, '.postText');
-        this.postService.savePost(new Post("none", {
-          message: postText.value,
-          user: this.userService.getLocalUser()
-        })).subscribe(e => { console.log("post posted!"); modal.hide();})
+        const error = ModalService.getModalElementByClass<HTMLElement>(modal, '.error');
+        const success = ModalService.getModalElementByClass<HTMLElement>(modal, '.success');
+        const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
+
+        if (postHeader.value.length === 0 || postText.value.length === 0) {
+          error.innerHTML = "All fields are required.";
+          return;
+        }
+
+        loading.style.display = 'block';
+        error.innerHTML = '';
+
+        this.postService.savePost(postHeader.value, postText.value).subscribe(() => {
+          loading.style.display = 'block';
+          success.style.display = 'flex';
+        }, error1 => {
+          error.innerHTML = "Something went wrong.";
+          loading.style.display = 'none';
+        });
       })
     },
     'login': modal => {

@@ -3,10 +3,9 @@
 
 .currency-wrapper {
   display: flex;
-  border: 1px solid $blue;
-  border-radius: 15px;
-  box-shadow: 0 0 10px 0 rgba(#000, 0.3);
   position: relative;
+  padding: 0;
+  flex-direction: row;
 
   .loading {
     position: absolute;
@@ -29,6 +28,7 @@
     border-top-left-radius: 14px;
     border-bottom-left-radius: 14px;
     font-size: 25px;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.2);
   }
 
   .currency-body {
@@ -37,6 +37,11 @@
     line-height: 40px;
     color: $blue;
     text-shadow: 0 0 5px rgba(#000, 0.1);
+    border: 1px solid $blue;
+    border-left: none;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 0 10px 0 rgba(#000, 0.2);
   }
 
   .no-connection {

@@ -23,7 +23,7 @@ export class ScriptService {
     return Promise.all(promises);
   }
 
-  loadScript(name: string) {
+  loadScript(name: string): Promise<any> {
     return new Promise((resolve, reject) => {
       //resolve if already loaded
       if (this.scripts[name].loaded) {

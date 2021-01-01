@@ -9,7 +9,6 @@ import {AccountPageComponent} from "./outlet-components/account-page/account-pag
 import {AccountHomePageComponent} from "./outlet-components/account-page/outlets/account-home-page/account-home-page.component";
 import {AccountGuard} from "./guards/account.guard";
 import {ErrorPageComponent} from "./outlet-components/error-page/error-page.component";
-import {AccountPrivacyPageComponent} from "./outlet-components/account-page/outlets/account-privacy-page/account-privacy-page.component";
 import {ExchangePageComponent} from "./outlet-components/exchange-page/exchange-page.component";
 import {AccountPaymentPageComponent} from "./outlet-components/account-page/outlets/account-payment-page/account-payment-page.component";
 
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'account', component: AccountPageComponent, canActivate: [AccountGuard], children: [
       { path: '', redirectTo: 'home', pathMatch: 'full'},
       { path: 'home', component: AccountHomePageComponent },
-      { path: 'privacy', component: AccountPrivacyPageComponent },
       { path: 'payment', component: AccountPaymentPageComponent }
     ]},
   { path: '**', component: ErrorPageComponent }

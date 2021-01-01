@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Post, PostInfo} from "../../scripts/ts/metadata/Post";
 import {UserService} from "./user.service";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
+import LocalUser from "../../scripts/ts/utils/LocalUser";
 
 @Injectable()
 export class PostService {
@@ -15,7 +16,6 @@ export class PostService {
 
   public getPost(id: string): Observable<any> {
     const url = this.postsUrl + id;
-    console.log("requesting post on address: " + url);
     return this.http.get<any>(url);
   }
 
@@ -23,11 +23,7 @@ export class PostService {
     return this.http.get<PostInfo[]>(`${this.postsUrl}?amount=${amount}`);
   }
 
-  public getAllPosts(): Observable<any> {
-    return this.http.get<any>(this.postsUrl);
-  }
-
-  public savePost(post: Post): Observable<any> {
-    return this.http.post<any>(this.postsUrl, {message: post.message, user: this.userService.getLocalUser().id});
+  public savePost(title: string, content: string): Observable<void> {
+    return this.http.post<any>(this.postsUrl, {title: title, content: content, authorEmail: LocalUser.user.email});
   }
 }
