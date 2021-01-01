@@ -4,7 +4,8 @@
   </div>
   <div class="post-content">
     <div class="post-message">
-      <p [innerHTML]="message | cutText : 130: 50"></p>
+      <p *ngIf="!full" [innerHTML]="message | cutText : 130: 50"></p>
+      <p *ngIf="full" [innerHTML]="message"></p>
     </div>
     <div class="post-user">
       <div class="post-user-image">
@@ -13,5 +14,5 @@
       <p>{{_userName}}</p>
     </div>
   </div>
-  <app-post-menu></app-post-menu>
+  <app-post-menu (onOpenFull)="openFull()" (onHideFull)="hideFull()" *ngIf="message.length > 130"></app-post-menu>
 </div>

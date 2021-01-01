@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
@@ -19,10 +19,24 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class PostMenuComponent implements OnInit {
   public show: boolean;
+  public opened: boolean;
+
+  @Output() onOpenFull: EventEmitter<void> = new EventEmitter<void>();
+  @Output() onHideFull: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public openFull(): void {
+    this.opened = true;
+    this.onOpenFull.next();
+  }
+
+  public hideFull(): void {
+    this.opened = false;
+    this.onHideFull.next();
   }
 
 }

@@ -1,3 +1,4 @@
 <div [@showHide] *ngIf="show" class="row">
-  <button>Open full</button>
+  <button *ngIf="!opened" (click)="openFull()">Open full</button>
+  <button *ngIf="opened" (click)="hideFull()">Hide full</button>
 </div>

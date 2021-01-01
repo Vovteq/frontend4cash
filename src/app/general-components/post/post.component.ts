@@ -49,6 +49,7 @@ export class PostComponent implements OnInit {
   public appearRight: boolean;
 
   private initializing: boolean = true;
+  public full: boolean;
 
   private data: Post;
   @ViewChild(PostMenuComponent) menu: PostMenuComponent;
@@ -98,7 +99,11 @@ export class PostComponent implements OnInit {
       this.populateWithInfo();
     }
 
-    this.onHover.add(([hovered]) => { this.menu.show = hovered; console.log(`hovered: ${hovered}`) });
+    this.onHover.add(([hovered]) => {
+      if (this.menu !== undefined) {
+        this.menu.show = hovered;
+      }
+    });
   }
 
   private populateWithInfo(): void {
@@ -106,6 +111,14 @@ export class PostComponent implements OnInit {
     this._userName = this.data.user;
     this._message = this.data.message;
     this._title = this.data.title;
+  }
+
+  public openFull(): void {
+    this.full = true;
+  }
+
+  public hideFull(): void {
+    this.full = false;
   }
 
   setDefault(): void {
