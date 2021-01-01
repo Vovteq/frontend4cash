@@ -5,6 +5,7 @@ import {Post, PostInfo} from "../../scripts/ts/metadata/Post";
 import {UserService} from "./user.service";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
 import LocalUser from "../../scripts/ts/utils/LocalUser";
+import StringUtils from "../../scripts/ts/utils/StringUtils";
 
 @Injectable()
 export class PostService {
@@ -24,7 +25,7 @@ export class PostService {
   }
 
   public savePost(title: string, content: string): Observable<void> {
-    return this.http.post<any>(this.postsUrl, {title: title, content: content, authorEmail: LocalUser.user.email},
+    return this.http.post<any>(this.postsUrl, {title: StringUtils.stripTags(title), content: StringUtils.stripTags(content), authorEmail: LocalUser.user.email},
       {
         headers: new HttpHeaders({
           "Authorization": `Bearer ${localStorage.getItem("token")}`

@@ -48,4 +48,8 @@ export default class StringUtils {
 
     return str.substring(position, position + length)
   }
+
+  public static stripTags(str: string): string {
+    return str.replace(/(<([^>]+)>)/gi, "");
+  }
 }

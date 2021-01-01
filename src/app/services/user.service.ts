@@ -4,6 +4,7 @@ import LocalUser from "../../scripts/ts/utils/LocalUser";
 import {Observable} from "rxjs";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import URLRouter from "../../scripts/ts/utils/URLRouter";
+import StringUtils from "../../scripts/ts/utils/StringUtils";
 
 export enum LoginError {
   NoSuchUser,
@@ -41,27 +42,19 @@ export class UserService {
       if (email === null || password === null) {
         reject(LoginError.EmptyFields);
       }
-      console.log(`Login: url:[${this.usersUrl + "login"}], data: [${email}, ${password}]`)
-      this.http.post(this.usersUrl + "login", {observe: "response", email: email, password: password}).subscribe((response : any) => {
+      this.http.post(this.usersUrl + "login", {observe: "response", email: StringUtils.stripTags(email), password: password}).subscribe((response : any) => {
         if (response !== null && response.success === true && response.token != null) {
           localStorage.setItem("token", response.token);
-          localStorage.setItem("lastLoggedInEmail", email);
+          localStorage.setItem("lastLoggedInEmail", StringUtils.stripTags(email));
           localStorage.setItem("lastLoggedInPassword", password);
-          console.log(`Login success: id: [${response.id}], token: [${response.token}]`);
-          console.log(`Status: ${response.status}`);
 
           this.getUser(response.id).subscribe((user) => {
             LocalUser.logIn(user);
-            console.log(user);
             resolve();
           }, error => {
-            console.log("Error during user data GET:");
-            console.log(error);
             reject(LoginError.UndefinedError)
           });
         } else {
-          console.log(`Error during login POST, response below...`);
-          console.log(response);
           reject(LoginError.UndefinedError);
         }
       });
@@ -70,7 +63,7 @@ export class UserService {
 
   public register(email: string, nickname: string, password: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
-      this.http.post(this.usersUrl + "register", {username: nickname, email: email, password: password}).subscribe((response: any) => {
+      this.http.post(this.usersUrl + "register", {username: StringUtils.stripTags(nickname), email: StringUtils.stripTags(email), password: password}).subscribe((response: any) => {
         if (response != null && response.success === true) {
           console.log("Register success");
           resolve();
@@ -113,7 +106,7 @@ export class UserService {
 
   public changeAttribute(newValue: string, attribute: string): Promise<void> {
     return new Promise<void>(((resolve, reject) => {
-      this.http.put(`${this.usersUrl}${LocalUser.user.id}/${attribute}?${attribute}=${newValue}`, {},
+      this.http.put(`${this.usersUrl}${LocalUser.user.id}/${attribute}?${attribute}=${StringUtils.stripTags(newValue)}`, {},
         {
           headers: new HttpHeaders({
             "Authorization": `Bearer ${localStorage.getItem("token")}`
@@ -121,7 +114,7 @@ export class UserService {
         }
       ).subscribe(() => {
         if (attribute === 'email') {
-          localStorage.setItem('lastLoggedInEmail', newValue);
+          localStorage.setItem('lastLoggedInEmail', StringUtils.stripTags(newValue));
         }
         resolve();
       }, error => {reject();});
