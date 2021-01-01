@@ -42,8 +42,6 @@ export class UserService {
       if (email === null || password === null) {
         reject(LoginError.EmptyFields);
       }
-      console.log(StringUtils.stripTags(email));
-      console.log(password);
       this.http.post(this.usersUrl + "login", {email: StringUtils.stripTags(email), password: password}).subscribe((response : any) => {
         if (response !== null && response.success === true && response.token != null) {
           localStorage.setItem("token", response.token);
@@ -67,13 +65,11 @@ export class UserService {
     return new Promise<void>(((resolve, reject) => {
       this.http.post(this.usersUrl + "register", {username: StringUtils.stripTags(nickname), email: StringUtils.stripTags(email), password: password}).subscribe((response: any) => {
         if (response != null && response.success === true) {
-          console.log("Register success");
           resolve();
         } else {
-          console.log(response);
           reject();
         }
-      });
+      }, error => { reject();});
     }));
   }
 

@@ -442,14 +442,14 @@ export class ModalService implements OnDestroy{
     },
     'login': modal => {
       const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
-      const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname').value;
-      const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password').value;
+      const alias = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-nickname');
+      const pass = ModalService.getModalElementByClass<HTMLInputElement>(modal, '.login-password');
 
       ModalService.getModalElementByClass(modal, '.loginModalButton').addEventListener('click', () => {
         loading.style.display = 'block';
-        this.userService.logIn(alias, pass).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
+        this.userService.logIn(alias.value, pass.value).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
           loading.style.display = 'none';
-          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong. Please, check entered e-mail and password.`;
+          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong.<br> Please, check entered e-mail and password.`;
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
         });
       })
