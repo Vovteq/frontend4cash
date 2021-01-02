@@ -64,4 +64,12 @@ export class AppComponent implements OnInit {
   scroll(elem: Element): void {
     elem.scrollIntoView();
   }
+
+  goToGitlab(part: string): void {
+    if (part === 'front') {
+      window.location.href = 'https://gitlab.cs.ttu.ee/kigris/frontend4cash';
+    } else {
+      window.location.href = 'https://gitlab.cs.ttu.ee/glkomi/backend4cash';
+    }
+  }
 }

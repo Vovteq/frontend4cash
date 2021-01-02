@@ -53,7 +53,7 @@
       >
       </app-context-button>
       <span class="user-info" *ngIf="userService.isLoggedIn()">
-        <span class="welcome-message">Welcome, {{userService.getLocalUser().username}}</span>
+        <span class="welcome-message">Welcome, <b>{{userService.getLocalUser().username}}</b></span>
         <span class="balance" (click)="goToBalance()" [innerHTML]="(balance | cutText : 12 : 5) + '$'"></span>
       </span>
       <app-context-button *ngIf="userService.isLoggedIn()"

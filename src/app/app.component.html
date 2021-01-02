@@ -17,7 +17,7 @@
     <div class="footer-col" style="color: #fff;">
       <div class="col" style="border-left: 5px solid #fff; padding-left: 1rem">
         <div class="row"><h2 style="margin: 0; letter-spacing: 1px; text-shadow: 0 0 8px rgba(255,255,255, 0.4)">vovtech. team</h2></div>
-        <div class="row"><p style="font-size: 20px; margin: 0;">2020-2021, special for ITI-0205</p></div>
+        <div class="row"><p style="font-size: 20px; margin: 0;">2020-2021, special for ITI-0203</p></div>
       </div>
     </div>
     <div class="footer-col">
@@ -25,7 +25,13 @@
         <img style="width: 130px; height: 18px;" src="../assets/img/logo_big.png">
       </div>
       <div class="footer-module" style="cursor: pointer;">
-        <img style="width: 105px; height: 34px;" src="../assets/img/gitlab-logo.png">
+        <img (click)="goToGitlab('front')" style="width: 105px; height: 34px;" src="../assets/img/gitlab-front.png">
+        <div class="link">
+          <img src="../assets/img/link.png">
+        </div>
+      </div>
+      <div class="footer-module" style="cursor: pointer; margin-left: 3.5rem">
+        <img (click)="goToGitlab('back')" style="width: 105px; height: 34px;" src="../assets/img/gitlab-back.png">
         <div class="link">
           <img src="../assets/img/link.png">
         </div>
