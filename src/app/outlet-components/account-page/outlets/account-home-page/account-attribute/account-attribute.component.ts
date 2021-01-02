@@ -14,14 +14,13 @@ export class AccountAttributeComponent implements OnInit, AfterContentInit {
   @Input() editable: boolean;
   @Input() value: any;
   @Input() attribute: string;
+  @Input() isPassword: boolean;
 
   constructor(private el: ElementRef, private modalService: ModalService, private router: Router) { }
 
   ngOnInit(): void {
-
-    (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').innerHTML =
-      this.editable ? this.label + '<button>Change</button>' : this.label;
     if (this.editable) {
+      (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').innerHTML = this.label + '<button>Change</button>';
       (this.el.nativeElement as HTMLElement).querySelector('.attribute-name').querySelector('button').addEventListener('click', () => {
         this.modalService.showModal('change-attr-modal');
         localStorage.setItem('changeAttribute', this.attribute);
