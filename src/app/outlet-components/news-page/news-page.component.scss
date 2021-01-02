@@ -1,0 +1,11 @@
+.news-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  app-news {
+    margin: 0 0 2vh 0 !important;
+    width: 40vw;
+    flex: 0 44vw;
+  }
+}

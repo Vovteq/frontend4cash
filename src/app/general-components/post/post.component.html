@@ -4,7 +4,7 @@
   </div>
   <div class="post-content">
     <div class="post-message">
-      <p *ngIf="!full" [innerHTML]="message | cutText : 130: 50"></p>
+      <p *ngIf="!full" [innerHTML]="message | cutText : 200: 50"></p>
       <p *ngIf="full" [innerHTML]="message"></p>
     </div>
     <div class="post-user">

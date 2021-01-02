@@ -9,7 +9,8 @@ export default class URLRouter {
   private static routes: {[id: string]: string} = {
     currency: 'api/coins/',
     users: 'api/users/',
-    posts: 'api/posts/'
+    posts: 'api/posts/',
+    news: 'api/news/'
   }
 
   public static getRoute(routeId: string): string {

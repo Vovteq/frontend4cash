@@ -1,20 +1,23 @@
 <section [@show] class="blog__section">
   <div class="section-header" style="margin-top: 5rem">Latest news</div>
-  <div class="row centered">
-    <div class="news-wrapper">
-      <app-news [title]="'News title'" [hot]="true" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
-    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
-      <app-news [title]="'News title'" [hot]="false" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
-    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
-    </div>
-  </div>
-  <div class="row centered">
-    <div class="news-wrapper">
-      <app-news [title]="'News title'" [hot]="false" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
-    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
-      <app-news [title]="'News title'" [hot]="false" [preview]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit.'+
-    'Accusamus delectus dicta explicabo id illum inventore ipsa nam odit sequi voluptatem'"></app-news>
-    </div>
+  <div class="news-wrapper">
+    <app-news *ngFor="let elem of news" [title]="elem.title" [hot]="false" [preview]="elem.message"></app-news>
   </div>
 
+  <div *ngIf="dataLoading" [@loading] class="loading">
+    <div class="loading-element" style="position: absolute; width: fit-content; height: fit-content;">
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+      <div style="background: #4287f5"></div>
+    </div>
+  </div>
 </section>
