@@ -6,6 +6,7 @@ import DOMParser from "../../../scripts/ts/utils/DOMParser";
 import PageCache from "../../../scripts/ts/utils/PageCache";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {ConnectionService} from "../../services/connection.service";
+import {Router} from "@angular/router";
 
 declare var particlesJS: any;
 
@@ -27,12 +28,22 @@ declare var particlesJS: any;
 export class HomePageComponent implements OnInit {
   cache: PageCache;
 
-  constructor(public userService: UserService, public modalService: ModalService, public connectionService: ConnectionService) { }
+  constructor(public userService: UserService, public modalService: ModalService, public connectionService: ConnectionService, public router: Router) { }
 
   ngOnInit(): void {
     particlesJS.load('particles-js', 'assets/config/particles.json');
     AOS.init();
     DOMParser.parse();
     this.cache = new PageCache();
+    document.querySelector('#forumButton').addEventListener('click', () => {
+      this.goToPage('forum');
+    });
+    document.querySelector('#newsButton').addEventListener('click', () => {
+      this.goToPage('news');
+    });
+  }
+
+  public goToPage(page: string): void {
+    this.router.navigate([page]);
   }
 }
