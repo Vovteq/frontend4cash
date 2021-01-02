@@ -77,7 +77,7 @@ export class UserService {
     localStorage.removeItem('lastLoggedInEmail');
     localStorage.removeItem('lastLoggedInPassword');
     localStorage.removeItem('token');
-    LocalUser.logOut();
+    location.reload();
   }
 
   public getLocalUser(): UserInfo {

@@ -1,4 +1,4 @@
-import {Component, isDevMode, OnInit} from '@angular/core';
+import {AfterContentInit, Component, isDevMode, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
 import {UserService} from "../../../../services/user.service";
 import StringUtils from "../../../../../scripts/ts/utils/StringUtils";
@@ -6,6 +6,7 @@ import {UserInfo} from "../../../../../scripts/ts/metadata/User";
 import LocalUser from "../../../../../scripts/ts/utils/LocalUser";
 import {defaultLongDateFormat} from "ngx-bootstrap/chronos/locale/locale.class";
 import {ModalService} from "../../../../services/modal.service";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-account-home-page',
@@ -21,12 +22,12 @@ import {ModalService} from "../../../../services/modal.service";
     ])
   ]
 })
-export class AccountHomePageComponent implements OnInit {
+export class AccountHomePageComponent implements OnInit, AfterContentInit {
   public ownedCoins: Array<{coin: string, amount: string}> = [];
   public initComplete = false;
   public user: UserInfo;
 
-  constructor(public userService: UserService, private modalService: ModalService) { }
+  constructor(public userService: UserService, private modalService: ModalService, private router: Router) { }
 
   getNicknameInitials(): string {
     return StringUtils.getInitials(this.user.username).toUpperCase();
@@ -66,6 +67,12 @@ export class AccountHomePageComponent implements OnInit {
       }
     }
     this.initComplete = true;
+  }
+
+  ngAfterContentInit(): void {
+    if (!LocalUser.loggedIn()) {
+      this.router.navigate(['../../'])
+    }
   }
 
 }

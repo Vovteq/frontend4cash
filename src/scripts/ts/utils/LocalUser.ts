@@ -24,7 +24,7 @@ export default class LocalUser {
   }
 
   public static loggedIn(): boolean {
-    return this.user !== undefined;
+    return LocalUser.user !== undefined;
   }
 
   public static get user(): UserInfo {
