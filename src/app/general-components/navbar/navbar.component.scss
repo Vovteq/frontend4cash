@@ -117,3 +117,20 @@ a + a {
 .offline-mode {
   font-size: 20px;
 }
+
+.balance {
+  font-size: 22px;
+  color: $darkgreen;
+  border: 1px solid $darkgreen;
+  padding: 0.2rem 0.4rem;
+  box-shadow: 0 0 8px 0 rgba(#000, 0.2);
+  border-radius: 10px;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  transition: 200ms all;
+
+  &:hover {
+    background: $darkgreen;
+    color: $white;
+  }
+}

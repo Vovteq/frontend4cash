@@ -894,8 +894,7 @@ export class ModalService implements OnDestroy{
           } else {
             loading.style.display = 'block';
             this.currencyService.changeCurrency(parseFloat(amountField.value), crypto.toLowerCase(), "sell").then(() => {
-              this.userService.updateUserData();
-              modal.hide();
+              location.reload();
             }).catch(() => {
               error.innerHTML = "Something went wrong, please, try again.";
               loading.style.display = 'none';

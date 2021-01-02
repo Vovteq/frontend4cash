@@ -3,6 +3,8 @@ import {UserService} from "../../services/user.service";
 import {ModalService} from "../../services/modal.service";
 import {ConnectionService} from "../../services/connection.service";
 import {animate, style, transition, trigger} from "@angular/animations";
+import LocalUser from "../../../scripts/ts/utils/LocalUser";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -23,11 +25,18 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public userService: UserService, public modalService: ModalService, public connectionService: ConnectionService) {
+  constructor(public userService: UserService, public modalService: ModalService, public connectionService: ConnectionService, private router: Router) {
   }
 
   ngOnInit(): void {
   }
 
+  public get balance(): string {
+    return LocalUser.user.cash;
+  }
+
+  public goToBalance(): void {
+    this.router.navigate(['account/payment']);
+  }
 
 }

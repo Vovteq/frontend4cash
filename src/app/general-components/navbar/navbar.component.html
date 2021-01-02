@@ -53,8 +53,9 @@
       >
       </app-context-button>
       <span *ngIf="userService.isLoggedIn()">
-      Welcome, {{userService.getLocalUser().username}}
-    </span>
+        Welcome, {{userService.getLocalUser().username}}
+        <span class="balance" (click)="goToBalance()">{{balance}}$</span>
+      </span>
       <app-context-button *ngIf="userService.isLoggedIn()"
                           [text]="'Logout'"
                           [context]="userService.logOut"
