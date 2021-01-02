@@ -34,7 +34,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col center">
       <app-link [route]="''" [routeLink]="true" [text]="'Home'"></app-link>
       <app-link [route]="'monitoring'" [routeLink]="true" [text]="'Monitoring'"></app-link>
       <app-link [route]="'news'" [routeLink]="true" [text]="'News'"></app-link>
@@ -43,18 +43,18 @@
       <app-link *ngIf="userService.isLoggedIn()" [route]="'/account/home'" [routeLink]="true" [text]="'Account'"></app-link>
     </div>
     <div class="col right" style="padding-right: 1rem">
-    <span *ngIf="!userService.isLoggedIn() && connectionService.connected">
-      You are not logged in
-    </span>
+      <span *ngIf="!userService.isLoggedIn() && connectionService.connected">
+        You are not logged in
+      </span>
       <app-context-button *ngIf="!userService.isLoggedIn() && connectionService.connected"
                           [context]="modalService.showModal"
                           [args]="['login-modal']"
                           [text]="'Log in'"
       >
       </app-context-button>
-      <span *ngIf="userService.isLoggedIn()">
-        Welcome, {{userService.getLocalUser().username}}
-        <span class="balance" (click)="goToBalance()" [innerHTML]="(balance | cutText : 7 : 5) + '$'"></span>
+      <span class="user-info" *ngIf="userService.isLoggedIn()">
+        <span class="welcome-message">Welcome, {{userService.getLocalUser().username}}</span>
+        <span class="balance" (click)="goToBalance()" [innerHTML]="(balance | cutText : 12 : 5) + '$'"></span>
       </span>
       <app-context-button *ngIf="userService.isLoggedIn()"
                           [text]="'Logout'"

@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public get balance(): string {
-    return LocalUser.user.cash;
+    return parseInt(LocalUser.user.cash).toString();
   }
 
   public goToBalance(): void {

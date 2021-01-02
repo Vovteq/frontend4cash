@@ -20,9 +20,11 @@
 
   .col {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: center !important;
+    align-items: flex-start;
     position: relative;
+    max-width: 33%;
+    flex-wrap: wrap;
 
     span {
       letter-spacing: 3px;
@@ -31,14 +33,61 @@
     app-context-button {
       margin-left: 1rem;
     }
+
+    @media only screen and (max-width: 1700px) {
+      app-context-button {
+        margin-top: 1rem;
+      }
+    }
+
   }
 
+  .center {
+    border-right: 1px solid rgba(#000, 0.3);
+    border-left: 1px solid rgba(#000, 0.3);
+  }
+
+
+
   .right {
-    justify-content: flex-end;
+    justify-content: flex-end !important;
+
+    .user-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      @media only screen and (min-width: 1600px) {
+        .welcome-message {
+          padding-right: 0.4rem;
+        }
+      }
+
+      @media only screen and (max-width: 1100px) {
+        flex-direction: column;
+      }
+
+      @media only screen and (max-width: 1700px) {
+        padding-left: 1rem;
+      }
+    }
   }
 
   .left {
-    justify-content: flex-start;
+    justify-content: flex-start !important;
+  }
+
+  .right {
+    @media only screen and (max-width: 1800px) {
+      justify-content: center !important;
+      align-items: center !important;
+    }
+  }
+
+  .left {
+    @media only screen and (max-width: 1000px) {
+      justify-content: center !important;
+    }
   }
 }
 
@@ -119,7 +168,7 @@ a + a {
 }
 
 .balance {
-  font-size: 22px;
+  font-size: 1.3vw;
   color: $darkgreen;
   border: 1px solid $darkgreen;
   padding: 0.2rem 0.4rem;
@@ -127,12 +176,17 @@ a + a {
   border-radius: 10px;
   margin-left: 0.3rem;
   cursor: pointer;
-  transition: 200ms all;
+  transition: 200ms background-color, 200ms color;
+  height: fit-content;
 
   .fading-text {
     background: linear-gradient(90deg, rgba($darkgreen,1) 0%, rgba($darkgreen,0.2805497198879552) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  @media only screen and (max-width: 1400px) {
+    font-size: 1vw;
   }
 
   &:hover {
