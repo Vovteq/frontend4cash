@@ -1,3 +1,5 @@
+@import "../../utils/scss/colors";
+
 .news-wrapper {
   display: flex;
   justify-content: center;
@@ -8,4 +10,14 @@
     width: 40vw;
     flex: 0 44vw;
   }
+
+
+}
+
+.no-news-found {
+  font-size: 30px !important;
+  color: $dark;
+  padding-top: 10%;
+  height: 90%;
+  letter-spacing: 5px;
 }

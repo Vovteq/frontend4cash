@@ -31,7 +31,7 @@ import {PostService} from "../../services/post.service";
   encapsulation: ViewEncapsulation.None
 })
 export class NewsPageComponent implements OnInit {
-  public news: NewsInfo[]
+  public news: NewsInfo[] = [];
   public dataLoading: boolean;
 
   constructor(private postService: PostService) { }
