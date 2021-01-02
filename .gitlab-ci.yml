@@ -13,6 +13,9 @@ pull:
     - git reset --hard ${CI_COMMIT_REF_NAME}
   script:
     - git pull git@gitlab.cs.ttu.ee:kigris/frontend4cash.git ${CI_COMMIT_REF_NAME}
+  after_script:
+    # frontend so big we are running out of space on the server...................
+    - docker rmi $(docker images -q)
 
 compile:
   stage: compile angular
