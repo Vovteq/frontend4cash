@@ -7,6 +7,13 @@
   align-items: center;
   position: relative;
 
+  #forumPage {
+    font-size: 40px;
+    letter-spacing: 10px;
+    color: $dark;
+    margin: 0;
+  }
+
   .separator {
     width: 60%;
     height: 1px;

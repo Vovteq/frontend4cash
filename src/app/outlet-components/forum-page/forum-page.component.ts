@@ -94,12 +94,16 @@ export class ForumPageComponent implements OnInit {
     return this.offset < 5;
   }
 
-  public get nextButton(): HTMLElement {
+  private get nextButton(): HTMLElement {
     return document.querySelector('#postNextPage');
   }
 
-  public get prevButton(): HTMLElement {
+  private get prevButton(): HTMLElement {
     return document.querySelector('#postPrevPage');
+  }
+
+  private get forumPage(): HTMLElement {
+    return document.querySelector('#forumPage');
   }
 
   constructor(public userService: UserService, private postService: PostService, public modalService: ModalService, private componentFactoryResolver: ComponentFactoryResolver) { }
@@ -126,7 +130,7 @@ export class ForumPageComponent implements OnInit {
         });
       }
 
-      this.updateButtons();
+      this.updateView();
 
       if (this.posts.length > 0) {
         setTimeout(() => {
@@ -171,7 +175,7 @@ export class ForumPageComponent implements OnInit {
 
   private reRender(disappearRight: boolean): void {
     this.loadBusy = true;
-    this.updateButtons();
+    this.updateView();
 
     for (let i = 0; i < this.currentRefs.length; i++) {
       setTimeout(() => {
@@ -193,7 +197,7 @@ export class ForumPageComponent implements OnInit {
     setTimeout(() => {this.loadBusy = false;}, 5 * 50);
   }
 
-  private updateButtons() {
+  private updateView() {
     if (this.leftLimit()) {
       this.prevButton.style.borderRightColor = '#575757';
       this.prevButton.style.cursor = 'inherit';
@@ -209,6 +213,8 @@ export class ForumPageComponent implements OnInit {
       this.nextButton.style.borderLeftColor = '#4287f5';
       this.nextButton.style.cursor = 'pointer';
     }
+
+    this.forumPage.innerHTML = `${this.offset / 5 + 1}/${Math.ceil(this.posts.length / 5)}`;
   }
 
 }
