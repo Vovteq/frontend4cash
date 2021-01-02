@@ -611,6 +611,14 @@ export class ModalService implements OnDestroy{
       });
 
       confirm.addEventListener('click', () => {
+        if (this.getOwnedCurrencyAmount(fromCurrencyField.value) === undefined) {
+          error.innerHTML = "You don't have such currency.";
+          return;
+        }
+        if (this.getOwnedCurrencyAmount(fromCurrencyField.value) < parseFloat(amountField.value)) {
+          error.innerHTML = "You don't have enough currency.";
+          return;
+        }
         if (finalPrice === 0) {
           error.innerHTML = "All fields are required.";
           return;
@@ -818,7 +826,7 @@ export class ModalService implements OnDestroy{
             });
           }
         } else {
-          error.innerHTML = "You have not enough crypto."
+          error.innerHTML = "You have not enough currency."
         }
       });
     },
