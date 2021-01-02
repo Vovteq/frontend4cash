@@ -129,8 +129,15 @@ a + a {
   cursor: pointer;
   transition: 200ms all;
 
+  .fading-text {
+    background: linear-gradient(90deg, rgba($darkgreen,1) 0%, rgba($darkgreen,0.2805497198879552) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   &:hover {
     background: $darkgreen;
     color: $white;
   }
 }
+

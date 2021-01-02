@@ -9,7 +9,7 @@ export class CutTextPipe implements PipeTransform {
     console.log(value);
     if(value.length > maxLength) {
       let ret = value.substring(0, fadeStart);
-      ret += `<span class="post-message-fading">${value.substring(fadeStart, maxLength)}...</span>`;
+      ret += `<span class="fading-text">${value.substring(fadeStart, maxLength)}...</span>`;
       return ret;
     }
     else return value;

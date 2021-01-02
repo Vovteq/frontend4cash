@@ -22,7 +22,7 @@ export class User {
     username: 'Auferok',
     email: 'auf@auf.com',
     status: 'Some cool status',
-    cash: '100',
+    cash: '12412441.12401401204142',
     role: "USER",
     ownedCoins: {
       'bitcoin':'10000'
