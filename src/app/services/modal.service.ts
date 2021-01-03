@@ -63,7 +63,7 @@ export class ModalService implements OnDestroy{
     // Login template (standard)
     login: `
       <h2 style="margin-bottom: 1rem">Login</h2>
-      <p>Login tooltip</p>
+      <p style="font-weight: lighter">It's never late<br> to come back.</p>
       <div class="separator"></div>
       <div class="modal-input-wrapper">
         <input size="40" class="login-nickname">
@@ -75,7 +75,7 @@ export class ModalService implements OnDestroy{
         <span class="bar"></span>
         <label>Password</label>
       </div>
-      <p class="loginModalError" style="color: #ff673d; font-size: 20px; letter-spacing: 1px; margin: 0;">
+      <p class="loginModalError" style="color: #ff673d; font-size: 20px; letter-spacing: 1px; margin: 0; text-align: center">
 
       </p>
       <div class="row centered">
