@@ -21,7 +21,7 @@
   .col {
     display: flex;
     justify-content: center !important;
-    align-items: flex-start;
+    align-items: center;
     position: relative;
     max-width: 33%;
     flex-wrap: wrap;
@@ -184,10 +184,6 @@ a + a {
     background: linear-gradient(90deg, rgba($darkgreen,1) 0%, rgba($darkgreen,0.2805497198879552) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-  }
-
-  @media only screen and (max-width: 1400px) {
-    font-size: 1vw;
   }
 
   &:hover {

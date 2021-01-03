@@ -100,7 +100,6 @@ export class MonitoringPageComponent implements OnInit{
         this.showCurrencyChart();
       }
     }, error => {
-      console.log('Currency not found.');
       self.error = 'Currency not found';
     });
   }

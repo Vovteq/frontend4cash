@@ -114,7 +114,6 @@ export class ForumPageComponent implements OnInit {
     this.postService.getNPosts(50).subscribe((posts) => {
       this._posts = posts;
       this.dataLoading = false;
-      console.log(posts);
 
       if (this.posts.length > 5) {
         this.nextButton.addEventListener('click', () => {

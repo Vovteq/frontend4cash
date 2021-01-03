@@ -1,7 +1,7 @@
 <section [@show] class="blog__section">
   <div class="section-header" style="margin-top: 5rem">Latest news</div>
   <div class="news-wrapper">
-    <app-news *ngFor="let elem of news" [title]="elem.title" [hot]="false" [preview]="elem.message"></app-news>
+    <div appNewsContainer></div>
   </div>
 
   <div *ngIf="dataLoading" [@loading] class="loading">

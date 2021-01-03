@@ -47,6 +47,7 @@ import { TemporalLinkDirective } from './directives/temporal-link.directive';
 import { ShowModalDirective } from './directives/show-modal.directive';
 import {CountUpModule} from "ngx-countup";
 import { PostsContainerDirective } from './directives/posts-container.directive';
+import { NewsContainerDirective } from './directives/news-container.directive';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { PostsContainerDirective } from './directives/posts-container.directive'
     AccountPaymentPageComponent,
     TemporalLinkDirective,
     ShowModalDirective,
-    PostsContainerDirective
+    PostsContainerDirective,
+    NewsContainerDirective
   ],
     imports: [
         BrowserModule,

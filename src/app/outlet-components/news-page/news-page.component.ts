@@ -1,7 +1,10 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ComponentFactoryResolver, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {animate, group, style, transition, trigger} from "@angular/animations";
 import {NewsInfo} from "../../../scripts/ts/metadata/News";
 import {PostService} from "../../services/post.service";
+import {NewsContainerDirective} from "../../directives/news-container.directive";
+import {PostComponent} from "../../general-components/post/post.component";
+import {NewsComponent} from "../../general-components/news/news.component";
 
 @Component({
   selector: 'app-news-page',
@@ -34,7 +37,19 @@ export class NewsPageComponent implements OnInit {
   public news: NewsInfo[] = [];
   public dataLoading: boolean;
 
-  constructor(private postService: PostService) { }
+  @ViewChild(NewsContainerDirective, {static: true}) newsContainer: NewsContainerDirective;
+
+  constructor(private postService: PostService, private componentFactoryResolver: ComponentFactoryResolver) { }
+
+  private createNews(info: NewsInfo, hot: boolean = false) {
+    const factory = this.componentFactoryResolver.resolveComponentFactory(NewsComponent);
+    const ref = this.newsContainer.viewContainerRef;
+
+    const componentRef = ref.createComponent<NewsComponent>(factory);
+    componentRef.instance.title = info.title;
+    componentRef.instance.preview = info.message;
+    componentRef.instance.hot = hot;
+  }
 
   ngOnInit(): void {
     this.dataLoading = true;
@@ -42,7 +57,16 @@ export class NewsPageComponent implements OnInit {
     this.postService.getNNews(10).subscribe((news) => {
       this.dataLoading = false;
       this.news = news;
+
+      for (let i = 0; i < this.news.length; i++) {
+        setTimeout(() => {
+          this.createNews(this.news[i], i === 0);
+        }, i * 100);
+      }
+
     }, error => {})
+
+
   }
 
 }

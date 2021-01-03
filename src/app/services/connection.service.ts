@@ -33,7 +33,7 @@ export class ConnectionService {
           Console.printIfDev("Server ping failed.")
           Console.printIfDev(error);
         });
-    }, error => {console.log(error);});
+    }, error => {});
   }
 
   public forceDisconnect() {

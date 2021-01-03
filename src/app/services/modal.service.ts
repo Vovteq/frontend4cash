@@ -63,7 +63,7 @@ export class ModalService implements OnDestroy{
     // Login template (standard)
     login: `
       <h2 style="margin-bottom: 1rem">Login</h2>
-      <p style="font-weight: lighter">It's never late<br> to come back.</p>
+      <p style="font-weight: lighter; font-size: 20px">It's never late to come back.</p>
       <div class="separator"></div>
       <div class="modal-input-wrapper">
         <input size="40" class="login-nickname">
@@ -386,7 +386,7 @@ export class ModalService implements OnDestroy{
             });
           }).catch((error) => {
             loading.style.display = 'none';
-            const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Something went wrong. Please, check entered data.`;
+            const errorMessage = isDevMode() ? `(DEV)REGISTER_ERR[${error}]` : `Something went wrong. <br> Please, check entered data.`;
             ModalService.getModalElementByClass(modal, '.registerModalError').innerHTML = errorMessage;
           });
         });
@@ -420,7 +420,7 @@ export class ModalService implements OnDestroy{
         const success = ModalService.getModalElementByClass<HTMLElement>(modal, '.success');
         const loading = ModalService.getModalElementByClass<HTMLElement>(modal, '.loading');
 
-        if (postHeader.value.length === 0 || postText.value.length === 0) {
+        if (postHeader.value.length === 0 || postText.value.trim().length === 0) {
           error.innerHTML = "All fields are required.";
           return;
         }
@@ -449,7 +449,7 @@ export class ModalService implements OnDestroy{
         loading.style.display = 'block';
         this.userService.logIn(alias.value, pass.value).then(() => { modal.hide(); ModalInspector.get('register-modal')?.hide();}).catch((error) => {
           loading.style.display = 'none';
-          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong.<br> Please, check entered e-mail and password.`;
+          const errorMessage = isDevMode() ? `(DEV)LOGIN_ERR[${error}]` : `Something went wrong.<br> Please, check entered <br> e-mail and password.`;
           ModalService.getModalElementByClass(modal, '.loginModalError').innerHTML = errorMessage;
         });
       })
@@ -680,7 +680,6 @@ export class ModalService implements OnDestroy{
               LocalUser.user.cash = (parseFloat(LocalUser.user.cash) + inputNum).toString();
               modal.hide();
             }).catch(() => {
-              console.log("ZagruZka babla (Cash, $, bucks) ne udalas (((((((");
               modal.hide();
             });
           }
@@ -901,9 +900,6 @@ export class ModalService implements OnDestroy{
             });
           }
         } else {
-          console.log(LocalUser.user.ownedCoins);
-          console.log(parseFloat(LocalUser.user.ownedCoins[crypto]));
-          console.log(parseFloat(amountField.value));
           error.innerHTML = "You have not enough crypto."
         }
       });
@@ -950,6 +946,5 @@ export class ModalService implements OnDestroy{
   }
 
   ngOnDestroy(): void {
-    console.log("Modal service destroyed");
   }
 }

@@ -5,7 +5,7 @@ export default class UrlClickContext extends GenericContext<[string]> {
   public url: string;
 
   constructor(url: string) {
-    super(() => { console.log(this.url) });
+    super(() => {  });
     this.url = url;
   }
 
